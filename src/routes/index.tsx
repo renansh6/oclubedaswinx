@@ -1,24 +1,544 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import heroImg from "@/assets/hero-barbie.jpg";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "A Maior Coleção de Barbie do Brasil | +40 Filmes Dublados" },
+      {
+        name: "description",
+        content:
+          "Acervo com +40 filmes e séries da Barbie dublados em português, Full HD e acesso vitalício. De R$59,90 por apenas R$6,90.",
+      },
+      { property: "og:title", content: "A Maior Coleção de Barbie do Brasil" },
+      {
+        property: "og:description",
+        content:
+          "+40 filmes e séries da Barbie dublados, Full HD e acesso vitalício por apenas R$6,90.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+const CHECKOUT =
+  "https://pay.lowify.com.br/go.php?offer=2w73nym&utm_source=organic&utm_campaign=&utm_medium=&utm_content=&utm_term=";
+const CHECKOUT_VIP =
+  "https://pay.lowify.com.br/go.php?offer=dwjoiy3&utm_source=organic&utm_campaign=&utm_medium=&utm_content=&utm_term=";
+
+const TITULOS = [
+  "Fairytopia",
+  "Moda e Magia",
+  "Rapunzel",
+  "12 Princesas",
+  "Quebra-Nozes",
+  "Lago dos Cisnes",
+  "Pop Star",
+  "Escola de Princesas",
+  "Vida de Sereia",
+];
+
+const BENEFITS: { ic: string; html: React.ReactNode; bonus?: boolean }[] = [
+  { ic: "✅", html: <>Acervo com <b>+40 filmes da Barbie</b> dublados em português</> },
+  {
+    ic: "👑",
+    html: (
+      <>
+        <b>Coleção completa das Princesas</b> — Rapunzel, A Princesa e a Plebeia, 12 Princesas
+        Bailarinas, Escola de Princesas…
+      </>
+    ),
+  },
+  { ic: "🧚", html: <><b>Saga Fairytopia completa</b> — Fadas, Mermaidia e A Magia do Arco-Íris</> },
+  {
+    ic: "🎬",
+    html: (
+      <>
+        <b>Séries completas:</b> Life in the Dreamhouse + Dreamhouse Adventures (todas as
+        temporadas)
+      </>
+    ),
+  },
+  {
+    ic: "✨",
+    html: <><b>Clássicos e musicais:</b> O Quebra-Nozes, Lago dos Cisnes, A Princesa e a Pop Star…</>,
+  },
+  { ic: "📺", html: <>Tudo em <b>Full HD 1080p</b> e dublado em português</> },
+  { ic: "🎨", html: <>Interface simples e organizada, <b>fácil de achar cada filme</b></> },
+  { ic: "💬", html: <><b>Acesso imediato</b> liberado direto no seu WhatsApp</> },
+  { ic: "♾️", html: <><b>Acesso 100% vitalício</b> — pague uma vez, é seu pra sempre</> },
+  { ic: "🆕", html: <><b>Novos filmes adicionados sempre</b>, sem pagar nada a mais</> },
+  { ic: "🎁", html: <><b>Kit de desenhos da Barbie</b> para imprimir e colorir</>, bonus: true },
+];
+
+const REVIEWS = [
+  {
+    initials: "MS",
+    name: "Mariana Santos",
+    grad: "linear-gradient(135deg,#F65BAE,#D6167E)",
+    txt: "Eu amei esse acervo! Cresci assistindo Barbie e agora posso rever tudo com a minha filha. Que nostalgia, tô apaixonada! 🥹💖",
+  },
+  {
+    initials: "TS",
+    name: "Tauany Silveira",
+    grad: "linear-gradient(135deg,#B96CE0,#7E3FD6)",
+    txt: "Tô me sentindo criança de novo kkkk já assisti A Princesa e a Plebeia umas 3 vezes. Já mandei pra minha irmã que também é fã!",
+  },
+  {
+    initials: "JA",
+    name: "Juliana Alves",
+    grad: "linear-gradient(135deg,#F79BC4,#E0218A)",
+    txt: "Gente, entrei ontem e fiquei até tarde assistindo Rapunzel. Não consegui parar! A qualidade tá perfeita e tudo dublado 😍✨",
+  },
+];
+
+const COMMENTS = [
+  {
+    initials: "CM",
+    grad: "linear-gradient(135deg,#F65BAE,#C21E77)",
+    user: "carol_mendes22",
+    txt: "Meninaaa, tava doida pra rever esses filmes com a minha filha e achei tudo aqui 🥰",
+    time: "4 h",
+  },
+  {
+    initials: "BL",
+    grad: "linear-gradient(135deg,#C98CE8,#8A46D6)",
+    user: "bruna.lima",
+    txt: "Ficou muito bom! Fazia anos que eu procurava os filmes antigos dublados e não achava. Recomendo demais!",
+    time: "2 h",
+  },
+  {
+    initials: "AS",
+    grad: "linear-gradient(135deg,#F79BC4,#E0218A)",
+    user: "amanda_souza",
+    txt: "Eu e a minha filha passamos a tarde assistindo Escola de Princesas kkk nostalgia total 💕",
+    time: "2 h",
+  },
+  {
+    initials: "LD",
+    grad: "linear-gradient(135deg,#FF9EBB,#D6167E)",
+    user: "leticia_dias",
+    txt: "Tô simplesmente apaixonada nesse acervo 💖 ficou perfeito",
+    time: "2 h",
+  },
+];
+
+const BUYERS = [
+  "Amanda de São Paulo",
+  "Juliana do Rio de Janeiro",
+  "Patrícia de Belo Horizonte",
+  "Camila de Curitiba",
+  "Fernanda de Salvador",
+  "Larissa de Recife",
+  "Bruna de Porto Alegre",
+];
+
+function Divider() {
+  return <hr className="my-8 border-0 border-t border-dashed border-border" />;
+}
+
+function OfferCard({
+  tag,
+  scarcity,
+  title,
+  cta,
+  note,
+  onCta,
+}: {
+  tag: string;
+  scarcity?: string;
+  title: string;
+  cta: string;
+  note: React.ReactNode;
+  onCta: (e: React.MouseEvent) => void;
+}) {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
+    <section className="card-soft px-5 py-7 text-center sm:px-7">
+      <div className="font-script text-4xl leading-none text-primary">{tag}</div>
+      {scarcity && (
+        <div className="mx-auto mt-3 inline-block rounded-full border border-[#f0c98a] bg-[#fff6e6] px-4 py-2 text-[12px] font-bold text-[#a8681a]">
+          {scarcity}
+        </div>
+      )}
+      <h3 className="mt-4 text-[17px] font-extrabold uppercase leading-snug text-ink">{title}</h3>
+
+      {tag === "Oferta Exclusiva" && (
+        <div className="mt-4">
+          <div className="text-[12px] font-bold text-muted-foreground">
+            Alguns dos que te esperam:
+          </div>
+          <div className="mt-2 flex flex-wrap justify-center gap-2">
+            {TITULOS.map((t) => (
+              <span
+                key={t}
+                className="rounded-full border border-border bg-pink-soft px-3 py-1.5 text-[11.5px] font-bold text-secondary-foreground"
+              >
+                {t}
+              </span>
+            ))}
+            <span className="rounded-full bg-primary px-3 py-1.5 text-[11.5px] font-bold text-primary-foreground">
+              +21 filmes
+            </span>
+          </div>
+        </div>
+      )}
+
+      <div className="mt-5 text-[14px] font-bold text-muted-foreground">
+        ➡ De: <s className="text-primary/70">R$59,90</s>
+      </div>
+      <div className="text-[13px] font-semibold text-muted-foreground">Por apenas</div>
+      <div className="text-6xl font-extrabold leading-none text-primary">
+        <small className="align-super text-2xl font-bold">R$</small>6,90
+      </div>
+
+      <a href={CHECKOUT} onClick={onCta} className="cta-btn mt-6">
+        {cta}
+      </a>
+      <div className="mt-3 text-[12px] font-semibold leading-relaxed text-muted-foreground">
+        {note}
+      </div>
+    </section>
+  );
+}
+
+function Index() {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [toast, setToast] = useState<string | null>(null);
+
+  useEffect(() => {
+    let i = 0;
+    const show = () => {
+      setToast(BUYERS[i % BUYERS.length]);
+      i++;
+      window.setTimeout(() => setToast(null), 5000);
+    };
+    const first = window.setTimeout(show, 4000);
+    const interval = window.setInterval(show, 14000);
+    return () => {
+      window.clearTimeout(first);
+      window.clearInterval(interval);
+    };
+  }, []);
+
+  const handleCta = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setModalOpen(true);
+  };
+
+  return (
+    <main className="mx-auto w-full max-w-[620px] px-4 py-6">
+      {/* HERO */}
+      <section>
+        <img
+          src={heroImg}
+          alt="A maior coleção de filmes da Barbie do Brasil"
+          width={1200}
+          height={912}
+          className="w-full rounded-2xl shadow-[0_14px_36px_-14px_oklch(0.6_0.245_348_/_0.5)]"
+        />
+        <h1 className="mt-5 text-center text-[17px] font-semibold leading-relaxed text-ink">
+          Agora você pode assistir a{" "}
+          <b className="text-primary">todos os filmes e animações da Barbie</b>, dublados em
+          português, em alta qualidade! 💖
+        </h1>
+        <div className="mt-4 flex justify-center">
+          <div className="flex items-center gap-2 rounded-full bg-card px-4 py-2 text-[13px] font-semibold text-muted-foreground shadow-[var(--shadow-card)]">
+            <span className="h-2 w-2 animate-pulse rounded-full bg-primary" />
+            <b className="text-primary">441</b> pessoas assistindo agora
+          </div>
+        </div>
+      </section>
+
+      <Divider />
+
+      <OfferCard
+        tag="Oferta Exclusiva"
+        scarcity="🔥 Valor promocional de lançamento — por tempo limitado"
+        title="O maior acervo de filmes e séries da Barbie, num lugar só"
+        cta="Quero entrar no mundo da Barbie 🎀"
+        onCta={handleCta}
+        note={
+          <>
+            🔒 Compra 100% segura · PIX na hora
+            <br />
+            💗 7 dias de garantia — risco zero
+          </>
+        }
       />
-    </div>
+      <p className="mt-4 text-center text-[12.5px] font-medium text-muted-foreground">
+        Esse é apenas um valor simbólico para nos ajudar a manter tudo no ar e com qualidade para
+        você! 💖
+      </p>
+
+      <Divider />
+
+      {/* O QUE RECEBE */}
+      <h2 className="text-center text-[20px] font-extrabold text-ink">
+        👑 Você recebe imediatamente tudo isso:
+      </h2>
+      <p className="mt-2 text-center text-[13.5px] font-medium text-muted-foreground">
+        💌 Assim que o acesso for liberado, tudo isso é seu no WhatsApp:
+      </p>
+      <div className="mt-5 space-y-2.5">
+        {BENEFITS.map((b, i) => (
+          <div
+            key={i}
+            className={`flex gap-3 rounded-2xl border p-3.5 ${
+              b.bonus ? "border-primary bg-secondary" : "border-border bg-card"
+            }`}
+          >
+            <span className="text-[18px] leading-6">{b.ic}</span>
+            <span className="text-[14px] leading-6 text-ink">
+              {b.bonus && (
+                <span className="mr-2 rounded-full bg-primary px-2 py-0.5 text-[10px] font-extrabold uppercase text-primary-foreground">
+                  Bônus
+                </span>
+              )}
+              {b.html}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      <Divider />
+
+      {/* DEPOIMENTOS */}
+      <h2 className="text-center text-[20px] font-extrabold text-ink">
+        💬 Acompanhe o feedback de quem já garantiu
+      </h2>
+      <p className="mt-2 text-center text-[13.5px] font-medium text-muted-foreground">
+        Acompanhe o depoimento de algumas das milhares de fãs que já garantiram seu acesso ao nosso
+        acervo 💕
+      </p>
+
+      <div className="mt-5 space-y-3">
+        {REVIEWS.map((r) => (
+          <div key={r.initials} className="card-soft p-4">
+            <div className="flex items-center gap-3">
+              <div
+                className="flex h-10 w-10 items-center justify-center rounded-full text-[13px] font-bold text-primary-foreground"
+                style={{ background: r.grad }}
+              >
+                {r.initials}
+              </div>
+              <div>
+                <div className="text-[14px] font-bold text-ink">{r.name}</div>
+                <div className="text-[11.5px] text-muted-foreground">· Via Instagram</div>
+              </div>
+            </div>
+            <div className="mt-2 text-[14px] tracking-widest text-[#f5b301]">★★★★★</div>
+            <p className="mt-1.5 text-[14px] leading-6 text-ink">{r.txt}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-4 space-y-3">
+        {COMMENTS.map((c) => (
+          <div key={c.user} className="flex gap-3">
+            <div
+              className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-[12px] font-bold text-primary-foreground"
+              style={{ background: c.grad }}
+            >
+              {c.initials}
+            </div>
+            <div>
+              <div className="text-[13.5px] leading-6 text-ink">
+                <b>{c.user}</b> comentou: {c.txt}
+              </div>
+              <div className="mt-1 text-[11.5px] font-semibold text-muted-foreground">
+                <span className="text-primary">♥</span> Responder · {c.time}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <Divider />
+
+      {/* HISTÓRIA */}
+      <section className="card-soft p-5 text-center">
+        <h3 className="text-[16px] font-extrabold leading-snug text-ink">
+          Sabemos como é difícil encontrar os filmes e animações da Barbie em alta qualidade na
+          internet…
+        </h3>
+        <p className="mt-3 text-[14px] leading-6 text-muted-foreground">
+          Por esse motivo nós criamos esse acervo. Onde reunimos todos os filmes e animações da
+          Barbie na melhor qualidade, dublados em português, para você assistir sempre que quiser 💗
+        </p>
+      </section>
+
+      <Divider />
+
+      {/* APARELHOS */}
+      <div className="text-center">
+        <p className="text-[13px] font-bold text-muted-foreground">Assista em qualquer aparelho</p>
+        <div className="mt-3 flex justify-center gap-8">
+          {[
+            {
+              label: "Celular",
+              path: (
+                <>
+                  <rect x="6" y="2" width="12" height="20" rx="3" />
+                  <line x1="10" y1="18.5" x2="14" y2="18.5" />
+                </>
+              ),
+            },
+            {
+              label: "Notebook",
+              path: (
+                <>
+                  <rect x="4" y="4" width="16" height="12" rx="1.5" />
+                  <path d="M2 20h20" />
+                  <path d="M9.5 20l.7-2h3.6l.7 2" />
+                </>
+              ),
+            },
+            {
+              label: "Smart TV",
+              path: (
+                <>
+                  <rect x="3" y="4" width="18" height="13" rx="2" />
+                  <path d="M8 21h8" />
+                  <path d="M12 17v4" />
+                </>
+              ),
+            },
+          ].map((d) => (
+            <div key={d.label} className="flex flex-col items-center gap-1.5">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.9"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="h-8 w-8 text-primary"
+              >
+                {d.path}
+              </svg>
+              <span className="text-[12px] font-semibold text-muted-foreground">{d.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <p className="mb-2 mt-8 text-center text-[14px] font-bold text-primary">
+        Não perca essa nostalgia 💖
+      </p>
+      <OfferCard
+        tag="Última chamada"
+        title="Reviva a magia da Barbie ainda hoje"
+        cta="Garantir meu acesso agora 🎀"
+        onCta={handleCta}
+        note={<>🔒 Compra 100% segura · 💗 7 dias de garantia incondicional</>}
+      />
+
+      <Divider />
+
+      {/* SEGURANÇA */}
+      <section className="card-soft p-5 text-center">
+        <div className="flex flex-wrap items-center justify-center gap-3 text-[12px] font-extrabold text-muted-foreground">
+          <span>COMPRA 100% SEGURA</span>
+          <span className="rounded-full border border-border bg-pink-soft px-3 py-1.5 text-[11.5px] font-bold text-secondary-foreground">
+            🤝 mercado pago
+          </span>
+        </div>
+        <div className="mt-4 text-[15px] font-extrabold text-ink">
+          7 Dias de garantia incondicional
+        </div>
+        <p className="mt-2 text-[13px] leading-6 text-muted-foreground">
+          Caso decida que não valeu a pena, você pode pedir um reembolso em até 7 dias depois da
+          compra e receber 100% do seu investimento de volta, sem perguntas ou burocracias.
+        </p>
+      </section>
+
+      {/* MODAL UPSELL */}
+      {modalOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/60 p-4"
+          onClick={() => setModalOpen(false)}
+        >
+          <div
+            className="card-soft relative my-8 w-full max-w-[520px] p-6 text-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setModalOpen(false)}
+              aria-label="Fechar"
+              className="absolute right-4 top-3 text-2xl leading-none text-muted-foreground"
+            >
+              ×
+            </button>
+            <span className="inline-block rounded-full bg-secondary px-3 py-1.5 text-[11.5px] font-extrabold text-secondary-foreground">
+              🎨 Bônus liberado
+            </span>
+            <h3 className="mt-3 text-[18px] font-extrabold leading-snug text-ink">
+              Espera! Por só <span className="text-primary">R$3 a mais</span>, a diversão vira da
+              família toda 👇
+            </h3>
+            <p className="mt-2 text-[13.5px] leading-6 text-muted-foreground">
+              Você já vai levar <b>toda a Barbie</b>. Que tal transformar numa tarde inteira de
+              atividade com a sua pequena? Adicione agora o <b>Kit de Diversão</b> 👇
+            </p>
+            <div className="mt-4 space-y-2 text-left">
+              {[
+                <>🎨 <b>3 Kits de Colorir pra imprimir</b> — Barbie, Moranguinho e Winx (dezenas de desenhos!)</>,
+                <>🧩 <b>Atividades bônus</b> — caça-palavras, ligue os pontos e jogo dos 7 erros</>,
+                <>📱 <b>Papéis de parede fofos</b> da Barbie pro celular</>,
+                <>🎀 <b>Carteirinha de Princesa</b> pra sua filha imprimir e se sentir parte do clube</>,
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="rounded-xl border border-border bg-pink-soft p-3 text-[13.5px] leading-6 text-ink"
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+            <div className="mt-4">
+              <div className="text-[13px] font-semibold text-muted-foreground">
+                De <s>R$29,90</s> por apenas +R$3
+              </div>
+              <div className="text-5xl font-extrabold leading-none text-primary">
+                <small className="align-super text-xl font-bold">R$</small>9,90
+              </div>
+            </div>
+            <div className="mt-3 text-[12.5px] font-semibold text-muted-foreground">
+              🖍️ Menos tempo de tela, mais diversão de verdade — só R$3 a mais, uma vez só.
+            </div>
+            <a href={CHECKOUT_VIP} className="cta-btn mt-4">
+              SIM! Quero o Kit de Diversão 🎨
+              <span className="mt-1 block text-[12px] font-semibold normal-case opacity-90">
+                Levar tudo por R$9,90 →
+              </span>
+            </a>
+            <a
+              href={CHECKOUT}
+              className="mt-3 block text-[12.5px] font-semibold text-muted-foreground underline"
+            >
+              Não, quero só assistir por R$6,90.
+            </a>
+          </div>
+        </div>
+      )}
+
+      {/* TOAST DE PROVA SOCIAL */}
+      {toast && (
+        <div
+          className="card-soft fixed bottom-4 left-4 z-40 flex max-w-[300px] items-center gap-3 p-3"
+          style={{ animation: "toast-in .35s ease" }}
+        >
+          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-[13px] font-bold text-primary-foreground">
+            {toast.charAt(0)}
+          </div>
+          <div className="text-[12.5px] leading-5 text-ink">
+            <b>{toast}</b> acabou de garantir o acesso 💖
+          </div>
+        </div>
+      )}
+    </main>
   );
 }
