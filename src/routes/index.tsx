@@ -211,7 +211,7 @@ function Index() {
   useEffect(() => {
     let i = 0;
     const show = () => {
-      setToast(BUYERS[i % BUYERS.length]);
+      setToast(BUYERS[i % BUYERS.length] ?? null);
       i++;
       window.setTimeout(() => setToast(null), 5000);
     };
