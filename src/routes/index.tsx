@@ -80,18 +80,21 @@ const BENEFITS: { ic: string; html: React.ReactNode; bonus?: boolean }[] = [
 
 const REVIEWS = [
   {
+    photo: p1.url,
     initials: "MS",
     name: "Mariana Santos",
     grad: "linear-gradient(135deg,#F65BAE,#D6167E)",
     txt: "Eu amei esse acervo! Cresci assistindo Winx e agora posso rever tudo com a minha filha. Que nostalgia, tô apaixonada! 🥹💖",
   },
   {
+    photo: p2.url,
     initials: "TS",
     name: "Tauany Silveira",
     grad: "linear-gradient(135deg,#B96CE0,#7E3FD6)",
     txt: "Tô me sentindo criança de novo kkkk já assisti a 3ª temporada umas 2 vezes. Já mandei pra minha irmã que também é fã!",
   },
   {
+    photo: p3.url,
     initials: "JA",
     name: "Juliana Alves",
     grad: "linear-gradient(135deg,#F79BC4,#E0218A)",
@@ -101,6 +104,7 @@ const REVIEWS = [
 
 const COMMENTS = [
   {
+    photo: p4.url,
     initials: "CM",
     grad: "linear-gradient(135deg,#F65BAE,#C21E77)",
     user: "carol_mendes22",
@@ -108,6 +112,7 @@ const COMMENTS = [
     time: "4 h",
   },
   {
+    photo: p5.url,
     initials: "BL",
     grad: "linear-gradient(135deg,#C98CE8,#8A46D6)",
     user: "bruna.lima",
@@ -115,6 +120,7 @@ const COMMENTS = [
     time: "2 h",
   },
   {
+    photo: p6.url,
     initials: "AS",
     grad: "linear-gradient(135deg,#F79BC4,#E0218A)",
     user: "amanda_souza",
@@ -122,6 +128,7 @@ const COMMENTS = [
     time: "2 h",
   },
   {
+    photo: p7.url,
     initials: "LD",
     grad: "linear-gradient(135deg,#FF9EBB,#D6167E)",
     user: "leticia_dias",
@@ -322,12 +329,13 @@ function Index() {
         {REVIEWS.map((r) => (
           <div key={r.initials} className="card-soft p-4">
             <div className="flex items-center gap-3">
-              <div
-                className="flex h-10 w-10 items-center justify-center rounded-full text-[13px] font-bold text-primary-foreground"
+              <img
+                src={r.photo}
+                alt={r.name}
+                loading="lazy"
+                className="h-14 w-14 shrink-0 rounded-full border-2 border-primary/40 object-cover object-center"
                 style={{ background: r.grad }}
-              >
-                {r.initials}
-              </div>
+              />
               <div>
                 <div className="text-[14px] font-bold text-ink">{r.name}</div>
                 <div className="text-[11.5px] text-muted-foreground">· Via Instagram</div>
@@ -342,12 +350,13 @@ function Index() {
       <div className="mt-4 space-y-3">
         {COMMENTS.map((c) => (
           <div key={c.user} className="flex gap-3">
-            <div
-              className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-[12px] font-bold text-primary-foreground"
+            <img
+              src={c.photo}
+              alt={c.user}
+              loading="lazy"
+              className="mt-0.5 h-11 w-11 shrink-0 rounded-full border-2 border-primary/30 object-cover object-center"
               style={{ background: c.grad }}
-            >
-              {c.initials}
-            </div>
+            />
             <div>
               <div className="text-[13.5px] leading-6 text-ink">
                 <b>{c.user}</b> comentou: {c.txt}
