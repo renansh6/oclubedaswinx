@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import heroAsset from "@/assets/winx-hero.jpg.asset.json";
+import heroAsset from "@/assets/winx-banner.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -24,10 +24,8 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const CHECKOUT =
-  "https://pay.lowify.com.br/go.php?offer=2w73nym&utm_source=organic&utm_campaign=&utm_medium=&utm_content=&utm_term=";
-const CHECKOUT_VIP =
-  "https://pay.lowify.com.br/go.php?offer=dwjoiy3&utm_source=organic&utm_campaign=&utm_medium=&utm_content=&utm_term=";
+const CHECKOUT = "https://ggcheckout.app/checkout/v5/eGBQp6pUBIpzkxGl5jJI";
+const CHECKOUT_VIP = "https://ggcheckout.app/checkout/v5/J3Sim7wAE94CiSR6Yo0j";
 
 const TITULOS = [
   "Temporada 1",
