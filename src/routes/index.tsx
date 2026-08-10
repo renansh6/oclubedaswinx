@@ -236,7 +236,7 @@ function Index() {
           alt="A maior coleção de O Clube das Winx do Brasil"
           width={1000}
           height={1500}
-          className="w-full rounded-2xl shadow-[0_14px_36px_-14px_oklch(0.6_0.245_348_/_0.5)]"
+          className="mx-auto max-h-[480px] w-full rounded-2xl object-cover shadow-[0_14px_36px_-14px_oklch(0.6_0.245_348_/_0.5)]"
         />
         <h1 className="mt-5 text-center text-[17px] font-semibold leading-relaxed text-ink">
           Agora você pode assistir a{" "}
