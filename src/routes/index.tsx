@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import heroAsset from "@/assets/winx-hero.jpg.asset.json";
+import heroAsset from "@/assets/winx-banner.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -24,10 +24,8 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const CHECKOUT =
-  "https://pay.lowify.com.br/go.php?offer=2w73nym&utm_source=organic&utm_campaign=&utm_medium=&utm_content=&utm_term=";
-const CHECKOUT_VIP =
-  "https://pay.lowify.com.br/go.php?offer=dwjoiy3&utm_source=organic&utm_campaign=&utm_medium=&utm_content=&utm_term=";
+const CHECKOUT = "https://ggcheckout.app/checkout/v5/eGBQp6pUBIpzkxGl5jJI";
+const CHECKOUT_VIP = "https://ggcheckout.app/checkout/v5/J3Sim7wAE94CiSR6Yo0j";
 
 const TITULOS = [
   "Temporada 1",
@@ -234,9 +232,9 @@ function Index() {
         <img
           src={heroAsset.url}
           alt="A maior coleção de O Clube das Winx do Brasil"
-          width={1000}
-          height={1500}
-          className="mx-auto max-h-[480px] w-full rounded-2xl object-cover shadow-[0_14px_36px_-14px_oklch(0.6_0.245_348_/_0.5)]"
+          width={1662}
+          height={931}
+          className="mx-auto w-full rounded-2xl object-contain shadow-[0_14px_36px_-14px_oklch(0.6_0.245_348_/_0.5)]"
         />
         <h1 className="mt-5 text-center text-[17px] font-semibold leading-relaxed text-ink">
           Agora você pode assistir a{" "}
