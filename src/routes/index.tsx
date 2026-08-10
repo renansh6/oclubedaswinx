@@ -1,6 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import heroAsset from "@/assets/winx-banner.png.asset.json";
+import p1 from "@/assets/p-b0f0984490591b39f5f716d9eeb7777a.jpg.asset.json";
+import p2 from "@/assets/p-c89e421ad752787e42b5e438c94a1220.jpg.asset.json";
+import p3 from "@/assets/p-e0dfbe3ead389b80337081bc741c9545.jpg.asset.json";
+import p4 from "@/assets/p-6e0e8d735aecbad446150d34e955de3c.jpg.asset.json";
+import p5 from "@/assets/p-94ab5b7ef6368f63ce05a34046de0a2b.jpg.asset.json";
+import p6 from "@/assets/p-5388f1ba2629e6450df7bdea32f1545e.jpg.asset.json";
+import p7 from "@/assets/p-a742f020551d38a4766a417861ae3255.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
