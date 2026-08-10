@@ -1,21 +1,21 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import heroImg from "@/assets/hero-barbie.jpg";
+import heroAsset from "@/assets/winx-hero.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "A Maior Coleção de Barbie do Brasil | +40 Filmes Dublados" },
+      { title: "A Maior Coleção do Clube das Winx do Brasil | Tudo Dublado" },
       {
         name: "description",
         content:
-          "Acervo com +40 filmes e séries da Barbie dublados em português, Full HD e acesso vitalício. De R$59,90 por apenas R$6,90.",
+          "Acervo com todas as temporadas e filmes de O Clube das Winx dublados em português, Full HD e acesso vitalício. De R$59,90 por apenas R$6,90.",
       },
-      { property: "og:title", content: "A Maior Coleção de Barbie do Brasil" },
+      { property: "og:title", content: "A Maior Coleção do Clube das Winx do Brasil" },
       {
         property: "og:description",
         content:
-          "+40 filmes e séries da Barbie dublados, Full HD e acesso vitalício por apenas R$6,90.",
+          "Todas as temporadas e filmes de O Clube das Winx dublados, Full HD e acesso vitalício por apenas R$6,90.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -30,48 +30,47 @@ const CHECKOUT_VIP =
   "https://pay.lowify.com.br/go.php?offer=dwjoiy3&utm_source=organic&utm_campaign=&utm_medium=&utm_content=&utm_term=";
 
 const TITULOS = [
-  "Fairytopia",
-  "Moda e Magia",
-  "Rapunzel",
-  "12 Princesas",
-  "Quebra-Nozes",
-  "Lago dos Cisnes",
-  "Pop Star",
-  "Escola de Princesas",
-  "Vida de Sereia",
+  "Temporada 1",
+  "Temporada 2",
+  "Temporada 3",
+  "O Segredo do Reino Perdido",
+  "Magia Mágica",
+  "O Mistério do Abismo",
+  "Winx Club: A Aventura Mágica",
+  "Especiais de TV",
+  "Clipes e Músicas",
 ];
 
 const BENEFITS: { ic: string; html: React.ReactNode; bonus?: boolean }[] = [
-  { ic: "✅", html: <>Acervo com <b>+40 filmes da Barbie</b> dublados em português</> },
+  { ic: "✅", html: <>Acervo com <b>todas as temporadas de O Clube das Winx</b> dubladas em português</> },
   {
     ic: "👑",
     html: (
       <>
-        <b>Coleção completa das Princesas</b> — Rapunzel, A Princesa e a Plebeia, 12 Princesas
-        Bailarinas, Escola de Princesas…
+        <b>Coleção completa das fadas</b> — Bloom, Stella, Flora, Musa, Tecna e Aisha em todas as
+        transformações…
       </>
     ),
   },
-  { ic: "🧚", html: <><b>Saga Fairytopia completa</b> — Fadas, Mermaidia e A Magia do Arco-Íris</> },
+  { ic: "🧚", html: <><b>Todos os filmes</b> — O Segredo do Reino Perdido, Magia Mágica e O Mistério do Abismo</> },
   {
     ic: "🎬",
     html: (
       <>
-        <b>Séries completas:</b> Life in the Dreamhouse + Dreamhouse Adventures (todas as
-        temporadas)
+        <b>Séries completas:</b> Winx Club clássico + World of Winx (todas as temporadas)
       </>
     ),
   },
   {
     ic: "✨",
-    html: <><b>Clássicos e musicais:</b> O Quebra-Nozes, Lago dos Cisnes, A Princesa e a Pop Star…</>,
+    html: <><b>Especiais e músicas:</b> especiais de TV, clipes e trilhas sonoras marcantes…</>,
   },
   { ic: "📺", html: <>Tudo em <b>Full HD 1080p</b> e dublado em português</> },
-  { ic: "🎨", html: <>Interface simples e organizada, <b>fácil de achar cada filme</b></> },
+  { ic: "🎨", html: <>Interface simples e organizada, <b>fácil de achar cada episódio</b></> },
   { ic: "💬", html: <><b>Acesso imediato</b> liberado direto no seu WhatsApp</> },
   { ic: "♾️", html: <><b>Acesso 100% vitalício</b> — pague uma vez, é seu pra sempre</> },
-  { ic: "🆕", html: <><b>Novos filmes adicionados sempre</b>, sem pagar nada a mais</> },
-  { ic: "🎁", html: <><b>Kit de desenhos da Barbie</b> para imprimir e colorir</>, bonus: true },
+  { ic: "🆕", html: <><b>Novos conteúdos adicionados sempre</b>, sem pagar nada a mais</> },
+  { ic: "🎁", html: <><b>Kit de desenhos das Winx</b> para imprimir e colorir</>, bonus: true },
 ];
 
 const REVIEWS = [
@@ -79,19 +78,19 @@ const REVIEWS = [
     initials: "MS",
     name: "Mariana Santos",
     grad: "linear-gradient(135deg,#F65BAE,#D6167E)",
-    txt: "Eu amei esse acervo! Cresci assistindo Barbie e agora posso rever tudo com a minha filha. Que nostalgia, tô apaixonada! 🥹💖",
+    txt: "Eu amei esse acervo! Cresci assistindo Winx e agora posso rever tudo com a minha filha. Que nostalgia, tô apaixonada! 🥹💖",
   },
   {
     initials: "TS",
     name: "Tauany Silveira",
     grad: "linear-gradient(135deg,#B96CE0,#7E3FD6)",
-    txt: "Tô me sentindo criança de novo kkkk já assisti A Princesa e a Plebeia umas 3 vezes. Já mandei pra minha irmã que também é fã!",
+    txt: "Tô me sentindo criança de novo kkkk já assisti a 3ª temporada umas 2 vezes. Já mandei pra minha irmã que também é fã!",
   },
   {
     initials: "JA",
     name: "Juliana Alves",
     grad: "linear-gradient(135deg,#F79BC4,#E0218A)",
-    txt: "Gente, entrei ontem e fiquei até tarde assistindo Rapunzel. Não consegui parar! A qualidade tá perfeita e tudo dublado 😍✨",
+    txt: "Gente, entrei ontem e fiquei até tarde assistindo a saga do Reino Perdido. Não consegui parar! A qualidade tá perfeita e tudo dublado 😍✨",
   },
 ];
 
@@ -114,7 +113,7 @@ const COMMENTS = [
     initials: "AS",
     grad: "linear-gradient(135deg,#F79BC4,#E0218A)",
     user: "amanda_souza",
-    txt: "Eu e a minha filha passamos a tarde assistindo Escola de Princesas kkk nostalgia total 💕",
+    txt: "Eu e a minha filha passamos a tarde assistindo as Winx kkk nostalgia total 💕",
     time: "2 h",
   },
   {
@@ -180,7 +179,7 @@ function OfferCard({
               </span>
             ))}
             <span className="rounded-full bg-primary px-3 py-1.5 text-[11.5px] font-bold text-primary-foreground">
-              +21 filmes
+              +8 temporadas
             </span>
           </div>
         </div>
@@ -233,15 +232,15 @@ function Index() {
       {/* HERO */}
       <section>
         <img
-          src={heroImg}
-          alt="A maior coleção de filmes da Barbie do Brasil"
-          width={1200}
-          height={912}
-          className="w-full rounded-2xl shadow-[0_14px_36px_-14px_oklch(0.6_0.245_348_/_0.5)]"
+          src={heroAsset.url}
+          alt="A maior coleção de O Clube das Winx do Brasil"
+          width={1000}
+          height={1500}
+          className="mx-auto max-h-[480px] w-full rounded-2xl object-cover shadow-[0_14px_36px_-14px_oklch(0.6_0.245_348_/_0.5)]"
         />
         <h1 className="mt-5 text-center text-[17px] font-semibold leading-relaxed text-ink">
           Agora você pode assistir a{" "}
-          <b className="text-primary">todos os filmes e animações da Barbie</b>, dublados em
+          <b className="text-primary">todas as temporadas e filmes do Clube das Winx</b>, dublados em
           português, em alta qualidade! 💖
         </h1>
         <div className="mt-4 flex justify-center">
@@ -257,8 +256,8 @@ function Index() {
       <OfferCard
         tag="Oferta Exclusiva"
         scarcity="🔥 Valor promocional de lançamento — por tempo limitado"
-        title="O maior acervo de filmes e séries da Barbie, num lugar só"
-        cta="Quero entrar no mundo da Barbie 🎀"
+        title="O maior acervo de O Clube das Winx, num lugar só"
+        cta="Quero entrar no mundo das Winx 🧚"
         onCta={handleCta}
         note={
           <>
@@ -361,12 +360,13 @@ function Index() {
       {/* HISTÓRIA */}
       <section className="card-soft p-5 text-center">
         <h3 className="text-[16px] font-extrabold leading-snug text-ink">
-          Sabemos como é difícil encontrar os filmes e animações da Barbie em alta qualidade na
-          internet…
+          Sabemos como é difícil encontrar os episódios e filmes de O Clube das Winx em alta
+          qualidade na internet…
         </h3>
         <p className="mt-3 text-[14px] leading-6 text-muted-foreground">
-          Por esse motivo nós criamos esse acervo. Onde reunimos todos os filmes e animações da
-          Barbie na melhor qualidade, dublados em português, para você assistir sempre que quiser 💗
+          Por esse motivo nós criamos esse acervo. Onde reunimos todas as temporadas e filmes de O
+          Clube das Winx na melhor qualidade, dublados em português, para você assistir sempre que
+          quiser 💗
         </p>
       </section>
 
@@ -430,7 +430,7 @@ function Index() {
       </p>
       <OfferCard
         tag="Última chamada"
-        title="Reviva a magia da Barbie ainda hoje"
+        title="Reviva a magia das Winx ainda hoje"
         cta="Garantir meu acesso agora 🎀"
         onCta={handleCta}
         note={<>🔒 Compra 100% segura · 💗 7 dias de garantia incondicional</>}
@@ -480,15 +480,15 @@ function Index() {
               família toda 👇
             </h3>
             <p className="mt-2 text-[13.5px] leading-6 text-muted-foreground">
-              Você já vai levar <b>toda a Barbie</b>. Que tal transformar numa tarde inteira de
+              Você já vai levar <b>todo o Clube das Winx</b>. Que tal transformar numa tarde inteira de
               atividade com a sua pequena? Adicione agora o <b>Kit de Diversão</b> 👇
             </p>
             <div className="mt-4 space-y-2 text-left">
               {[
-                <>🎨 <b>3 Kits de Colorir pra imprimir</b> — Barbie, Moranguinho e Winx (dezenas de desenhos!)</>,
+                <>🎨 <b>3 Kits de Colorir pra imprimir</b> — Winx, Barbie e Moranguinho (dezenas de desenhos!)</>,
                 <>🧩 <b>Atividades bônus</b> — caça-palavras, ligue os pontos e jogo dos 7 erros</>,
-                <>📱 <b>Papéis de parede fofos</b> da Barbie pro celular</>,
-                <>🎀 <b>Carteirinha de Princesa</b> pra sua filha imprimir e se sentir parte do clube</>,
+                <>📱 <b>Papéis de parede fofos</b> das Winx pro celular</>,
+                <>🎀 <b>Carteirinha de Fada</b> pra sua filha imprimir e se sentir parte do clube</>,
               ].map((item, i) => (
                 <div
                   key={i}
