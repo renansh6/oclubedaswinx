@@ -225,9 +225,9 @@ function OfferCard({
         <small className="align-super text-2xl font-bold">R$</small>6,90
       </div>
 
-      <a href={CHECKOUT} onClick={onCta} className="cta-btn mt-6">
+      <button type="button" onClick={onCta} className="cta-btn mt-6">
         {cta}
-      </a>
+      </button>
       <div className="mt-3 text-[12px] font-semibold leading-relaxed text-muted-foreground">
         {note}
       </div>
