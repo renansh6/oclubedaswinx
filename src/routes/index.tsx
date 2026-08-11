@@ -34,6 +34,26 @@ export const Route = createFileRoute("/")({
 const CHECKOUT = "https://ggcheckout.app/checkout/v5/eGBQp6pUBIpzkxGl5jJI";
 const CHECKOUT_VIP = "https://ggcheckout.app/checkout/v5/J3Sim7wAE94CiSR6Yo0j";
 
+/** Repassa todos os parâmetros da URL (utm_source, utm_campaign, sck, xcod...) para o checkout */
+function withParams(url: string) {
+  if (typeof window === "undefined") return url;
+  const qs = window.location.search.replace(/^\?/, "");
+  if (!qs) return url;
+  return url + (url.includes("?") ? "&" : "?") + qs;
+}
+
+function goToCheckout(e: React.MouseEvent<HTMLAnchorElement>, url: string, value: number) {
+  e.preventDefault();
+  const fbq = (window as unknown as { fbq?: (...a: unknown[]) => void }).fbq;
+  try {
+    fbq?.("track", "InitiateCheckout", { value, currency: "BRL" });
+  } catch {
+    /* noop */
+  }
+  window.location.href = withParams(url);
+}
+
+
 const TITULOS = [
   "Temporada 1",
   "Temporada 2",
@@ -523,7 +543,11 @@ function Index() {
             <div className="mt-3 text-[12.5px] font-semibold text-muted-foreground">
               🖍️ Menos tempo de tela, mais diversão de verdade — só R$3 a mais, uma vez só.
             </div>
-            <a href={CHECKOUT_VIP} className="cta-btn mt-4">
+            <a
+              href={CHECKOUT_VIP}
+              onClick={(e) => goToCheckout(e, CHECKOUT_VIP, 9.9)}
+              className="cta-btn mt-4"
+            >
               SIM! Quero o Kit de Diversão 🎨
               <span className="mt-1 block text-[12px] font-semibold normal-case opacity-90">
                 Levar tudo por R$9,90 →
@@ -531,10 +555,12 @@ function Index() {
             </a>
             <a
               href={CHECKOUT}
+              onClick={(e) => goToCheckout(e, CHECKOUT, 6.9)}
               className="mt-3 block text-[12.5px] font-semibold text-muted-foreground underline"
             >
               Não, quero só assistir por R$6,90.
             </a>
+
           </div>
         </div>
       )}
