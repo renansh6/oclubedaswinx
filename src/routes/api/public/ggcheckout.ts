@@ -70,6 +70,14 @@ export const Route = createFileRoute("/api/public/ggcheckout")({
 
         const data = ((body["data"] as AnyRecord) ?? body) as AnyRecord;
         const customer = (pick(data, "customer", "client", "buyer") as AnyRecord) ?? {};
+        const forwardedIp = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
+        const customerIp = String(
+          pick(data, "ip", "customerIp", "customer_ip") ??
+            pick(customer, "ip") ??
+            request.headers.get("cf-connecting-ip") ??
+            forwardedIp ??
+            "127.0.0.1",
+        );
         const tracking =
           ((pick(data, "trackingParameters", "tracking", "utm", "utms") as AnyRecord) ?? {}) as AnyRecord;
 
@@ -103,7 +111,7 @@ export const Route = createFileRoute("/api/public/ggcheckout")({
             phone: (pick(customer, "phone", "phoneNumber") as string) ?? null,
             document: (pick(customer, "document", "cpf") as string) ?? null,
             country: "BR",
-            ip: (pick(data, "ip") as string) ?? null,
+            ip: customerIp,
           },
           products: [
             {
