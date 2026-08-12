@@ -67,7 +67,6 @@ const TITULOS = [
 ];
 
 const BENEFITS: { ic: string; html: React.ReactNode; bonus?: boolean }[] = [
-  { ic: "✅", html: <>Acervo com <b>todas as temporadas de O Clube das Winx</b> dubladas em português</> },
   {
     ic: "👑",
     html: (
@@ -78,14 +77,6 @@ const BENEFITS: { ic: string; html: React.ReactNode; bonus?: boolean }[] = [
     ),
   },
   { ic: "🧚", html: <><b>Todos os filmes</b> — O Segredo do Reino Perdido, Magia Mágica e O Mistério do Abismo</> },
-  {
-    ic: "🎬",
-    html: (
-      <>
-        <b>Séries completas:</b> Winx Club clássico + World of Winx (todas as temporadas)
-      </>
-    ),
-  },
   {
     ic: "✨",
     html: <><b>Especiais e músicas:</b> especiais de TV, clipes e trilhas sonoras marcantes…</>,
@@ -481,10 +472,10 @@ function Index() {
           </span>
         </div>
         <div className="mt-4 text-[15px] font-extrabold text-ink">
-          7 Dias de garantia incondicional
+          Garantia incondicional de uma semana
         </div>
         <p className="mt-2 text-[13px] leading-6 text-muted-foreground">
-          Caso decida que não valeu a pena, você pode pedir um reembolso em até 7 dias depois da
+          Caso decida que não valeu a pena, você pode pedir um reembolso em até uma semana depois da
           compra e receber 100% do seu investimento de volta, sem perguntas ou burocracias.
         </p>
       </section>
