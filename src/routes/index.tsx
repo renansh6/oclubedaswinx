@@ -67,7 +67,6 @@ const TITULOS = [
 ];
 
 const BENEFITS: { ic: string; html: React.ReactNode; bonus?: boolean }[] = [
-  { ic: "✅", html: <>Acervo com <b>todas as temporadas de O Clube das Winx</b> dubladas em português</> },
   {
     ic: "👑",
     html: (
@@ -78,14 +77,6 @@ const BENEFITS: { ic: string; html: React.ReactNode; bonus?: boolean }[] = [
     ),
   },
   { ic: "🧚", html: <><b>Todos os filmes</b> — O Segredo do Reino Perdido, Magia Mágica e O Mistério do Abismo</> },
-  {
-    ic: "🎬",
-    html: (
-      <>
-        <b>Séries completas:</b> Winx Club clássico + World of Winx (todas as temporadas)
-      </>
-    ),
-  },
   {
     ic: "✨",
     html: <><b>Especiais e músicas:</b> especiais de TV, clipes e trilhas sonoras marcantes…</>,
