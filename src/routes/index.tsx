@@ -472,10 +472,10 @@ function Index() {
           </span>
         </div>
         <div className="mt-4 text-[15px] font-extrabold text-ink">
-          7 Dias de garantia incondicional
+          Garantia incondicional de uma semana
         </div>
         <p className="mt-2 text-[13px] leading-6 text-muted-foreground">
-          Caso decida que não valeu a pena, você pode pedir um reembolso em até 7 dias depois da
+          Caso decida que não valeu a pena, você pode pedir um reembolso em até uma semana depois da
           compra e receber 100% do seu investimento de volta, sem perguntas ou burocracias.
         </p>
       </section>
