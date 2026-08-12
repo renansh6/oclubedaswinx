@@ -68,24 +68,24 @@ const TITULOS = [
 
 const BENEFITS: { ic: string; html: React.ReactNode; bonus?: boolean }[] = [
   {
-    ic: "👑",
+    ic: "🧚",
     html: (
       <>
-        <b>Coleção completa das fadas</b> — Bloom, Stella, Flora, Musa, Tecna e Aisha em todas as
-        transformações…
+        <b>Coleção completa das fadas</b> — todas as temporadas e filmes do Clube das Winx com Bloom,
+        Stella, Flora, Musa, Tecna e Aisha…
       </>
     ),
   },
-  { ic: "🧚", html: <><b>Todos os filmes</b> — O Segredo do Reino Perdido, Magia Mágica e O Mistério do Abismo</> },
-  {
-    ic: "✨",
-    html: <><b>Especiais e músicas:</b> especiais de TV, clipes e trilhas sonoras marcantes…</>,
-  },
   { ic: "📺", html: <>Tudo em <b>Full HD 1080p</b> e dublado em português</> },
   { ic: "🎨", html: <>Interface simples e organizada, <b>fácil de achar cada episódio</b></> },
-  { ic: "💬", html: <><b>Acesso imediato</b> liberado direto no seu WhatsApp</> },
-  { ic: "♾️", html: <><b>Acesso 100% vitalício</b> — pague uma vez, é seu pra sempre</> },
-  { ic: "🆕", html: <><b>Novos conteúdos adicionados sempre</b>, sem pagar nada a mais</> },
+  {
+    ic: "💬",
+    html: <><b>Acesso vitalício e imediato</b> liberado direto no seu WhatsApp</>,
+  },
+  {
+    ic: "✨",
+    html: <><b>Especiais, músicas e novos conteúdos</b> adicionados sempre, sem pagar nada a mais</>,
+  },
   { ic: "🎁", html: <><b>Kit de desenhos das Winx</b> para imprimir e colorir</>, bonus: true },
 ];
 
