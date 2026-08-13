@@ -527,7 +527,7 @@ function Index() {
             </div>
             <a
               href={CHECKOUT_VIP}
-              onClick={(e) => goToCheckout(e, CHECKOUT_VIP, 9.9)}
+              onClick={() => { window.location.href = CHECKOUT_VIP; }}
               className="cta-btn mt-4"
             >
               SIM! Quero o Kit de Diversão 🎨
@@ -537,7 +537,7 @@ function Index() {
             </a>
             <a
               href={CHECKOUT}
-              onClick={(e) => goToCheckout(e, CHECKOUT, 6.9)}
+              onClick={() => { window.location.href = CHECKOUT; }}
               className="mt-3 block text-[12.5px] font-semibold text-muted-foreground underline"
             >
               Não, quero só assistir por R$6,90.
