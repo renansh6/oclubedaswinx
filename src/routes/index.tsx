@@ -34,24 +34,6 @@ export const Route = createFileRoute("/")({
 const CHECKOUT = "https://ggcheckout.app/checkout/v5/eGBQp6pUBIpzkxGl5jJI";
 const CHECKOUT_VIP = "https://ggcheckout.app/checkout/v5/J3Sim7wAE94CiSR6Yo0j";
 
-/** Repassa todos os parâmetros da URL (utm_source, utm_campaign, sck, xcod...) para o checkout */
-function withParams(url: string) {
-  if (typeof window === "undefined") return url;
-  const qs = window.location.search.replace(/^\?/, "");
-  if (!qs) return url;
-  return url + (url.includes("?") ? "&" : "?") + qs;
-}
-
-function goToCheckout(e: React.MouseEvent<HTMLAnchorElement>, url: string, value: number) {
-  e.preventDefault();
-  const fbq = (window as unknown as { fbq?: (...a: unknown[]) => void }).fbq;
-  try {
-    fbq?.("track", "InitiateCheckout", { value, currency: "BRL" });
-  } catch {
-    /* noop */
-  }
-  window.location.href = withParams(url);
-}
 
 
 const TITULOS = [
