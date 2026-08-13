@@ -34,6 +34,52 @@ export const Route = createFileRoute("/")({
 const CHECKOUT = "https://ggcheckout.app/checkout/v5/eGBQp6pUBIpzkxGl5jJI";
 const CHECKOUT_VIP = "https://ggcheckout.app/checkout/v5/J3Sim7wAE94CiSR6Yo0j";
 
+// Dispara InitiateCheckout no pixel (quando disponível) antes de ir pro checkout
+function trackCheckout(value: number, label: string) {
+  try {
+    const w = window as unknown as {
+      fbq?: (...args: unknown[]) => void;
+      pixelId?: string;
+      utmify?: unknown;
+      dataLayer?: unknown[];
+    };
+    w.fbq?.("track", "InitiateCheckout", {
+      value,
+      currency: "BRL",
+      content_name: label,
+    });
+    w.dataLayer?.push({ event: "initiate_checkout", value, currency: "BRL", label });
+  } catch {
+    /* noop */
+  }
+}
+
+// Mantém os parâmetros de rastreio (UTMs/subids) que a Utmify injeta na URL
+function withTracking(url: string) {
+  try {
+    const search = window.location.search.replace(/^\?/, "");
+    if (!search) return url;
+    const target = new URL(url);
+    new URLSearchParams(search).forEach((v, k) => {
+      if (!target.searchParams.has(k)) target.searchParams.set(k, v);
+    });
+    return target.toString();
+  } catch {
+    return url;
+  }
+}
+
+function goToCheckout(url: string, value: number, label: string, el?: HTMLAnchorElement | null) {
+  trackCheckout(value, label);
+  // se a Utmify já reescreveu o href do link, usa ele; senão monta com os params atuais
+  const href = el?.href && el.href.includes("ggcheckout") ? el.href : withTracking(url);
+  window.setTimeout(() => {
+    window.location.href = href;
+  }, 250);
+}
+
+
+
 
 
 const TITULOS = [
@@ -527,7 +573,10 @@ function Index() {
             </div>
             <a
               href={CHECKOUT_VIP}
-              onClick={() => { window.location.href = CHECKOUT_VIP; }}
+              onClick={(e) => {
+                e.preventDefault();
+                goToCheckout(CHECKOUT_VIP, 9.9, "Kit de Diversão - R$9,90", e.currentTarget);
+              }}
               className="cta-btn mt-4"
             >
               SIM! Quero o Kit de Diversão 🎨
@@ -537,11 +586,15 @@ function Index() {
             </a>
             <a
               href={CHECKOUT}
-              onClick={() => { window.location.href = CHECKOUT; }}
+              onClick={(e) => {
+                e.preventDefault();
+                goToCheckout(CHECKOUT, 6.9, "Acervo Winx - R$6,90", e.currentTarget);
+              }}
               className="mt-3 block text-[12.5px] font-semibold text-muted-foreground underline"
             >
               Não, quero só assistir por R$6,90.
             </a>
+
 
           </div>
         </div>
