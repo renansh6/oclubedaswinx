@@ -575,7 +575,7 @@ function Index() {
               href={CHECKOUT_VIP}
               onClick={(e) => {
                 e.preventDefault();
-                goToCheckout(CHECKOUT_VIP, 9.9, "Kit de Diversão - R$9,90");
+                goToCheckout(CHECKOUT_VIP, 9.9, "Kit de Diversão - R$9,90", e.currentTarget);
               }}
               className="cta-btn mt-4"
             >
