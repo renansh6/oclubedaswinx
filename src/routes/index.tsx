@@ -588,7 +588,7 @@ function Index() {
               href={CHECKOUT}
               onClick={(e) => {
                 e.preventDefault();
-                goToCheckout(CHECKOUT, 6.9, "Acervo Winx - R$6,90");
+                goToCheckout(CHECKOUT, 6.9, "Acervo Winx - R$6,90", e.currentTarget);
               }}
               className="mt-3 block text-[12.5px] font-semibold text-muted-foreground underline"
             >
