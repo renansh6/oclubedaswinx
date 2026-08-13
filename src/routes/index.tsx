@@ -34,6 +34,34 @@ export const Route = createFileRoute("/")({
 const CHECKOUT = "https://ggcheckout.app/checkout/v5/eGBQp6pUBIpzkxGl5jJI";
 const CHECKOUT_VIP = "https://ggcheckout.app/checkout/v5/J3Sim7wAE94CiSR6Yo0j";
 
+// Dispara InitiateCheckout no pixel (quando disponível) antes de ir pro checkout
+function trackCheckout(value: number, label: string) {
+  try {
+    const w = window as unknown as {
+      fbq?: (...args: unknown[]) => void;
+      pixelId?: string;
+      utmify?: unknown;
+      dataLayer?: unknown[];
+    };
+    w.fbq?.("track", "InitiateCheckout", {
+      value,
+      currency: "BRL",
+      content_name: label,
+    });
+    w.dataLayer?.push({ event: "initiate_checkout", value, currency: "BRL", label });
+  } catch {
+    /* noop */
+  }
+}
+
+function goToCheckout(url: string, value: number, label: string) {
+  trackCheckout(value, label);
+  window.setTimeout(() => {
+    window.location.href = url;
+  }, 250);
+}
+
+
 
 
 const TITULOS = [
