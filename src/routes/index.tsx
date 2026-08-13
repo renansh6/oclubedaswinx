@@ -54,12 +54,30 @@ function trackCheckout(value: number, label: string) {
   }
 }
 
-function goToCheckout(url: string, value: number, label: string) {
+// Mantém os parâmetros de rastreio (UTMs/subids) que a Utmify injeta na URL
+function withTracking(url: string) {
+  try {
+    const search = window.location.search.replace(/^\?/, "");
+    if (!search) return url;
+    const target = new URL(url);
+    new URLSearchParams(search).forEach((v, k) => {
+      if (!target.searchParams.has(k)) target.searchParams.set(k, v);
+    });
+    return target.toString();
+  } catch {
+    return url;
+  }
+}
+
+function goToCheckout(url: string, value: number, label: string, el?: HTMLAnchorElement | null) {
   trackCheckout(value, label);
+  // se a Utmify já reescreveu o href do link, usa ele; senão monta com os params atuais
+  const href = el?.href && el.href.includes("ggcheckout") ? el.href : withTracking(url);
   window.setTimeout(() => {
-    window.location.href = url;
+    window.location.href = href;
   }, 250);
 }
+
 
 
 
