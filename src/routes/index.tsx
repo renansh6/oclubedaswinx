@@ -75,7 +75,7 @@ function goToCheckout(url: string, value: number, label: string, el?: HTMLAnchor
   const href = el?.href && el.href.includes("ggcheckout") ? el.href : withTracking(url);
   window.setTimeout(() => {
     window.location.href = href;
-  }, 250);
+  }, 800);
 }
 
 
