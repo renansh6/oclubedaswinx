@@ -31,8 +31,8 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const CHECKOUT = "https://ggcheckout.app/checkout/v5/eGBQp6pUBIpzkxGl5jJI";
-const CHECKOUT_VIP = "https://ggcheckout.app/checkout/v5/J3Sim7wAE94CiSR6Yo0j";
+const CHECKOUT = "https://pay.lowify.com.br/checkout?product_id=Ng0Xva";
+const CHECKOUT_VIP = "https://pay.lowify.com.br/checkout?product_id=dL194r";
 
 // Dispara InitiateCheckout no pixel (quando disponível) antes de ir pro checkout
 function trackCheckout(value: number, label: string) {
@@ -72,7 +72,7 @@ function withTracking(url: string) {
 function goToCheckout(url: string, value: number, label: string, el?: HTMLAnchorElement | null) {
   trackCheckout(value, label);
   // se a Utmify já reescreveu o href do link, usa ele; senão monta com os params atuais
-  const href = el?.href && el.href.includes("ggcheckout") ? el.href : withTracking(url);
+  const href = el?.href && el.href.includes("pay.lowify.com.br") ? el.href : withTracking(url);
   window.setTimeout(() => {
     window.location.href = href;
   }, 800);
