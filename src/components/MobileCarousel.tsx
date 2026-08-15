@@ -95,6 +95,35 @@ export function MobileCarousel({ children, interval = 2500 }: MobileCarouselProp
     [dragStart, count, interval]
   );
 
+  const handleMouseDown = useCallback((e: React.MouseEvent) => {
+    setPaused(true);
+    setDragStart(e.clientX);
+  }, []);
+
+  const handleMouseUp = useCallback(
+    (e: React.MouseEvent) => {
+      if (dragStart === null) return;
+      const diff = e.clientX - dragStart;
+      setDragStart(null);
+      if (Math.abs(diff) > 40) {
+        if (diff < 0) {
+          setIndex((prev) => prev + 1);
+        } else {
+          setIndex((prev) => (prev - 1 + count) % count);
+        }
+      }
+      window.setTimeout(() => setPaused(false), interval);
+    },
+    [dragStart, count, interval]
+  );
+
+  const handleMouseLeave = useCallback(() => {
+    if (dragStart !== null) {
+      setDragStart(null);
+      window.setTimeout(() => setPaused(false), interval);
+    }
+  }, [dragStart, interval]);
+
   if (!isMobile) {
     return <div className="flex flex-wrap justify-center gap-2">{children}</div>;
   }
@@ -110,6 +139,9 @@ export function MobileCarousel({ children, interval = 2500 }: MobileCarouselProp
         }}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseLeave}
       >
         {slides.map((child, i) => (
           <div
