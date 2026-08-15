@@ -84,13 +84,11 @@ function withTracking(url: string) {
 }
 
 function goToCheckout(url: string, value: number, label: string, el?: HTMLAnchorElement | null) {
+  // dispara o evento (se o pixel existir) e deixa a navegação nativa do link seguir
   trackCheckout(value, label);
-  // se a Utmify já reescreveu o href do link, usa ele; senão monta com os params atuais
-  const href = el?.href && el.href.includes("pay.lowify.com.br") ? el.href : withTracking(url);
-  window.setTimeout(() => {
-    window.location.href = href;
-  }, 800);
+  return el?.href && el.href.includes("pay.lowify.com.br") ? el.href : withTracking(url);
 }
+
 
 
 
@@ -584,8 +582,12 @@ function Index() {
             <a
               href={CHECKOUT_VIP}
               onClick={(e) => {
-                e.preventDefault();
-                goToCheckout(CHECKOUT_VIP, 9.9, "Kit de Diversão - R$9,90", e.currentTarget);
+                e.currentTarget.href = goToCheckout(
+                  CHECKOUT_VIP,
+                  9.9,
+                  "Kit de Diversão - R$9,90",
+                  e.currentTarget,
+                );
               }}
               className="cta-btn mt-4"
             >
@@ -597,13 +599,18 @@ function Index() {
             <a
               href={CHECKOUT}
               onClick={(e) => {
-                e.preventDefault();
-                goToCheckout(CHECKOUT, 6.9, "Acervo Winx - R$6,90", e.currentTarget);
+                e.currentTarget.href = goToCheckout(
+                  CHECKOUT,
+                  6.9,
+                  "Acervo Winx - R$6,90",
+                  e.currentTarget,
+                );
               }}
               className="mt-3 block text-[12.5px] font-semibold text-muted-foreground underline"
             >
               Não, quero só assistir por R$6,90.
             </a>
+
 
 
           </div>
