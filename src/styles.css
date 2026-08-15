@@ -110,3 +110,19 @@
     transform: translateY(0);
   }
 }
+
+@keyframes poster-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@utility poster-track {
+  display: flex;
+  width: max-content;
+  gap: 10px;
+  animation: poster-marquee 34s linear infinite;
+}
