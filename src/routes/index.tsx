@@ -48,27 +48,7 @@ export const Route = createFileRoute("/")({
 const CHECKOUT = "https://pay.lowify.com.br/checkout?product_id=Ng0Xva";
 const CHECKOUT_VIP = "https://pay.lowify.com.br/checkout?product_id=dL194r";
 
-// Dispara InitiateCheckout no pixel (quando disponível) antes de ir pro checkout
-function trackCheckout(value: number, label: string) {
-  try {
-    const w = window as unknown as {
-      fbq?: (...args: unknown[]) => void;
-      pixelId?: string;
-      utmify?: unknown;
-      dataLayer?: unknown[];
-    };
-    w.fbq?.("track", "InitiateCheckout", {
-      value,
-      currency: "BRL",
-      content_name: label,
-    });
-    w.dataLayer?.push({ event: "initiate_checkout", value, currency: "BRL", label });
-  } catch {
-    /* noop */
-  }
-}
-
-// Mantém os parâmetros de rastreio (UTMs/subids) que a Utmify injeta na URL
+// Mantém os parâmetros de rastreio (UTMs/subids) presentes na URL da LP
 function withTracking(url: string) {
   try {
     const search = window.location.search.replace(/^\?/, "");
@@ -83,11 +63,10 @@ function withTracking(url: string) {
   }
 }
 
-function goToCheckout(url: string, value: number, label: string, el?: HTMLAnchorElement | null) {
-  // dispara o evento (se o pixel existir) e deixa a navegação nativa do link seguir
-  trackCheckout(value, label);
+function goToCheckout(url: string, _value: number, _label: string, el?: HTMLAnchorElement | null) {
   return el?.href && el.href.includes("pay.lowify.com.br") ? el.href : withTracking(url);
 }
+
 
 
 
