@@ -84,13 +84,11 @@ function withTracking(url: string) {
 }
 
 function goToCheckout(url: string, value: number, label: string, el?: HTMLAnchorElement | null) {
+  // dispara o evento (se o pixel existir) e deixa a navegação nativa do link seguir
   trackCheckout(value, label);
-  // se a Utmify já reescreveu o href do link, usa ele; senão monta com os params atuais
-  const href = el?.href && el.href.includes("pay.lowify.com.br") ? el.href : withTracking(url);
-  window.setTimeout(() => {
-    window.location.href = href;
-  }, 800);
+  return el?.href && el.href.includes("pay.lowify.com.br") ? el.href : withTracking(url);
 }
+
 
 
 
