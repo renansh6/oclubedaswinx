@@ -98,18 +98,6 @@ function goToCheckout(url: string, value: number, label: string, el?: HTMLAnchor
 
 const POSTERS = [wx01.url, wx02.url, wx03.url, wx04.url, wx05.url, wx06.url, wx07.url, wx08.url, wx09.url, wx10.url, wx11.url, wx12.url, wx13.url, wx14.url];
 
-const TITULOS = [
-  "Temporada 1",
-  "Temporada 2",
-  "Temporada 3",
-  "O Segredo do Reino Perdido",
-  "Magia Mágica",
-  "O Mistério do Abismo",
-  "Winx Club: A Aventura Mágica",
-  "Especiais de TV",
-  "Clipes e Músicas",
-];
-
 const BENEFITS: { ic: string; html: React.ReactNode; bonus?: boolean }[] = [
   { ic: "✅", html: <>Acervo com <b>todas as temporadas de O Clube das Winx</b> dubladas em português</> },
   {
