@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { MobileCarousel } from "@/components/MobileCarousel";
 import heroAsset from "@/assets/winx-banner.png.asset.json";
 import p1 from "@/assets/p-b0f0984490591b39f5f716d9eeb7777a.jpg.asset.json";
 import p2 from "@/assets/p-c89e421ad752787e42b5e438c94a1220.jpg.asset.json";
@@ -229,18 +230,20 @@ function OfferCard({
           <div className="text-[12px] font-bold text-muted-foreground">
             Alguns dos que te esperam:
           </div>
-          <div className="mt-2 flex flex-wrap justify-center gap-2">
-            {TITULOS.map((t) => (
-              <span
-                key={t}
-                className="rounded-full border border-border bg-pink-soft px-3 py-1.5 text-[11.5px] font-bold text-secondary-foreground"
-              >
-                {t}
+          <div className="mt-2">
+            <MobileCarousel interval={2500}>
+              {TITULOS.map((t) => (
+                <span
+                  key={t}
+                  className="rounded-full border border-border bg-pink-soft px-3 py-1.5 text-[11.5px] font-bold text-secondary-foreground"
+                >
+                  {t}
+                </span>
+              ))}
+              <span className="rounded-full bg-primary px-3 py-1.5 text-[11.5px] font-bold text-primary-foreground">
+                +8 temporadas
               </span>
-            ))}
-            <span className="rounded-full bg-primary px-3 py-1.5 text-[11.5px] font-bold text-primary-foreground">
-              +8 temporadas
-            </span>
+            </MobileCarousel>
           </div>
         </div>
       )}
