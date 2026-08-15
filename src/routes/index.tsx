@@ -7,6 +7,20 @@ import p3 from "@/assets/p-e0dfbe3ead389b80337081bc741c9545.jpg.asset.json";
 import p4 from "@/assets/p-6e0e8d735aecbad446150d34e955de3c.jpg.asset.json";
 import p5 from "@/assets/p-94ab5b7ef6368f63ce05a34046de0a2b.jpg.asset.json";
 import p6 from "@/assets/p-5388f1ba2629e6450df7bdea32f1545e.jpg.asset.json";
+import wx01 from "@/assets/winx-01.jpg.asset.json";
+import wx02 from "@/assets/winx-02.jpg.asset.json";
+import wx03 from "@/assets/winx-03.jpg.asset.json";
+import wx04 from "@/assets/winx-04.jpg.asset.json";
+import wx05 from "@/assets/winx-05.jpg.asset.json";
+import wx06 from "@/assets/winx-06.jpg.asset.json";
+import wx07 from "@/assets/winx-07.jpg.asset.json";
+import wx08 from "@/assets/winx-08.jpg.asset.json";
+import wx09 from "@/assets/winx-09.jpg.asset.json";
+import wx10 from "@/assets/winx-10.jpg.asset.json";
+import wx11 from "@/assets/winx-11.jpg.asset.json";
+import wx12 from "@/assets/winx-12.jpg.asset.json";
+import wx13 from "@/assets/winx-13.jpg.asset.json";
+import wx14 from "@/assets/winx-14.jpg.asset.json";
 import p7 from "@/assets/p-a742f020551d38a4766a417861ae3255.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
@@ -82,17 +96,7 @@ function goToCheckout(url: string, value: number, label: string, el?: HTMLAnchor
 
 
 
-const TITULOS = [
-  "Temporada 1",
-  "Temporada 2",
-  "Temporada 3",
-  "O Segredo do Reino Perdido",
-  "Magia Mágica",
-  "O Mistério do Abismo",
-  "Winx Club: A Aventura Mágica",
-  "Especiais de TV",
-  "Clipes e Músicas",
-];
+const POSTERS = [wx01.url, wx02.url, wx03.url, wx04.url, wx05.url, wx06.url, wx07.url, wx08.url, wx09.url, wx10.url, wx11.url, wx12.url, wx13.url, wx14.url];
 
 const BENEFITS: { ic: string; html: React.ReactNode; bonus?: boolean }[] = [
   { ic: "✅", html: <>Acervo com <b>todas as temporadas de O Clube das Winx</b> dubladas em português</> },
@@ -229,21 +233,27 @@ function OfferCard({
           <div className="text-[12px] font-bold text-muted-foreground">
             Alguns dos que te esperam:
           </div>
-          <div className="mt-2 flex flex-wrap justify-center gap-2">
-            {TITULOS.map((t) => (
-              <span
-                key={t}
-                className="rounded-full border border-border bg-pink-soft px-3 py-1.5 text-[11.5px] font-bold text-secondary-foreground"
-              >
-                {t}
-              </span>
-            ))}
+          <div className="mt-3 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_6%,black_94%,transparent)]">
+            <div className="poster-track">
+              {[...POSTERS, ...POSTERS].map((src, i) => (
+                <img
+                  key={i}
+                  src={src}
+                  alt="Pôster de O Clube das Winx"
+                  loading="lazy"
+                  className="h-[150px] w-[76px] shrink-0 rounded-lg object-cover shadow-[0_6px_16px_-8px_oklch(0.6_0.245_348_/_0.6)] sm:h-[176px] sm:w-[90px]"
+                />
+              ))}
+            </div>
+          </div>
+          <div className="mt-3 flex justify-center">
             <span className="rounded-full bg-primary px-3 py-1.5 text-[11.5px] font-bold text-primary-foreground">
-              +8 temporadas
+              +14 títulos no acervo
             </span>
           </div>
         </div>
       )}
+
 
       <div className="mt-5 text-[14px] font-bold text-muted-foreground">
         ➡ De: <s className="text-primary/70">R$59,90</s>
