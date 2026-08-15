@@ -229,21 +229,27 @@ function OfferCard({
           <div className="text-[12px] font-bold text-muted-foreground">
             Alguns dos que te esperam:
           </div>
-          <div className="mt-2 flex flex-wrap justify-center gap-2">
-            {TITULOS.map((t) => (
-              <span
-                key={t}
-                className="rounded-full border border-border bg-pink-soft px-3 py-1.5 text-[11.5px] font-bold text-secondary-foreground"
-              >
-                {t}
-              </span>
-            ))}
+          <div className="mt-3 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_6%,black_94%,transparent)]">
+            <div className="poster-track">
+              {[...POSTERS, ...POSTERS].map((src, i) => (
+                <img
+                  key={i}
+                  src={src}
+                  alt="Pôster de O Clube das Winx"
+                  loading="lazy"
+                  className="h-[150px] w-[76px] shrink-0 rounded-lg object-cover shadow-[0_6px_16px_-8px_oklch(0.6_0.245_348_/_0.6)] sm:h-[176px] sm:w-[90px]"
+                />
+              ))}
+            </div>
+          </div>
+          <div className="mt-3 flex justify-center">
             <span className="rounded-full bg-primary px-3 py-1.5 text-[11.5px] font-bold text-primary-foreground">
-              +8 temporadas
+              +14 títulos no acervo
             </span>
           </div>
         </div>
       )}
+
 
       <div className="mt-5 text-[14px] font-bold text-muted-foreground">
         ➡ De: <s className="text-primary/70">R$59,90</s>
