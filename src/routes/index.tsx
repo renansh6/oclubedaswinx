@@ -31,8 +31,8 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const CHECKOUT = "https://ggcheckout.app/checkout/v5/eGBQp6pUBIpzkxGl5jJI";
-const CHECKOUT_VIP = "https://ggcheckout.app/checkout/v5/J3Sim7wAE94CiSR6Yo0j";
+const CHECKOUT = "https://pay.lowify.com.br/checkout?product_id=Ng0Xva";
+const CHECKOUT_VIP = "https://pay.lowify.com.br/checkout?product_id=dL194r";
 
 // Dispara InitiateCheckout no pixel (quando disponível) antes de ir pro checkout
 function trackCheckout(value: number, label: string) {
