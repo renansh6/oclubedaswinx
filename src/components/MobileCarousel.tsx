@@ -43,13 +43,12 @@ export function MobileCarousel({ children, interval = 2500 }: MobileCarouselProp
 
   // Trigger reset after completing a full loop
   useEffect(() => {
-    if (index >= count && count > 0) {
-      const t = window.setTimeout(() => {
-        setIsResetting(true);
-        setIndex(index % count);
-      }, TRANSITION_MS);
-      return () => window.clearTimeout(t);
-    }
+    if (index < count || count === 0) return undefined;
+    const t = window.setTimeout(() => {
+      setIsResetting(true);
+      setIndex(index % count);
+    }, TRANSITION_MS);
+    return () => window.clearTimeout(t);
   }, [index, count]);
 
   // Apply transform
