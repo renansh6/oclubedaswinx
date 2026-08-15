@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { MobileCarousel } from "@/components/MobileCarousel";
 import heroAsset from "@/assets/winx-banner.png.asset.json";
 import p1 from "@/assets/p-b0f0984490591b39f5f716d9eeb7777a.jpg.asset.json";
 import p2 from "@/assets/p-c89e421ad752787e42b5e438c94a1220.jpg.asset.json";
