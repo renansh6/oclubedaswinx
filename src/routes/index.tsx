@@ -63,7 +63,22 @@ function withTracking(url: string) {
   }
 }
 
-function goToCheckout(url: string, _value: number, _label: string, el?: HTMLAnchorElement | null) {
+declare global {
+  interface Window {
+    fbq?: (...args: unknown[]) => void;
+  }
+}
+
+function goToCheckout(url: string, value: number, label: string, el?: HTMLAnchorElement | null) {
+  try {
+    window.fbq?.("track", "InitiateCheckout", {
+      value,
+      currency: "BRL",
+      content_name: label,
+    });
+  } catch {
+    /* noop */
+  }
   return el?.href && el.href.includes("pay.lowify.com.br") ? el.href : withTracking(url);
 }
 
