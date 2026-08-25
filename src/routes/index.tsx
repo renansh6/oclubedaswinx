@@ -7,37 +7,27 @@ import p3 from "@/assets/p-e0dfbe3ead389b80337081bc741c9545.jpg.asset.json";
 import p4 from "@/assets/p-6e0e8d735aecbad446150d34e955de3c.jpg.asset.json";
 import p5 from "@/assets/p-94ab5b7ef6368f63ce05a34046de0a2b.jpg.asset.json";
 import p6 from "@/assets/p-5388f1ba2629e6450df7bdea32f1545e.jpg.asset.json";
-import wx01 from "@/assets/winx-01.jpg.asset.json";
-import wx02 from "@/assets/winx-02.jpg.asset.json";
-import wx03 from "@/assets/winx-03.jpg.asset.json";
-import wx04 from "@/assets/winx-04.jpg.asset.json";
-import wx05 from "@/assets/winx-05.jpg.asset.json";
-import wx06 from "@/assets/winx-06.jpg.asset.json";
-import wx07 from "@/assets/winx-07.jpg.asset.json";
-import wx08 from "@/assets/winx-08.jpg.asset.json";
-import wx09 from "@/assets/winx-09.jpg.asset.json";
-import wx10 from "@/assets/winx-10.jpg.asset.json";
-import wx11 from "@/assets/winx-11.jpg.asset.json";
-import wx12 from "@/assets/winx-12.jpg.asset.json";
-import wx13 from "@/assets/winx-13.jpg.asset.json";
-import wx14 from "@/assets/winx-14.jpg.asset.json";
 import p7 from "@/assets/p-a742f020551d38a4766a417861ae3255.jpg.asset.json";
+import { PosterCarousel } from "@/components/PosterCarousel";
+import { CARTOONS, TOP_CARTOONS } from "@/data/cartoons";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "A Maior Coleção do Clube das Winx do Brasil | Tudo Dublado" },
+      { title: "O Maior Acervo de Desenhos Femininos do Brasil | Tudo Dublado" },
       {
         name: "description",
         content:
-          "Acervo com todas as temporadas e filmes de O Clube das Winx dublados em português, Full HD e acesso vitalício. De R$59,90 por apenas R$6,90.",
+          "21 desenhos em um só lugar: Princesas Disney, Barbie, Winx, Superpoderosas, Frozen, Sailor Moon, Ladybug e muito mais — dublados, Full HD e acesso vitalício por R$6,90.",
       },
-      { property: "og:title", content: "A Maior Coleção do Clube das Winx do Brasil" },
+      { property: "og:title", content: "O Maior Acervo de Desenhos Femininos do Brasil" },
       {
         property: "og:description",
         content:
-          "Todas as temporadas e filmes de O Clube das Winx dublados, Full HD e acesso vitalício por apenas R$6,90.",
+          "Princesas Disney, Barbie, Winx, Frozen, Sailor Moon, Ladybug e mais 15 desenhos dublados, em Full HD e com acesso vitalício por apenas R$6,90.",
       },
+
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -88,39 +78,39 @@ function goToCheckout(url: string, value: number, label: string, el?: HTMLAnchor
 
 
 
-const POSTERS = [wx01.url, wx02.url, wx03.url, wx04.url, wx05.url, wx06.url, wx07.url, wx08.url, wx09.url, wx10.url, wx11.url, wx12.url, wx13.url, wx14.url];
-
 const BENEFITS: { ic: string; html: React.ReactNode; bonus?: boolean }[] = [
-  { ic: "✅", html: <>Acervo com <b>todas as temporadas de O Clube das Winx</b> dubladas em português</> },
+  { ic: "✅", html: <>Acervo com <b>21 desenhos femininos completos</b>, todos dublados em português</> },
   {
     ic: "👑",
     html: (
       <>
-        <b>Coleção completa das fadas</b> — Bloom, Stella, Flora, Musa, Tecna e Aisha em todas as
-        transformações…
+        <b>Princesas Disney</b> — Ariel, Bela, Cinderela, Rapunzel, Jasmine, Aurora e Branca de Neve
       </>
     ),
   },
-  { ic: "🧚", html: <><b>Todos os filmes</b> — O Segredo do Reino Perdido, Magia Mágica e O Mistério do Abismo</> },
+  { ic: "🎀", html: <><b>Barbie, Polly Pocket, Moranguinho e Hello Kitty</b> — filmes e séries clássicas</> },
   {
-    ic: "🎬",
+    ic: "🧚",
     html: (
       <>
-        <b>Séries completas:</b> Winx Club clássico + World of Winx (todas as temporadas)
+        <b>Winx Club, W.I.T.C.H., Sailor Moon e Ever After High</b> — todas as temporadas de magia
       </>
     ),
   },
   {
-    ic: "✨",
-    html: <><b>Especiais e músicas:</b> especiais de TV, clipes e trilhas sonoras marcantes…</>,
+    ic: "💥",
+    html: <><b>Meninas Superpoderosas, Kim Possible, She-Ra e Três Espiãs Demais</b> — pura ação</>,
   },
+  { ic: "❄️", html: <><b>Frozen, Ladybug, My Little Pony, Monster High e Bratz</b> completos</> },
+  { ic: "🐷", html: <><b>Dora, Peppa Pig e Pucca</b> — perfeitos para as pequenas</> },
   { ic: "📺", html: <>Tudo em <b>Full HD 1080p</b> e dublado em português</> },
   { ic: "🎨", html: <>Interface simples e organizada, <b>fácil de achar cada episódio</b></> },
   { ic: "💬", html: <><b>Acesso imediato</b> liberado direto no seu WhatsApp</> },
   { ic: "♾️", html: <><b>Acesso 100% vitalício</b> — pague uma vez, é seu pra sempre</> },
-  { ic: "🆕", html: <><b>Novos conteúdos adicionados sempre</b>, sem pagar nada a mais</> },
-  { ic: "🎁", html: <><b>Kit de desenhos das Winx</b> para imprimir e colorir</>, bonus: true },
+  { ic: "🆕", html: <><b>Novos desenhos adicionados sempre</b>, sem pagar nada a mais</> },
+  { ic: "🎁", html: <><b>Kit de desenhos para imprimir e colorir</b> de todos os personagens</>, bonus: true },
 ];
+
 
 const REVIEWS = [
   {
@@ -128,21 +118,21 @@ const REVIEWS = [
     initials: "MS",
     name: "Mariana Santos",
     grad: "linear-gradient(135deg,#F65BAE,#D6167E)",
-    txt: "Eu amei esse acervo! Cresci assistindo Winx e agora posso rever tudo com a minha filha. Que nostalgia, tô apaixonada! 🥹💖",
+    txt: "Eu amei esse acervo! Cresci assistindo Princesas e Winx e agora posso rever tudo com a minha filha. Que nostalgia, tô apaixonada! 🥹💖",
   },
   {
     photo: p2.url,
     initials: "TS",
     name: "Tauany Silveira",
     grad: "linear-gradient(135deg,#B96CE0,#7E3FD6)",
-    txt: "Tô me sentindo criança de novo kkkk já assisti a 3ª temporada umas 2 vezes. Já mandei pra minha irmã que também é fã!",
+    txt: "Tô me sentindo criança de novo kkkk maratonei Sailor Moon e Três Espiãs Demais no mesmo dia. Já mandei pra minha irmã!",
   },
   {
     photo: p3.url,
     initials: "JA",
     name: "Juliana Alves",
     grad: "linear-gradient(135deg,#F79BC4,#E0218A)",
-    txt: "Gente, entrei ontem e fiquei até tarde assistindo a saga do Reino Perdido. Não consegui parar! A qualidade tá perfeita e tudo dublado 😍✨",
+    txt: "Gente, entrei ontem e fiquei até tarde vendo os filmes das Princesas e da Barbie. Não consegui parar! Qualidade perfeita e tudo dublado 😍✨",
   },
 ];
 
@@ -168,7 +158,7 @@ const COMMENTS = [
     initials: "AS",
     grad: "linear-gradient(135deg,#F79BC4,#E0218A)",
     user: "amanda_souza",
-    txt: "Eu e a minha filha passamos a tarde assistindo as Winx kkk nostalgia total 💕",
+    txt: "Eu e a minha filha passamos a tarde assistindo Frozen, Ladybug e Moranguinho kkk nostalgia total 💕",
     time: "2 h",
   },
   {
@@ -223,28 +213,19 @@ function OfferCard({
       {tag === "Oferta Exclusiva" && (
         <div className="mt-4">
           <div className="text-[12px] font-bold text-muted-foreground">
-            Alguns dos que te esperam:
+            Os 10 desenhos mais pedidos:
           </div>
-          <div className="mt-3 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_6%,black_94%,transparent)]">
-            <div className="poster-track">
-              {[...POSTERS, ...POSTERS].map((src, i) => (
-                <img
-                  key={i}
-                  src={src}
-                  alt="Pôster de O Clube das Winx"
-                  loading="lazy"
-                  className="h-[150px] w-[76px] shrink-0 rounded-lg object-cover shadow-[0_6px_16px_-8px_oklch(0.6_0.245_348_/_0.6)] sm:h-[176px] sm:w-[90px]"
-                />
-              ))}
-            </div>
+          <div className="mt-3">
+            <PosterCarousel items={TOP_CARTOONS} size="sm" speed={22} />
           </div>
           <div className="mt-3 flex justify-center">
             <span className="rounded-full bg-primary px-3 py-1.5 text-[11.5px] font-bold text-primary-foreground">
-              +14 títulos no acervo
+              +21 desenhos no acervo
             </span>
           </div>
         </div>
       )}
+
 
 
       <div className="mt-5 text-[14px] font-bold text-muted-foreground">
@@ -295,15 +276,15 @@ function Index() {
       <section>
         <img
           src={heroAsset.url}
-          alt="A maior coleção de O Clube das Winx do Brasil"
+          alt="O maior acervo de desenhos femininos do Brasil"
           width={1662}
           height={931}
           className="mx-auto w-full rounded-2xl object-contain shadow-[0_14px_36px_-14px_oklch(0.6_0.245_348_/_0.5)]"
         />
         <h1 className="mt-5 text-center text-[17px] font-semibold leading-relaxed text-ink">
-          Agora você pode assistir a{" "}
-          <b className="text-primary">todas as temporadas e filmes do Clube das Winx</b>, dublados em
-          português, em alta qualidade! 💖
+          Agora você pode assistir aos{" "}
+          <b className="text-primary">21 desenhos femininos mais amados de todos os tempos</b>,
+          dublados em português e em alta qualidade! 💖
         </h1>
         <div className="mt-4 flex justify-center">
           <div className="flex items-center gap-2 rounded-full bg-card px-4 py-2 text-[13px] font-semibold text-muted-foreground shadow-[var(--shadow-card)]">
@@ -318,8 +299,8 @@ function Index() {
       <OfferCard
         tag="Oferta Exclusiva"
         scarcity="🔥 Valor promocional de lançamento — por tempo limitado"
-        title="O maior acervo de O Clube das Winx, num lugar só"
-        cta="Quero entrar no mundo das Winx 🧚"
+        title="Os 21 desenhos femininos mais amados, num lugar só"
+        cta="Quero acesso a todos os desenhos 💖"
         onCta={handleCta}
         note={
           <>
@@ -333,6 +314,22 @@ function Index() {
         Esse é apenas um valor simbólico para nos ajudar a manter tudo no ar e com qualidade para
         você! 💖
       </p>
+
+      <Divider />
+
+      {/* CARROSSEL DOS 21 DESENHOS */}
+      <section>
+        <h2 className="text-center text-[20px] font-extrabold text-ink">
+          🎬 Os 21 desenhos que estão te esperando
+        </h2>
+        <p className="mt-2 text-center text-[13.5px] font-medium text-muted-foreground">
+          Arraste para o lado e veja tudo o que entra no seu acesso 💕
+        </p>
+        <div className="mt-5">
+          <PosterCarousel items={CARTOONS} speed={18} />
+        </div>
+      </section>
+
 
       <Divider />
 
@@ -424,14 +421,15 @@ function Index() {
       {/* HISTÓRIA */}
       <section className="card-soft p-5 text-center">
         <h3 className="text-[16px] font-extrabold leading-snug text-ink">
-          Sabemos como é difícil encontrar os episódios e filmes de O Clube das Winx em alta
-          qualidade na internet…
+          Sabemos como é difícil encontrar os desenhos da nossa infância em alta qualidade e
+          dublados na internet…
         </h3>
         <p className="mt-3 text-[14px] leading-6 text-muted-foreground">
-          Por esse motivo nós criamos esse acervo. Onde reunimos todas as temporadas e filmes de O
-          Clube das Winx na melhor qualidade, dublados em português, para você assistir sempre que
-          quiser 💗
+          Por esse motivo nós criamos esse acervo. Reunimos 21 desenhos femininos completos —
+          das Princesas Disney à Barbie, Winx, Frozen, Sailor Moon e muito mais — na melhor
+          qualidade e dublados em português, pra você assistir sempre que quiser 💗
         </p>
+
       </section>
 
       <Divider />
@@ -494,7 +492,7 @@ function Index() {
       </p>
       <OfferCard
         tag="Última chamada"
-        title="Reviva a magia das Winx ainda hoje"
+        title="Reviva a magia dos seus desenhos favoritos ainda hoje"
         cta="Garantir meu acesso agora 🎀"
         onCta={handleCta}
         note={<>🔒 Compra 100% segura · 💗 7 dias de garantia incondicional</>}
@@ -544,15 +542,16 @@ function Index() {
               família toda 👇
             </h3>
             <p className="mt-2 text-[13.5px] leading-6 text-muted-foreground">
-              Você já vai levar <b>todo o Clube das Winx</b>. Que tal transformar numa tarde inteira de
-              atividade com a sua pequena? Adicione agora o <b>Kit de Diversão</b> 👇
+              Você já vai levar <b>os 21 desenhos completos</b>. Que tal transformar numa tarde
+              inteira de atividade com a sua pequena? Adicione agora o <b>Kit de Diversão</b> 👇
             </p>
             <div className="mt-4 space-y-2 text-left">
               {[
-                <>🎨 <b>3 Kits de Colorir pra imprimir</b> — Winx, Barbie e Moranguinho (dezenas de desenhos!)</>,
+                <>🎨 <b>Kits de Colorir pra imprimir</b> — Princesas, Barbie, Winx e Moranguinho (dezenas de desenhos!)</>,
                 <>🧩 <b>Atividades bônus</b> — caça-palavras, ligue os pontos e jogo dos 7 erros</>,
-                <>📱 <b>Papéis de parede fofos</b> das Winx pro celular</>,
-                <>🎀 <b>Carteirinha de Fada</b> pra sua filha imprimir e se sentir parte do clube</>,
+                <>📱 <b>Papéis de parede fofos</b> dos personagens pro celular</>,
+                <>🎀 <b>Carteirinha de Princesa</b> pra sua filha imprimir e se sentir parte do clube</>,
+
               ].map((item, i) => (
                 <div
                   key={i}
@@ -596,7 +595,7 @@ function Index() {
                 e.currentTarget.href = goToCheckout(
                   CHECKOUT,
                   6.9,
-                  "Acervo Winx - R$6,90",
+                  "Acervo Desenhos - R$6,90",
                   e.currentTarget,
                 );
               }}
