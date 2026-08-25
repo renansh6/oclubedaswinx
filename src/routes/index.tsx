@@ -118,21 +118,21 @@ const REVIEWS = [
     initials: "MS",
     name: "Mariana Santos",
     grad: "linear-gradient(135deg,#F65BAE,#D6167E)",
-    txt: "Eu amei esse acervo! Cresci assistindo Winx e agora posso rever tudo com a minha filha. Que nostalgia, tô apaixonada! 🥹💖",
+    txt: "Eu amei esse acervo! Cresci assistindo Princesas e Winx e agora posso rever tudo com a minha filha. Que nostalgia, tô apaixonada! 🥹💖",
   },
   {
     photo: p2.url,
     initials: "TS",
     name: "Tauany Silveira",
     grad: "linear-gradient(135deg,#B96CE0,#7E3FD6)",
-    txt: "Tô me sentindo criança de novo kkkk já assisti a 3ª temporada umas 2 vezes. Já mandei pra minha irmã que também é fã!",
+    txt: "Tô me sentindo criança de novo kkkk maratonei Sailor Moon e Três Espiãs Demais no mesmo dia. Já mandei pra minha irmã!",
   },
   {
     photo: p3.url,
     initials: "JA",
     name: "Juliana Alves",
     grad: "linear-gradient(135deg,#F79BC4,#E0218A)",
-    txt: "Gente, entrei ontem e fiquei até tarde assistindo a saga do Reino Perdido. Não consegui parar! A qualidade tá perfeita e tudo dublado 😍✨",
+    txt: "Gente, entrei ontem e fiquei até tarde vendo os filmes das Princesas e da Barbie. Não consegui parar! Qualidade perfeita e tudo dublado 😍✨",
   },
 ];
 
@@ -158,7 +158,7 @@ const COMMENTS = [
     initials: "AS",
     grad: "linear-gradient(135deg,#F79BC4,#E0218A)",
     user: "amanda_souza",
-    txt: "Eu e a minha filha passamos a tarde assistindo as Winx kkk nostalgia total 💕",
+    txt: "Eu e a minha filha passamos a tarde assistindo Frozen, Ladybug e Moranguinho kkk nostalgia total 💕",
     time: "2 h",
   },
   {
@@ -213,28 +213,19 @@ function OfferCard({
       {tag === "Oferta Exclusiva" && (
         <div className="mt-4">
           <div className="text-[12px] font-bold text-muted-foreground">
-            Alguns dos que te esperam:
+            Os 10 desenhos mais pedidos:
           </div>
-          <div className="mt-3 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_6%,black_94%,transparent)]">
-            <div className="poster-track">
-              {[...POSTERS, ...POSTERS].map((src, i) => (
-                <img
-                  key={i}
-                  src={src}
-                  alt="Pôster de O Clube das Winx"
-                  loading="lazy"
-                  className="h-[150px] w-[76px] shrink-0 rounded-lg object-cover shadow-[0_6px_16px_-8px_oklch(0.6_0.245_348_/_0.6)] sm:h-[176px] sm:w-[90px]"
-                />
-              ))}
-            </div>
+          <div className="mt-3">
+            <PosterCarousel items={TOP_CARTOONS} size="sm" speed={22} />
           </div>
           <div className="mt-3 flex justify-center">
             <span className="rounded-full bg-primary px-3 py-1.5 text-[11.5px] font-bold text-primary-foreground">
-              +14 títulos no acervo
+              +21 desenhos no acervo
             </span>
           </div>
         </div>
       )}
+
 
 
       <div className="mt-5 text-[14px] font-bold text-muted-foreground">
