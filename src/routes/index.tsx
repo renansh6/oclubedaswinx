@@ -595,7 +595,7 @@ function Index() {
                 e.currentTarget.href = goToCheckout(
                   CHECKOUT,
                   6.9,
-                  "Acervo Winx - R$6,90",
+                  "Acervo Desenhos - R$6,90",
                   e.currentTarget,
                 );
               }}
