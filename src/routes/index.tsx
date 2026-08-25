@@ -421,14 +421,15 @@ function Index() {
       {/* HISTÓRIA */}
       <section className="card-soft p-5 text-center">
         <h3 className="text-[16px] font-extrabold leading-snug text-ink">
-          Sabemos como é difícil encontrar os episódios e filmes de O Clube das Winx em alta
-          qualidade na internet…
+          Sabemos como é difícil encontrar os desenhos da nossa infância em alta qualidade e
+          dublados na internet…
         </h3>
         <p className="mt-3 text-[14px] leading-6 text-muted-foreground">
-          Por esse motivo nós criamos esse acervo. Onde reunimos todas as temporadas e filmes de O
-          Clube das Winx na melhor qualidade, dublados em português, para você assistir sempre que
-          quiser 💗
+          Por esse motivo nós criamos esse acervo. Reunimos 21 desenhos femininos completos —
+          das Princesas Disney à Barbie, Winx, Frozen, Sailor Moon e muito mais — na melhor
+          qualidade e dublados em português, pra você assistir sempre que quiser 💗
         </p>
+
       </section>
 
       <Divider />
