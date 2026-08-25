@@ -78,39 +78,39 @@ function goToCheckout(url: string, value: number, label: string, el?: HTMLAnchor
 
 
 
-const POSTERS = [wx01.url, wx02.url, wx03.url, wx04.url, wx05.url, wx06.url, wx07.url, wx08.url, wx09.url, wx10.url, wx11.url, wx12.url, wx13.url, wx14.url];
-
 const BENEFITS: { ic: string; html: React.ReactNode; bonus?: boolean }[] = [
-  { ic: "✅", html: <>Acervo com <b>todas as temporadas de O Clube das Winx</b> dubladas em português</> },
+  { ic: "✅", html: <>Acervo com <b>21 desenhos femininos completos</b>, todos dublados em português</> },
   {
     ic: "👑",
     html: (
       <>
-        <b>Coleção completa das fadas</b> — Bloom, Stella, Flora, Musa, Tecna e Aisha em todas as
-        transformações…
+        <b>Princesas Disney</b> — Ariel, Bela, Cinderela, Rapunzel, Jasmine, Aurora e Branca de Neve
       </>
     ),
   },
-  { ic: "🧚", html: <><b>Todos os filmes</b> — O Segredo do Reino Perdido, Magia Mágica e O Mistério do Abismo</> },
+  { ic: "🎀", html: <><b>Barbie, Polly Pocket, Moranguinho e Hello Kitty</b> — filmes e séries clássicas</> },
   {
-    ic: "🎬",
+    ic: "🧚",
     html: (
       <>
-        <b>Séries completas:</b> Winx Club clássico + World of Winx (todas as temporadas)
+        <b>Winx Club, W.I.T.C.H., Sailor Moon e Ever After High</b> — todas as temporadas de magia
       </>
     ),
   },
   {
-    ic: "✨",
-    html: <><b>Especiais e músicas:</b> especiais de TV, clipes e trilhas sonoras marcantes…</>,
+    ic: "💥",
+    html: <><b>Meninas Superpoderosas, Kim Possible, She-Ra e Três Espiãs Demais</b> — pura ação</>,
   },
+  { ic: "❄️", html: <><b>Frozen, Ladybug, My Little Pony, Monster High e Bratz</b> completos</> },
+  { ic: "🐷", html: <><b>Dora, Peppa Pig e Pucca</b> — perfeitos para as pequenas</> },
   { ic: "📺", html: <>Tudo em <b>Full HD 1080p</b> e dublado em português</> },
   { ic: "🎨", html: <>Interface simples e organizada, <b>fácil de achar cada episódio</b></> },
   { ic: "💬", html: <><b>Acesso imediato</b> liberado direto no seu WhatsApp</> },
   { ic: "♾️", html: <><b>Acesso 100% vitalício</b> — pague uma vez, é seu pra sempre</> },
-  { ic: "🆕", html: <><b>Novos conteúdos adicionados sempre</b>, sem pagar nada a mais</> },
-  { ic: "🎁", html: <><b>Kit de desenhos das Winx</b> para imprimir e colorir</>, bonus: true },
+  { ic: "🆕", html: <><b>Novos desenhos adicionados sempre</b>, sem pagar nada a mais</> },
+  { ic: "🎁", html: <><b>Kit de desenhos para imprimir e colorir</b> de todos os personagens</>, bonus: true },
 ];
+
 
 const REVIEWS = [
   {
