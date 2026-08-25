@@ -7,21 +7,10 @@ import p3 from "@/assets/p-e0dfbe3ead389b80337081bc741c9545.jpg.asset.json";
 import p4 from "@/assets/p-6e0e8d735aecbad446150d34e955de3c.jpg.asset.json";
 import p5 from "@/assets/p-94ab5b7ef6368f63ce05a34046de0a2b.jpg.asset.json";
 import p6 from "@/assets/p-5388f1ba2629e6450df7bdea32f1545e.jpg.asset.json";
-import wx01 from "@/assets/winx-01.jpg.asset.json";
-import wx02 from "@/assets/winx-02.jpg.asset.json";
-import wx03 from "@/assets/winx-03.jpg.asset.json";
-import wx04 from "@/assets/winx-04.jpg.asset.json";
-import wx05 from "@/assets/winx-05.jpg.asset.json";
-import wx06 from "@/assets/winx-06.jpg.asset.json";
-import wx07 from "@/assets/winx-07.jpg.asset.json";
-import wx08 from "@/assets/winx-08.jpg.asset.json";
-import wx09 from "@/assets/winx-09.jpg.asset.json";
-import wx10 from "@/assets/winx-10.jpg.asset.json";
-import wx11 from "@/assets/winx-11.jpg.asset.json";
-import wx12 from "@/assets/winx-12.jpg.asset.json";
-import wx13 from "@/assets/winx-13.jpg.asset.json";
-import wx14 from "@/assets/winx-14.jpg.asset.json";
 import p7 from "@/assets/p-a742f020551d38a4766a417861ae3255.jpg.asset.json";
+import { PosterCarousel } from "@/components/PosterCarousel";
+import { CARTOONS, TOP_CARTOONS } from "@/data/cartoons";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
