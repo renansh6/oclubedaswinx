@@ -15,18 +15,19 @@ import { CARTOONS, TOP_CARTOONS } from "@/data/cartoons";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "A Maior Coleção do Clube das Winx do Brasil | Tudo Dublado" },
+      { title: "O Maior Acervo de Desenhos Femininos do Brasil | Tudo Dublado" },
       {
         name: "description",
         content:
-          "Acervo com todas as temporadas e filmes de O Clube das Winx dublados em português, Full HD e acesso vitalício. De R$59,90 por apenas R$6,90.",
+          "21 desenhos em um só lugar: Princesas Disney, Barbie, Winx, Superpoderosas, Frozen, Sailor Moon, Ladybug e muito mais — dublados, Full HD e acesso vitalício por R$6,90.",
       },
-      { property: "og:title", content: "A Maior Coleção do Clube das Winx do Brasil" },
+      { property: "og:title", content: "O Maior Acervo de Desenhos Femininos do Brasil" },
       {
         property: "og:description",
         content:
-          "Todas as temporadas e filmes de O Clube das Winx dublados, Full HD e acesso vitalício por apenas R$6,90.",
+          "Princesas Disney, Barbie, Winx, Frozen, Sailor Moon, Ladybug e mais 15 desenhos dublados, em Full HD e com acesso vitalício por apenas R$6,90.",
       },
+
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
