@@ -492,7 +492,7 @@ function Index() {
       </p>
       <OfferCard
         tag="Última chamada"
-        title="Reviva a magia das Winx ainda hoje"
+        title="Reviva a magia dos seus desenhos favoritos ainda hoje"
         cta="Garantir meu acesso agora 🎀"
         onCta={handleCta}
         note={<>🔒 Compra 100% segura · 💗 7 dias de garantia incondicional</>}
@@ -542,15 +542,16 @@ function Index() {
               família toda 👇
             </h3>
             <p className="mt-2 text-[13.5px] leading-6 text-muted-foreground">
-              Você já vai levar <b>todo o Clube das Winx</b>. Que tal transformar numa tarde inteira de
-              atividade com a sua pequena? Adicione agora o <b>Kit de Diversão</b> 👇
+              Você já vai levar <b>os 21 desenhos completos</b>. Que tal transformar numa tarde
+              inteira de atividade com a sua pequena? Adicione agora o <b>Kit de Diversão</b> 👇
             </p>
             <div className="mt-4 space-y-2 text-left">
               {[
-                <>🎨 <b>3 Kits de Colorir pra imprimir</b> — Winx, Barbie e Moranguinho (dezenas de desenhos!)</>,
+                <>🎨 <b>Kits de Colorir pra imprimir</b> — Princesas, Barbie, Winx e Moranguinho (dezenas de desenhos!)</>,
                 <>🧩 <b>Atividades bônus</b> — caça-palavras, ligue os pontos e jogo dos 7 erros</>,
-                <>📱 <b>Papéis de parede fofos</b> das Winx pro celular</>,
-                <>🎀 <b>Carteirinha de Fada</b> pra sua filha imprimir e se sentir parte do clube</>,
+                <>📱 <b>Papéis de parede fofos</b> dos personagens pro celular</>,
+                <>🎀 <b>Carteirinha de Princesa</b> pra sua filha imprimir e se sentir parte do clube</>,
+
               ].map((item, i) => (
                 <div
                   key={i}
