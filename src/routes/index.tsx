@@ -276,15 +276,15 @@ function Index() {
       <section>
         <img
           src={heroAsset.url}
-          alt="A maior coleção de O Clube das Winx do Brasil"
+          alt="O maior acervo de desenhos femininos do Brasil"
           width={1662}
           height={931}
           className="mx-auto w-full rounded-2xl object-contain shadow-[0_14px_36px_-14px_oklch(0.6_0.245_348_/_0.5)]"
         />
         <h1 className="mt-5 text-center text-[17px] font-semibold leading-relaxed text-ink">
-          Agora você pode assistir a{" "}
-          <b className="text-primary">todas as temporadas e filmes do Clube das Winx</b>, dublados em
-          português, em alta qualidade! 💖
+          Agora você pode assistir aos{" "}
+          <b className="text-primary">21 desenhos femininos mais amados de todos os tempos</b>,
+          dublados em português e em alta qualidade! 💖
         </h1>
         <div className="mt-4 flex justify-center">
           <div className="flex items-center gap-2 rounded-full bg-card px-4 py-2 text-[13px] font-semibold text-muted-foreground shadow-[var(--shadow-card)]">
@@ -299,8 +299,8 @@ function Index() {
       <OfferCard
         tag="Oferta Exclusiva"
         scarcity="🔥 Valor promocional de lançamento — por tempo limitado"
-        title="O maior acervo de O Clube das Winx, num lugar só"
-        cta="Quero entrar no mundo das Winx 🧚"
+        title="Os 21 desenhos femininos mais amados, num lugar só"
+        cta="Quero acesso a todos os desenhos 💖"
         onCta={handleCta}
         note={
           <>
@@ -314,6 +314,22 @@ function Index() {
         Esse é apenas um valor simbólico para nos ajudar a manter tudo no ar e com qualidade para
         você! 💖
       </p>
+
+      <Divider />
+
+      {/* CARROSSEL DOS 21 DESENHOS */}
+      <section>
+        <h2 className="text-center text-[20px] font-extrabold text-ink">
+          🎬 Os 21 desenhos que estão te esperando
+        </h2>
+        <p className="mt-2 text-center text-[13.5px] font-medium text-muted-foreground">
+          Arraste para o lado e veja tudo o que entra no seu acesso 💕
+        </p>
+        <div className="mt-5">
+          <PosterCarousel items={CARTOONS} speed={18} />
+        </div>
+      </section>
+
 
       <Divider />
 
