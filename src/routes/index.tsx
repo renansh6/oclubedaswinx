@@ -15,13 +15,13 @@ import { CARTOONS, TOP_CARTOONS } from "@/data/cartoons";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "O Maior Acervo de Desenhos Femininos do Brasil | Tudo Dublado" },
+      { title: "O Maior Acervo de Desenhos de Meninas do Brasil | Tudo Dublado" },
       {
         name: "description",
         content:
           "21 desenhos em um só lugar: Princesas Disney, Barbie, Winx, Superpoderosas, Frozen, Sailor Moon, Ladybug e muito mais — dublados, Full HD e acesso vitalício por R$6,90.",
       },
-      { property: "og:title", content: "O Maior Acervo de Desenhos Femininos do Brasil" },
+      { property: "og:title", content: "O Maior Acervo de Desenhos de Meninas do Brasil" },
       {
         property: "og:description",
         content:
@@ -79,7 +79,7 @@ function goToCheckout(url: string, value: number, label: string, el?: HTMLAnchor
 
 
 const BENEFITS: { ic: string; html: React.ReactNode; bonus?: boolean }[] = [
-  { ic: "✅", html: <>Acervo com <b>21 desenhos femininos completos</b>, todos dublados em português</> },
+  { ic: "✅", html: <>Acervo com <b>21 desenhos de meninas completos</b>, todos dublados em português</> },
   {
     ic: "👑",
     html: (
@@ -276,14 +276,14 @@ function Index() {
       <section>
         <img
           src={heroAsset.url}
-          alt="O maior acervo de desenhos femininos do Brasil"
+          alt="O maior acervo de desenhos de meninas do Brasil"
           width={1662}
           height={931}
           className="mx-auto w-full rounded-2xl object-contain shadow-[0_14px_36px_-14px_oklch(0.6_0.245_348_/_0.5)]"
         />
         <h1 className="mt-5 text-center text-[17px] font-semibold leading-relaxed text-ink">
           Agora você pode assistir aos{" "}
-          <b className="text-primary">21 desenhos femininos mais amados de todos os tempos</b>,
+          <b className="text-primary">21 desenhos de meninas mais amados de todos os tempos</b>,
           dublados em português e em alta qualidade! 💖
         </h1>
         <div className="mt-4 flex justify-center">
@@ -299,7 +299,7 @@ function Index() {
       <OfferCard
         tag="Oferta Exclusiva"
         scarcity="🔥 Valor promocional de lançamento — por tempo limitado"
-        title="Os 21 desenhos femininos mais amados, num lugar só"
+        title="Os 21 desenhos de meninas mais amados, num lugar só"
         cta="Quero acesso a todos os desenhos 💖"
         onCta={handleCta}
         note={
@@ -425,7 +425,7 @@ function Index() {
           dublados na internet…
         </h3>
         <p className="mt-3 text-[14px] leading-6 text-muted-foreground">
-          Por esse motivo nós criamos esse acervo. Reunimos 21 desenhos femininos completos —
+          Por esse motivo nós criamos esse acervo. Reunimos 21 desenhos de meninas completos —
           das Princesas Disney à Barbie, Winx, Frozen, Sailor Moon e muito mais — na melhor
           qualidade e dublados em português, pra você assistir sempre que quiser 💗
         </p>
