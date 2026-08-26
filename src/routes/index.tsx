@@ -127,9 +127,7 @@ const ACCESS_BENEFITS = [
 const BONUS_LIST = [
   { n: 1, icon: "🖍️", title: "Kit para imprimir e colorir", desc: "Desenhos de diversas personagens para imprimir." },
   { n: 2, icon: "🧩", title: "Livros de atividades", desc: "Caça-palavras, labirintos, jogo dos 7 erros e atividades educativas." },
-  { n: 3, icon: "🎉", title: "Kit festa para imprimir", desc: "Convites, bandeirinhas, toppers e lembrancinhas." },
-  { n: 4, icon: "📱", title: "Pacote de wallpapers", desc: "Imagens para personalizar celular, tablet e computador." },
-  { n: 5, icon: "🎒", title: "Kit escolar", desc: "Etiquetas, capas de caderno e marcadores de página." },
+  { n: 3, icon: "📱", title: "Pacote de wallpapers", desc: "Imagens para personalizar celular, tablet e computador." },
 ];
 
 
@@ -367,7 +365,7 @@ function Index() {
         {/* CARD 1 — ACERVO */}
         <section className="card-soft flex w-full flex-col p-5">
           <h3 className="text-center text-[18px] font-bold leading-snug text-ink">
-            🎬 21 coleções completas
+            🎬 coleções completas
           </h3>
           <p className="mt-1 text-center text-[14px] font-medium text-muted-foreground">
             Filmes, séries e temporadas para todas as idades.
@@ -443,12 +441,9 @@ function Index() {
 
           <div className="mt-4 rounded-xl border border-border bg-pink-soft p-3">
             <div className="mb-2 flex items-center gap-2 text-[13px] font-extrabold text-secondary-foreground">
-              <span className="rounded-full bg-primary px-2 py-0.5 text-[10px] text-primary-foreground">
-                BÔNUS
-              </span>
-              🎁 Kits exclusivos para imprimir
+              🎁 3 bônus exclusivos incluídos
             </div>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-3">
               {BONUS_LIST.map((bonus) => (
                 <div key={bonus.n} className="flex items-start gap-2.5">
                   <span className="text-[16px] text-primary">{bonus.icon}</span>
