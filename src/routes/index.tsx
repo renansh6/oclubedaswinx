@@ -617,56 +617,75 @@ function Index() {
       {/* MODAL UPSELL */}
       {modalOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/60 p-4"
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto overscroll-contain bg-black/60 sm:items-center"
+          style={{
+            padding: "12px",
+            paddingTop: "max(12px, env(safe-area-inset-top))",
+            paddingBottom: "max(12px, env(safe-area-inset-bottom))",
+          }}
           onClick={() => setModalOpen(false)}
         >
           <div
-            className="card-soft relative my-8 w-full max-w-[520px] p-6 text-center"
+            ref={modalRef}
+            className="card-soft relative my-3 h-auto w-[calc(100vw-24px)] max-w-[420px] overflow-y-auto overscroll-contain p-4 text-center sm:max-w-[520px] sm:p-6"
+            style={{
+              maxHeight: "calc(100vh - 24px)",
+              // @ts-expect-error dvh fallback
+              maxBlockSize: "calc(100dvh - 24px)",
+              WebkitOverflowScrolling: "touch",
+            }}
             onClick={(e) => e.stopPropagation()}
           >
-            <button
-              onClick={() => setModalOpen(false)}
-              aria-label="Fechar"
-              className="absolute right-4 top-3 text-2xl leading-none text-muted-foreground"
-            >
-              ×
-            </button>
-            <span className="inline-block rounded-full bg-secondary px-3 py-1.5 text-[11.5px] font-extrabold text-secondary-foreground">
+            <div className="sticky top-0 z-10 -mx-4 -mt-4 flex justify-end bg-card px-2 pt-2 sm:-mx-6 sm:-mt-6 sm:px-4">
+              <button
+                type="button"
+                onClick={() => setModalOpen(false)}
+                aria-label="Fechar"
+                className="flex h-11 w-11 items-center justify-center text-2xl leading-none text-muted-foreground"
+              >
+                ×
+              </button>
+            </div>
+            <span className="inline-block rounded-full bg-secondary px-3 py-1.5 text-[12px] font-extrabold text-secondary-foreground">
               🎨 Bônus liberado
             </span>
             <h3 className="mt-3 text-[18px] font-extrabold leading-snug text-ink">
-              Espera! Por só <span className="text-primary">R$3 a mais</span>, a diversão vira da
-              família toda 👇
+              Espera! Por apenas <span className="text-primary">R$3 a mais</span>, a diversão vira
+              da família toda 👇
             </h3>
-            <p className="mt-2 text-[13.5px] leading-6 text-muted-foreground">
+            <p className="mt-3 text-[13px] leading-6 text-muted-foreground sm:text-[14px]">
               Você já vai levar <b>os 21 desenhos completos</b>. Que tal transformar numa tarde
               inteira de atividade com a sua pequena? Adicione agora o <b>Kit de Diversão</b> 👇
             </p>
-            <div className="mt-4 space-y-2 text-left">
+            <div className="mt-3 space-y-2 text-left">
               {[
-                <>🎨 <b>Kits de Colorir pra imprimir</b> — Princesas, Barbie, Winx e Moranguinho (dezenas de desenhos!)</>,
+                <>🎨 <b>Kits de Colorir pra imprimir</b> — Princesas, Barbie, Winx e Moranguinho</>,
                 <>🧩 <b>Atividades bônus</b> — caça-palavras, ligue os pontos e jogo dos 7 erros</>,
                 <>📱 <b>Papéis de parede fofos</b> dos personagens pro celular</>,
-                <>🎀 <b>Carteirinha de Princesa</b> pra sua filha imprimir e se sentir parte do clube</>,
-
+                <>🎀 <b>Carteirinha de Princesa</b> pra imprimir e se sentir parte do clube</>,
               ].map((item, i) => (
-                <div
-                  key={i}
-                  className="rounded-xl border border-border bg-pink-soft p-3 text-[13.5px] leading-6 text-ink"
-                >
+                <div key={i} className="flex gap-2 text-[13px] leading-5 text-ink sm:text-[14px]">
                   {item}
                 </div>
               ))}
             </div>
-            <div className="mt-4">
-              <div className="text-[13px] font-semibold text-muted-foreground">
-                De <s>R$29,90</s> por apenas +R$3
+            <div className="mt-3 rounded-xl border border-border bg-pink-soft p-3 text-left text-[13px] sm:text-[14px]">
+              <div className="flex justify-between text-muted-foreground">
+                <span>Acesso completo</span>
+                <b className="text-ink">R$14,90</b>
               </div>
-              <div className="text-5xl font-extrabold leading-none text-primary">
-                <small className="align-super text-xl font-bold">R$</small>9,90
+              <div className="mt-1 flex justify-between text-muted-foreground">
+                <span>Kit de Diversão</span>
+                <b className="text-ink">+ R$3,00</b>
+              </div>
+              <div className="mt-2 flex items-center justify-between border-t border-border pt-2">
+                <span className="font-bold text-ink">Total com o kit</span>
+                <span className="text-2xl font-extrabold leading-none text-primary">R$17,90</span>
               </div>
             </div>
-            <div className="mt-3 text-[12.5px] font-semibold text-muted-foreground">
+            <div className="mt-3 text-[12px] font-semibold text-muted-foreground">
               🖍️ Menos tempo de tela, mais diversão de verdade — só R$3 a mais, uma vez só.
             </div>
             <a
@@ -674,16 +693,16 @@ function Index() {
               onClick={(e) => {
                 e.currentTarget.href = goToCheckout(
                   CHECKOUT_VIP,
-                  9.9,
-                  "Kit de Diversão - R$9,90",
+                  17.9,
+                  "Kit de Diversão - R$17,90",
                   e.currentTarget,
                 );
               }}
-              className="cta-btn mt-4"
+              className="cta-btn mt-3 min-h-[48px] w-full whitespace-normal"
             >
               SIM! Quero o Kit de Diversão 🎨
               <span className="mt-1 block text-[12px] font-semibold normal-case opacity-90">
-                Levar tudo por R$9,90 →
+                Levar tudo por R$17,90 →
               </span>
             </a>
             <a
@@ -691,18 +710,15 @@ function Index() {
               onClick={(e) => {
                 e.currentTarget.href = goToCheckout(
                   CHECKOUT,
-                  6.9,
-                  "Acervo Desenhos - R$6,90",
+                  14.9,
+                  "Acervo Desenhos - R$14,90",
                   e.currentTarget,
                 );
               }}
-              className="mt-3 block text-[12.5px] font-semibold text-muted-foreground underline"
+              className="mt-3 flex min-h-[48px] w-full items-center justify-center px-2 text-center text-[13px] font-semibold text-muted-foreground underline"
             >
-              Não, quero só assistir por R$6,90.
+              Não, quero somente o acesso por R$14,90.
             </a>
-
-
-
           </div>
         </div>
       )}
