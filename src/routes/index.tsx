@@ -355,32 +355,96 @@ function Index() {
 
       <Divider />
 
-      {/* O QUE RECEBE */}
+      {/* O QUE RECEBE - CARDS GRANDES */}
       <h2 className="text-center text-[20px] font-extrabold text-ink">
         👑 Você recebe imediatamente tudo isso:
       </h2>
       <p className="mt-2 text-center text-[13.5px] font-medium text-muted-foreground">
         💌 Assim que o acesso for liberado, tudo isso é seu no WhatsApp:
       </p>
-      <div className="mt-5 space-y-2.5">
-        {BENEFITS.map((b, i) => (
-          <div
-            key={i}
-            className={`flex gap-3 rounded-2xl border p-3.5 ${
-              b.bonus ? "border-primary bg-secondary" : "border-border bg-card"
-            }`}
-          >
-            <span className="text-[18px] leading-6">{b.ic}</span>
-            <span className="text-[14px] leading-6 text-ink">
-              {b.bonus && (
-                <span className="mr-2 rounded-full bg-primary px-2 py-0.5 text-[10px] font-extrabold uppercase text-primary-foreground">
-                  Bônus
-                </span>
-              )}
-              {b.html}
+
+      <div className="mx-auto mt-5 grid w-full max-w-[960px] grid-cols-1 items-stretch gap-5 md:grid-cols-2">
+        {/* CARD 1 — ACERVO */}
+        <section className="card-soft flex w-full max-w-[460px] flex-col p-5 md:mx-0 md:w-full">
+          <div className="mb-3 flex items-center gap-2.5">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-lg text-primary-foreground">
+              📺
             </span>
+            <h3 className="text-[16px] font-extrabold uppercase leading-snug text-ink">
+              Tudo que você encontra no acervo
+            </h3>
           </div>
-        ))}
+
+          <div className="flex flex-col gap-3">
+            {COLLECTIONS.map((col, i) => (
+              <div
+                key={i}
+                className={`rounded-xl border border-border bg-card p-3 ${
+                  col.fullWidth ? "w-full" : ""
+                }`}
+              >
+                <div className="mb-2 flex items-center gap-2 text-[14px] font-extrabold text-ink">
+                  <span className="text-[16px] text-primary">{col.icon}</span>
+                  {col.title}
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {col.items.map((item) => (
+                    <span
+                      key={item}
+                      className="rounded-full bg-secondary px-2.5 py-1 text-[11.5px] font-semibold text-secondary-foreground"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* CARD 2 — ACESSO + BÔNUS */}
+        <section className="card-soft flex w-full max-w-[460px] flex-col p-5 md:mx-0 md:w-full">
+          <div className="mb-3 flex items-center gap-2.5">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-lg text-primary-foreground">
+              🔓
+            </span>
+            <h3 className="text-[16px] font-extrabold uppercase leading-snug text-ink">
+              Seu acesso inclui
+            </h3>
+          </div>
+
+          <div className="flex flex-col gap-3">
+            {ACCESS_BENEFITS.map((b, i) => (
+              <div key={i} className="flex items-start gap-2.5">
+                <span className="mt-0.5 text-[16px] text-primary">✓</span>
+                <span className="text-[14px] leading-6 text-ink">
+                  {b.text}
+                  {b.bold && <b className="text-ink">{b.bold}</b>}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-4 rounded-xl border border-border bg-pink-soft p-3">
+            <div className="mb-2 flex items-center gap-2 text-[13px] font-extrabold text-secondary-foreground">
+              <span className="rounded-full bg-primary px-2 py-0.5 text-[10px] text-primary-foreground">
+                BÔNUS
+              </span>
+              🎁 Kits exclusivos para imprimir
+            </div>
+            <div className="flex flex-col gap-2">
+              {BONUS_LIST.map((bonus) => (
+                <div key={bonus.n} className="flex items-start gap-2.5">
+                  <span className="text-[16px] text-primary">{bonus.icon}</span>
+                  <div>
+                    <div className="text-[13px] font-bold text-ink">{bonus.title}</div>
+                    <div className="text-[12px] leading-5 text-muted-foreground">{bonus.desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
       </div>
 
       <Divider />
