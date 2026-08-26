@@ -681,7 +681,7 @@ function Index() {
                 <>📱 <b>Papéis de parede fofos</b> dos personagens pro celular</>,
                 <>🎀 <b>Carteirinha de Princesa</b> pra imprimir e se sentir parte do clube</>,
               ].map((item, i) => (
-                <div key={i} className="flex gap-2 text-[13px] leading-5 text-ink sm:text-[14px]">
+                <div key={i} className="text-[13px] leading-5 text-ink sm:text-[14px]">
                   {item}
                 </div>
               ))}
