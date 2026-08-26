@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import heroAsset from "@/assets/winx-banner.png.asset.json";
+import heroAsset from "@/assets/banner-meninas.png.asset.json";
 import p1 from "@/assets/p-b0f0984490591b39f5f716d9eeb7777a.jpg.asset.json";
 import p2 from "@/assets/p-c89e421ad752787e42b5e438c94a1220.jpg.asset.json";
 import p3 from "@/assets/p-e0dfbe3ead389b80337081bc741c9545.jpg.asset.json";
@@ -19,13 +19,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "21 desenhos em um só lugar: Princesas Disney, Barbie, Winx, Superpoderosas, Frozen, Sailor Moon, Ladybug e muito mais — dublados, Full HD e acesso vitalício por R$6,90.",
+          "21 desenhos em um só lugar: Princesas Disney, Barbie, Winx, Superpoderosas, Frozen, Sailor Moon, Ladybug e muito mais — dublados, Full HD e acesso vitalício por R$14,90.",
       },
       { property: "og:title", content: "O Maior Acervo de Desenhos de Meninas do Brasil" },
       {
         property: "og:description",
         content:
-          "Princesas Disney, Barbie, Winx, Frozen, Sailor Moon, Ladybug e mais 15 desenhos dublados, em Full HD e com acesso vitalício por apenas R$6,90.",
+          "Princesas Disney, Barbie, Winx, Frozen, Sailor Moon, Ladybug e mais 15 desenhos dublados, em Full HD e com acesso vitalício por apenas R$14,90.",
       },
 
       { property: "og:type", content: "website" },
@@ -252,7 +252,7 @@ function OfferCard({
       </div>
       <div className="text-[13px] font-semibold text-muted-foreground">Por apenas</div>
       <div className="text-6xl font-extrabold leading-none text-primary">
-        <small className="align-super text-2xl font-bold">R$</small>6,90
+        <small className="align-super text-2xl font-bold">R$</small>14,90
       </div>
 
       <button type="button" onClick={onCta} className="cta-btn mt-6">
