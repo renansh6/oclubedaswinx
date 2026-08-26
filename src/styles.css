@@ -111,6 +111,20 @@
   }
 }
 
+@keyframes swipe-hint {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+}
+
+.swipe-hint-icon {
+  animation: swipe-hint 1.1s ease-in-out 4;
+}
+
 @keyframes poster-marquee {
   from {
     transform: translateX(0);
