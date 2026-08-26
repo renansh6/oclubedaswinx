@@ -365,40 +365,56 @@ function Index() {
 
       <div className="mx-auto mt-5 grid w-full max-w-[960px] grid-cols-1 items-stretch gap-5 md:grid-cols-2">
         {/* CARD 1 — ACERVO */}
-        <section className="card-soft flex w-full max-w-[460px] flex-col p-5 md:mx-0 md:w-full">
-          <div className="mb-3 flex items-center gap-2.5">
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-lg text-primary-foreground">
-              📺
-            </span>
-            <h3 className="text-[16px] font-extrabold uppercase leading-snug text-ink">
-              Tudo que você encontra no acervo
-            </h3>
-          </div>
+        <section className="card-soft flex w-full flex-col p-5">
+          <h3 className="text-center text-[18px] font-bold leading-snug text-ink">
+            🎬 21 coleções completas
+          </h3>
+          <p className="mt-1 text-center text-[14px] font-medium text-muted-foreground">
+            Filmes, séries e temporadas para todas as idades.
+          </p>
 
-          <div className="flex flex-col gap-3">
-            {COLLECTIONS.map((col, i) => (
-              <div
-                key={i}
-                className={`rounded-xl border border-border bg-card p-3 ${
-                  col.fullWidth ? "w-full" : ""
-                }`}
-              >
-                <div className="mb-2 flex items-center gap-2 text-[14px] font-extrabold text-ink">
-                  <span className="text-[16px] text-primary">{col.icon}</span>
-                  {col.title}
-                </div>
-                <div className="flex flex-wrap gap-1.5">
-                  {col.items.map((item) => (
-                    <span
-                      key={item}
-                      className="rounded-full bg-secondary px-2.5 py-1 text-[11.5px] font-semibold text-secondary-foreground"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
+          <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-2">
+            <div className="border-b border-border pb-3">
+              <div className="text-[14px] font-bold text-ink">👑 Princesas Disney</div>
+              <div className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground">
+                Ariel • Bela • Cinderela • Rapunzel • Jasmine • Aurora • Branca de Neve
               </div>
-            ))}
+            </div>
+
+            <div className="border-b border-border pb-3">
+              <div className="text-[14px] font-bold text-ink">💖 Clássicos inesquecíveis</div>
+              <div className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground">
+                Barbie • Polly Pocket • Moranguinho • Hello Kitty
+              </div>
+            </div>
+
+            <div className="border-b border-border pb-3">
+              <div className="text-[14px] font-bold text-ink">✨ Magia e fantasia</div>
+              <div className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground">
+                Winx Club • W.I.T.C.H. • Sailor Moon • Ever After High
+              </div>
+            </div>
+
+            <div className="border-b border-border pb-3">
+              <div className="text-[14px] font-bold text-ink">⚡ Ação e aventura</div>
+              <div className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground">
+                Meninas Superpoderosas • Kim Possible • She-Ra • Três Espiãs Demais
+              </div>
+            </div>
+
+            <div className="border-b border-border pb-3 md:col-span-2">
+              <div className="text-[14px] font-bold text-ink">🌟 Grandes favoritas</div>
+              <div className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground">
+                Frozen • Ladybug • My Little Pony • Monster High • Bratz
+              </div>
+            </div>
+
+            <div className="border-b border-border pb-3 md:col-span-2">
+              <div className="text-[14px] font-bold text-ink">🌈 Para as pequenas</div>
+              <div className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground">
+                Dora, a Aventureira • Peppa Pig • Pucca
+              </div>
+            </div>
           </div>
         </section>
 
