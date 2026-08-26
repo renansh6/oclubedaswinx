@@ -685,7 +685,7 @@ function Index() {
               família toda 👇
             </h3>
             <p className="mt-2 text-[12.5px] leading-[1.35] text-muted-foreground">
-              Adicione mais de 1.000 desenhos antigos, gibis e livros digitais ao seu acesso.
+              Adicione mais de 1.000 desenhos nostalgicos, gibis e livros digitais ao seu acesso.
             </p>
 
             <div className="mt-2.5 grid grid-cols-3 gap-1.5">
