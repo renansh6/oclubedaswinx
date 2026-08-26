@@ -10,9 +10,9 @@ type Props = {
   hint?: boolean;
 };
 
-function SwipeHint() {
+function SwipeHint({ size }: { size?: "sm" | "md" }) {
   return (
-    <div className="mb-2 flex justify-center">
+    <div className={`flex justify-center ${size === "sm" ? "mb-1.5" : "mb-2"}`}>
       <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-secondary px-3 py-1 text-[12px] font-semibold text-secondary-foreground">
         <span className="swipe-hint-icon inline-block">👆</span>
         <span className="sm:hidden">Deslize para o lado e veja mais</span>
@@ -147,41 +147,53 @@ export function PosterCarousel({ items, speed = 30, size = "md", hint = false }:
     };
   }, [speed, items.length]);
 
-  const dims = size === "sm" ? "w-[92px] h-[123px]" : "w-[120px] h-[160px]";
+  // dimensões fixas do pôster mantendo proporção 3:4
+  const dims = size === "sm" ? "w-[104px] h-[139px]" : "w-[132px] h-[176px]";
+  const textSize = size === "sm" ? "text-[12px]" : "text-[13px]";
+  const captionWidth = size === "sm" ? "w-[104px]" : "w-[132px]";
   const loop = [...items, ...items];
 
   return (
     <div>
-      {hint && <SwipeHint />}
-    <div className="overflow-hidden pb-1 [-webkit-mask-image:linear-gradient(90deg,transparent,black_2%,black_88%,transparent_99.5%)] [mask-image:linear-gradient(90deg,transparent,black_2%,black_88%,transparent_99.5%)]">
-      <div
-        ref={trackRef}
-        className="flex cursor-grab select-none gap-3 will-change-transform active:cursor-grabbing"
-        style={{ touchAction: "pan-y", WebkitUserSelect: "none" }}
-      >
-        {loop.map((c, i) => (
-          <figure
-            key={`${c.id}-${i}`}
-            className={`relative shrink-0 overflow-hidden rounded-xl shadow-[0_6px_16px_-8px_oklch(0.6_0.245_348_/_0.6)] ${dims}`}
-            style={{ background: c.grad }}
-          >
-            {c.image ? (
-              <img
-                src={c.image}
-                alt={`Pôster de ${c.name}`}
-                loading="lazy"
-                draggable={false}
-                className="h-full w-full object-contain"
-              />
-            ) : (
-              <figcaption className="flex h-full w-full items-end p-2 text-left text-[11px] font-extrabold leading-tight text-white drop-shadow">
+      {hint && <SwipeHint size={size} />}
+      <div className="overflow-hidden pb-4 [-webkit-mask-image:linear-gradient(90deg,transparent,black_2%,black_88%,transparent_99.5%)] [mask-image:linear-gradient(90deg,transparent,black_2%,black_88%,transparent_99.5%)]">
+        <div
+          ref={trackRef}
+          className="flex cursor-grab select-none gap-3 will-change-transform active:cursor-grabbing"
+          style={{ touchAction: "pan-y", WebkitUserSelect: "none" }}
+        >
+          {loop.map((c, i) => (
+            <figure
+              key={`${c.id}-${i}`}
+              className="relative flex shrink-0 min-w-0 flex-col items-center gap-1.5"
+            >
+              <div
+                className={`relative shrink-0 overflow-hidden rounded-xl shadow-[0_6px_16px_-8px_oklch(0.6_0.245_348_/_0.6)] ${dims}`}
+                style={{ background: c.grad }}
+              >
+                {c.image ? (
+                  <img
+                    src={c.image}
+                    alt={`Capa de ${c.name}`}
+                    loading="lazy"
+                    draggable={false}
+                    className="h-full w-full object-contain"
+                  />
+                ) : (
+                  <figcaption className="flex h-full w-full items-end p-2 text-left text-[11px] font-extrabold leading-tight text-white drop-shadow">
+                    {c.name}
+                  </figcaption>
+                )}
+              </div>
+              <figcaption
+                className={`${textSize} ${captionWidth} min-h-[2.75em] px-1 text-center font-semibold leading-snug text-ink line-clamp-2`}
+              >
                 {c.name}
               </figcaption>
-            )}
-          </figure>
-        ))}
+            </figure>
+          ))}
+        </div>
       </div>
-    </div>
     </div>
   );
 }
