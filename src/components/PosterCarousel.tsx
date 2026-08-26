@@ -6,13 +6,28 @@ type Props = {
   /** pixels por segundo do movimento automático */
   speed?: number;
   size?: "sm" | "md";
+  /** mostra a etiqueta "deslize para o lado" acima do carrossel */
+  hint?: boolean;
 };
+
+function SwipeHint() {
+  return (
+    <div className="mb-2 flex justify-center">
+      <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-secondary px-3 py-1 text-[12px] font-semibold text-secondary-foreground">
+        <span className="swipe-hint-icon inline-block">👆</span>
+        <span className="sm:hidden">Deslize para o lado e veja mais</span>
+        <span className="hidden sm:inline">Arraste para o lado e veja mais</span>
+        <span className="swipe-hint-icon inline-block text-[11px]">→</span>
+      </span>
+    </div>
+  );
+}
 
 /**
  * Carrossel infinito baseado em transform (compatível com iOS Safari).
  * Evita scrollLeft + momentum scrolling, que trava/reseta no iOS.
  */
-export function PosterCarousel({ items, speed = 26, size = "md" }: Props) {
+export function PosterCarousel({ items, speed = 30, size = "md", hint = false }: Props) {
   const trackRef = useRef<HTMLDivElement>(null);
   const offset = useRef(0);
   const halfWidth = useRef(0);
