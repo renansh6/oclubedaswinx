@@ -93,8 +93,6 @@ export function PosterCarousel({ items, speed = 26, size = "md" }: Props) {
             </figcaption>
           )}
         </figure>
-
-        </figure>
       ))}
     </div>
   );
