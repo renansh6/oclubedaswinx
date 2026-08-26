@@ -279,21 +279,27 @@ function Index() {
   const [modalOpen, setModalOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!modalOpen) return;
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    modalRef.current?.scrollTo({ top: 0 });
+    const raf = requestAnimationFrame(() => {
+      if (overlayRef.current) overlayRef.current.scrollTop = 0;
+      if (modalRef.current) modalRef.current.scrollTop = 0;
+    });
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setModalOpen(false);
     };
     window.addEventListener("keydown", onKey);
     return () => {
+      cancelAnimationFrame(raf);
       document.body.style.overflow = prev;
       window.removeEventListener("keydown", onKey);
     };
   }, [modalOpen]);
+
 
   useEffect(() => {
     let i = 0;
