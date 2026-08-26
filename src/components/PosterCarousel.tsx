@@ -14,7 +14,6 @@ function SwipeHint({ size }: { size?: "sm" | "md" }) {
   return (
     <div className={`flex justify-center ${size === "sm" ? "mb-1.5" : "mb-2"}`}>
       <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-secondary px-3 py-1 text-[12px] font-semibold text-secondary-foreground">
-        <span className="swipe-hint-icon inline-block">👆</span>
         <span className="sm:hidden">Deslize para o lado e veja mais</span>
         <span className="hidden sm:inline">Arraste para o lado e veja mais</span>
         <span className="swipe-hint-icon inline-block text-[11px]">→</span>
