@@ -8,8 +8,18 @@ import p4 from "@/assets/p-6e0e8d735aecbad446150d34e955de3c.jpg.asset.json";
 import p5 from "@/assets/p-94ab5b7ef6368f63ce05a34046de0a2b.jpg.asset.json";
 import p6 from "@/assets/p-5388f1ba2629e6450df7bdea32f1545e.jpg.asset.json";
 import p7 from "@/assets/p-a742f020551d38a4766a417861ae3255.jpg.asset.json";
+import familyOld from "@/assets/pf-desenhos-antigos.jpg";
+import familyGibis from "@/assets/pf-gibis.jpg";
+import familyLivros from "@/assets/pf-livros.jpg";
 import { PosterCarousel } from "@/components/PosterCarousel";
 import { CARTOONS, TOP_CARTOONS } from "@/data/cartoons";
+
+const FAMILY_ITEMS = [
+  { title: "Desenhos antigos", img: familyOld },
+  { title: "Gibis digitais", img: familyGibis },
+  { title: "Livros digitais", img: familyLivros },
+];
+
 
 
 export const Route = createFileRoute("/")({
