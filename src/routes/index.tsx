@@ -633,90 +633,96 @@ function Index() {
       {/* MODAL UPSELL */}
       {modalOpen && (
         <div
+          ref={overlayRef}
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto overscroll-contain bg-black/60 sm:items-center"
-          style={{
-            padding: "12px",
-            paddingTop: "max(12px, env(safe-area-inset-top))",
-            paddingBottom: "max(12px, env(safe-area-inset-bottom))",
-          }}
+          className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto overscroll-contain bg-black/60 p-2"
+          style={{ WebkitOverflowScrolling: "touch" }}
           onClick={() => setModalOpen(false)}
         >
           <div
             ref={modalRef}
-            className="card-soft relative my-3 h-auto w-[calc(100vw-24px)] max-w-[420px] overflow-y-auto overscroll-contain p-4 text-center sm:max-w-[520px] sm:p-6"
+            className="card-soft relative my-2 h-auto w-[calc(100vw-16px)] max-w-[400px] overflow-y-auto overscroll-contain p-3 text-center"
             style={{
-              maxHeight: "calc(100vh - 24px)",
-              maxBlockSize: "calc(100dvh - 24px)",
+              maxHeight: "calc(100vh - 16px)",
+              maxBlockSize: "calc(100dvh - 16px)",
               WebkitOverflowScrolling: "touch",
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="sticky top-0 z-10 -mx-4 -mt-4 flex justify-end bg-card px-2 pt-2 sm:-mx-6 sm:-mt-6 sm:px-4">
+            <div className="sticky top-0 z-10 -mx-3 -mt-3 h-0 pr-1 text-right">
               <button
                 type="button"
                 onClick={() => setModalOpen(false)}
                 aria-label="Fechar"
-                className="flex h-11 w-11 items-center justify-center text-2xl leading-none text-muted-foreground"
+                className="h-11 w-11 text-2xl leading-none text-muted-foreground"
               >
                 ×
               </button>
             </div>
-            <span className="inline-block rounded-full bg-secondary px-3 py-1.5 text-[12px] font-extrabold text-secondary-foreground">
-              🎨 Bônus liberado
+
+            <span className="inline-block rounded-full bg-secondary px-2.5 py-1 text-[10px] font-extrabold uppercase text-secondary-foreground">
+              🎁 Oferta especial
             </span>
-            <h3 className="mt-3 text-[18px] font-extrabold leading-snug text-ink">
-              Espera! Por apenas <span className="text-primary">R$3 a mais</span>, a diversão vira
-              da família toda 👇
+            <h3 className="mt-1.5 text-[17px] font-extrabold leading-[1.2] text-ink short:text-[16px]">
+              Por apenas <span className="text-primary">R$3 a mais</span>, libere um acervo para a
+              família toda 👇
             </h3>
-            <p className="mt-3 text-[13px] leading-6 text-muted-foreground sm:text-[14px]">
-              Você já vai levar <b>os 21 desenhos completos</b>. Que tal transformar numa tarde
-              inteira de atividade com a sua pequena? Adicione agora o <b>Kit de Diversão</b> 👇
+            <p className="mt-2 text-[12.5px] leading-[1.35] text-muted-foreground">
+              Adicione mais de 1.000 desenhos antigos, gibis e livros digitais ao seu acesso.
             </p>
-            <div className="mt-3 space-y-2 text-left">
-              {[
-                <>🎨 <b>Kits de Colorir pra imprimir</b> — Princesas, Barbie, Winx e Moranguinho</>,
-                <>🧩 <b>Atividades bônus</b> — caça-palavras, ligue os pontos e jogo dos 7 erros</>,
-                <>📱 <b>Papéis de parede fofos</b> dos personagens pro celular</>,
-                <>🎀 <b>Carteirinha de Princesa</b> pra imprimir e se sentir parte do clube</>,
-              ].map((item, i) => (
-                <div key={i} className="text-[13px] leading-5 text-ink sm:text-[14px]">
-                  {item}
-                </div>
+
+            <div className="mt-2.5 grid grid-cols-3 gap-1.5">
+              {FAMILY_ITEMS.map((it) => (
+                <figure key={it.title} className="min-w-0">
+                  <img
+                    src={it.img}
+                    alt={it.title}
+                    loading="lazy"
+                    width={512}
+                    height={512}
+                    className="h-[78px] w-full rounded-[8px] object-cover short:h-[64px]"
+                  />
+                  <figcaption className="mt-1 text-center text-[11px] font-bold leading-tight text-ink">
+                    {it.title}
+                  </figcaption>
+                </figure>
               ))}
             </div>
-            <div className="mt-3 rounded-xl border border-border bg-pink-soft p-3 text-left text-[13px] sm:text-[14px]">
+
+            <div className="mt-2.5 rounded-xl border border-border bg-pink-soft p-2.5 text-left text-[13px]">
               <div className="flex justify-between text-muted-foreground">
-                <span>Acesso completo</span>
+                <span>Acesso principal</span>
                 <b className="text-ink">R$14,90</b>
               </div>
               <div className="mt-1 flex justify-between text-muted-foreground">
-                <span>Kit de Diversão</span>
+                <span>Pacote Família</span>
                 <b className="text-ink">+ R$3,00</b>
               </div>
-              <div className="mt-2 flex items-center justify-between border-t border-border pt-2">
-                <span className="font-bold text-ink">Total com o kit</span>
-                <span className="text-2xl font-extrabold leading-none text-primary">R$17,90</span>
+              <div className="mt-1.5 flex items-center justify-between border-t border-border pt-1.5">
+                <span className="font-bold text-ink">Total</span>
+                <span className="text-[26px] font-extrabold leading-none text-primary">R$17,90</span>
               </div>
             </div>
-            <div className="mt-3 text-[12px] font-semibold text-muted-foreground">
-              🖍️ Menos tempo de tela, mais diversão de verdade — só R$3 a mais, uma vez só.
+
+            <div className="mt-2 text-[12px] font-semibold text-muted-foreground">
+              ✓ Pagamento único • acesso vitalício
             </div>
+
             <a
               href={CHECKOUT_VIP}
               onClick={(e) => {
                 e.currentTarget.href = goToCheckout(
                   CHECKOUT_VIP,
                   17.9,
-                  "Kit de Diversão - R$17,90",
+                  "Pacote Família - R$17,90",
                   e.currentTarget,
                 );
               }}
-              className="cta-btn mt-3 min-h-[48px] w-full whitespace-normal"
+              className="cta-btn mt-2.5 min-h-[50px] w-full whitespace-normal text-[14px]"
             >
-              SIM! Quero o Kit de Diversão 🎨
-              <span className="mt-1 block text-[12px] font-semibold normal-case opacity-90">
+              SIM! QUERO O PACOTE FAMÍLIA 🎁
+              <span className="mt-0.5 block text-[12px] font-semibold normal-case opacity-90">
                 Levar tudo por R$17,90 →
               </span>
             </a>
@@ -730,13 +736,14 @@ function Index() {
                   e.currentTarget,
                 );
               }}
-              className="mt-3 flex min-h-[48px] w-full items-center justify-center px-2 text-center text-[13px] font-semibold text-muted-foreground underline"
+              className="mt-2 flex w-full items-center justify-center px-2 text-center text-[12px] font-semibold text-muted-foreground underline"
             >
               Não, quero somente o acesso por R$14,90.
             </a>
           </div>
         </div>
       )}
+
 
       {/* TOAST DE PROVA SOCIAL */}
       {toast && (
