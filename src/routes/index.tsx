@@ -78,37 +78,58 @@ function goToCheckout(url: string, value: number, label: string, el?: HTMLAnchor
 
 
 
-const BENEFITS: { ic: string; html: React.ReactNode; bonus?: boolean }[] = [
-  { ic: "✅", html: <>Acervo com <b>21 desenhos de meninas completos</b>, todos dublados em português</> },
+const COLLECTIONS = [
   {
-    ic: "👑",
-    html: (
-      <>
-        <b>Princesas Disney</b> — Ariel, Bela, Cinderela, Rapunzel, Jasmine, Aurora e Branca de Neve
-      </>
-    ),
-  },
-  { ic: "🎀", html: <><b>Barbie, Polly Pocket, Moranguinho e Hello Kitty</b> — filmes e séries clássicas</> },
-  {
-    ic: "🧚",
-    html: (
-      <>
-        <b>Winx Club, W.I.T.C.H., Sailor Moon e Ever After High</b> — todas as temporadas de magia
-      </>
-    ),
+    icon: "👑",
+    title: "Princesas Disney",
+    items: ["Ariel", "Bela", "Cinderela", "Rapunzel", "Jasmine", "Aurora", "Branca de Neve"],
+    fullWidth: true,
   },
   {
-    ic: "💥",
-    html: <><b>Meninas Superpoderosas, Kim Possible, She-Ra e Três Espiãs Demais</b> — pura ação</>,
+    icon: "💖",
+    title: "Clássicos inesquecíveis",
+    items: ["Barbie", "Polly Pocket", "Moranguinho", "Hello Kitty"],
   },
-  { ic: "❄️", html: <><b>Frozen, Ladybug, My Little Pony, Monster High e Bratz</b> completos</> },
-  { ic: "🐷", html: <><b>Dora, Peppa Pig e Pucca</b> — perfeitos para as pequenas</> },
-  { ic: "📺", html: <>Tudo em <b>Full HD 1080p</b> e dublado em português</> },
-  { ic: "🎨", html: <>Interface simples e organizada, <b>fácil de achar cada episódio</b></> },
-  { ic: "💬", html: <><b>Acesso imediato</b> liberado direto no seu WhatsApp</> },
-  { ic: "♾️", html: <><b>Acesso 100% vitalício</b> — pague uma vez, é seu pra sempre</> },
-  { ic: "🆕", html: <><b>Novos desenhos adicionados sempre</b>, sem pagar nada a mais</> },
-  { ic: "🎁", html: <><b>Kit de desenhos para imprimir e colorir</b> de todos os personagens</>, bonus: true },
+  {
+    icon: "✨",
+    title: "Magia e fantasia",
+    items: ["Winx Club", "W.I.T.C.H.", "Sailor Moon", "Ever After High"],
+  },
+  {
+    icon: "⚡",
+    title: "Ação e aventura",
+    items: ["As Meninas Superpoderosas", "Kim Possible", "She-Ra", "Três Espiãs Demais"],
+  },
+  {
+    icon: "🌟",
+    title: "Favoritos de todas as gerações",
+    items: ["Frozen", "Ladybug", "My Little Pony", "Monster High", "Bratz"],
+  },
+  {
+    icon: "🌈",
+    title: "Para as pequenas",
+    items: ["Dora, a Aventureira", "Peppa Pig", "Pucca"],
+  },
+];
+
+const ACCESS_BENEFITS = [
+  { text: "Conteúdo em ", bold: "Full HD 1080p" },
+  { text: "Tudo ", bold: "dublado em português" },
+  { text: "Interface simples e organizada" },
+  { text: "Encontre facilmente cada desenho e episódio" },
+  { text: "Acesso imediato enviado diretamente pelo WhatsApp" },
+  { text: "Acesso 100% ", bold: "vitalício" },
+  { text: "Pagamento único, ", bold: "sem mensalidades" },
+  { text: "Atualizações futuras do acervo sem custo adicional" },
+  { text: "Assista pelo celular, tablet, computador ou Smart TV" },
+];
+
+const BONUS_LIST = [
+  { n: 1, icon: "🖍️", title: "Kit para imprimir e colorir", desc: "Desenhos de diversas personagens para imprimir." },
+  { n: 2, icon: "🧩", title: "Livros de atividades", desc: "Caça-palavras, labirintos, jogo dos 7 erros e atividades educativas." },
+  { n: 3, icon: "🎉", title: "Kit festa para imprimir", desc: "Convites, bandeirinhas, toppers e lembrancinhas." },
+  { n: 4, icon: "📱", title: "Pacote de wallpapers", desc: "Imagens para personalizar celular, tablet e computador." },
+  { n: 5, icon: "🎒", title: "Kit escolar", desc: "Etiquetas, capas de caderno e marcadores de página." },
 ];
 
 
