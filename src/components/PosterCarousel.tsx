@@ -6,13 +6,28 @@ type Props = {
   /** pixels por segundo do movimento automático */
   speed?: number;
   size?: "sm" | "md";
+  /** mostra a etiqueta "deslize para o lado" acima do carrossel */
+  hint?: boolean;
 };
+
+function SwipeHint() {
+  return (
+    <div className="mb-2 flex justify-center">
+      <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-secondary px-3 py-1 text-[12px] font-semibold text-secondary-foreground">
+        <span className="swipe-hint-icon inline-block">👆</span>
+        <span className="sm:hidden">Deslize para o lado e veja mais</span>
+        <span className="hidden sm:inline">Arraste para o lado e veja mais</span>
+        <span className="swipe-hint-icon inline-block text-[11px]">→</span>
+      </span>
+    </div>
+  );
+}
 
 /**
  * Carrossel infinito baseado em transform (compatível com iOS Safari).
  * Evita scrollLeft + momentum scrolling, que trava/reseta no iOS.
  */
-export function PosterCarousel({ items, speed = 26, size = "md" }: Props) {
+export function PosterCarousel({ items, speed = 30, size = "md", hint = false }: Props) {
   const trackRef = useRef<HTMLDivElement>(null);
   const offset = useRef(0);
   const halfWidth = useRef(0);
@@ -83,8 +98,23 @@ export function PosterCarousel({ items, speed = 26, size = "md" }: Props) {
       resumeTimer = window.setTimeout(() => {
         paused.current = false;
         last = 0;
-      }, 900);
+      }, 2000);
     };
+
+    // desktop: pausa enquanto o mouse está sobre o carrossel
+    const enter = () => {
+      paused.current = true;
+      window.clearTimeout(resumeTimer);
+    };
+    const leave = () => {
+      if (dragging) return;
+      resumeTimer = window.setTimeout(() => {
+        paused.current = false;
+        last = 0;
+      }, 300);
+    };
+    el.addEventListener("mouseenter", enter);
+    el.addEventListener("mouseleave", leave);
 
     el.addEventListener("touchstart", down, { passive: true });
     el.addEventListener("touchmove", move, { passive: true });
@@ -109,6 +139,8 @@ export function PosterCarousel({ items, speed = 26, size = "md" }: Props) {
       el.removeEventListener("touchend", up);
       el.removeEventListener("touchcancel", up);
       el.removeEventListener("mousedown", down);
+      el.removeEventListener("mouseenter", enter);
+      el.removeEventListener("mouseleave", leave);
       window.removeEventListener("mousemove", move);
       window.removeEventListener("mouseup", up);
       document.removeEventListener("visibilitychange", onVisibility);
@@ -119,7 +151,9 @@ export function PosterCarousel({ items, speed = 26, size = "md" }: Props) {
   const loop = [...items, ...items];
 
   return (
-    <div className="overflow-hidden pb-1 [-webkit-mask-image:linear-gradient(90deg,transparent,black_5%,black_95%,transparent)] [mask-image:linear-gradient(90deg,transparent,black_5%,black_95%,transparent)]">
+    <div>
+      {hint && <SwipeHint />}
+    <div className="overflow-hidden pb-1 [-webkit-mask-image:linear-gradient(90deg,transparent,black_2%,black_88%,transparent_99.5%)] [mask-image:linear-gradient(90deg,transparent,black_2%,black_88%,transparent_99.5%)]">
       <div
         ref={trackRef}
         className="flex cursor-grab select-none gap-3 will-change-transform active:cursor-grabbing"
@@ -147,6 +181,7 @@ export function PosterCarousel({ items, speed = 26, size = "md" }: Props) {
           </figure>
         ))}
       </div>
+    </div>
     </div>
   );
 }

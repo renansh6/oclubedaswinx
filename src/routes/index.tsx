@@ -235,7 +235,7 @@ function OfferCard({
             Os 10 desenhos mais pedidos:
           </div>
           <div className="mt-3">
-            <PosterCarousel items={TOP_CARTOONS} size="sm" speed={22} />
+            <PosterCarousel items={TOP_CARTOONS} size="sm" speed={30} hint />
           </div>
           <div className="mt-3 flex justify-center">
             <span className="rounded-full bg-primary px-3 py-1.5 text-[11.5px] font-bold text-primary-foreground">
@@ -346,7 +346,7 @@ function Index() {
           Arraste para o lado e veja tudo o que entra no seu acesso 💕
         </p>
         <div className="mt-5">
-          <PosterCarousel items={CARTOONS} speed={18} />
+          <PosterCarousel items={CARTOONS} speed={30} hint />
         </div>
       </section>
 
