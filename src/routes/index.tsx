@@ -632,7 +632,6 @@ function Index() {
             className="card-soft relative my-3 h-auto w-[calc(100vw-24px)] max-w-[420px] overflow-y-auto overscroll-contain p-4 text-center sm:max-w-[520px] sm:p-6"
             style={{
               maxHeight: "calc(100vh - 24px)",
-              // @ts-expect-error dvh fallback
               maxBlockSize: "calc(100dvh - 24px)",
               WebkitOverflowScrolling: "touch",
             }}
