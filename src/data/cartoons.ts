@@ -19,6 +19,8 @@ import princesas from "@/assets/PRINCESAS_DISNEY.jpg.asset.json";
 import pucca from "@/assets/PUCCA.jpg.asset.json";
 import sailor from "@/assets/SAILLORMOON.jpg.asset.json";
 import shera from "@/assets/SHE-RA.jpg.asset.json";
+import winx from "@/assets/WINX_CLUB.jpg.asset.json";
+import witch from "@/assets/WITCH.jpg.asset.json";
 
 export type Cartoon = {
   id: string;
@@ -32,7 +34,7 @@ export type Cartoon = {
 export const CARTOONS: Cartoon[] = [
   { id: "princesas", name: "Princesas Disney", short: "Ariel, Bela, Cinderela, Rapunzel, Jasmine, Aurora e Branca de Neve", grad: "linear-gradient(160deg,#F9A8D4,#7C3AED)", image: princesas.url, top: true },
   { id: "barbie", name: "Barbie", grad: "linear-gradient(160deg,#FF7BC0,#D6167E)", image: barbie.url, top: true },
-  { id: "winx", name: "Winx Club", grad: "linear-gradient(160deg,#F65BAE,#8A46D6)", top: true },
+  { id: "winx", name: "Winx Club", grad: "linear-gradient(160deg,#F65BAE,#8A46D6)", image: winx.url, top: true },
   { id: "superpoderosas", name: "As Meninas Superpoderosas", grad: "linear-gradient(160deg,#7FD4F5,#2563EB)", image: superpoderosas.url, top: true },
   { id: "frozen", name: "Frozen", grad: "linear-gradient(160deg,#A5E8FF,#3B82F6)", image: frozen.url, top: true },
   { id: "espias", name: "Três Espiãs Demais", grad: "linear-gradient(160deg,#FFB27A,#EF4444)", image: espias.url, top: true },
@@ -51,7 +53,7 @@ export const CARTOONS: Cartoon[] = [
   { id: "peppa", name: "Peppa Pig", grad: "linear-gradient(160deg,#FBCFE8,#DB2777)", image: peppa.url },
   { id: "pucca", name: "Pucca", grad: "linear-gradient(160deg,#FCA5A5,#7F1D1D)", image: pucca.url },
   { id: "shera", name: "She-Ra", grad: "linear-gradient(160deg,#FDE68A,#B45309)", image: shera.url },
-  { id: "witch", name: "W.I.T.C.H.", grad: "linear-gradient(160deg,#A7F3D0,#7C3AED)" },
+  { id: "witch", name: "W.I.T.C.H.", grad: "linear-gradient(160deg,#A7F3D0,#7C3AED)", image: witch.url },
 ];
 
 export const TOP_CARTOONS = CARTOONS.filter((c) => c.top);
