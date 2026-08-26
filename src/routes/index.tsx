@@ -320,7 +320,7 @@ function Index() {
         tag="Oferta Exclusiva"
         scarcity="🔥 Valor promocional de lançamento — por tempo limitado"
         title="Os desenhos mais amados, num lugar só"
-        cta="Quero acesso a todos os desenhos 💖"
+        cta="QUERO MEU ACESSO POR R$14,90 💖"
         onCta={handleCta}
         note={
           <>
@@ -590,7 +590,7 @@ function Index() {
       <OfferCard
         tag="Última chamada"
         title="Reviva a magia dos seus desenhos favoritos ainda hoje"
-        cta="Garantir meu acesso agora 🎀"
+        cta="GARANTIR MEU ACESSO POR R$14,90 🎀"
         onCta={handleCta}
         note={<>🔒 Compra 100% segura · 💗 7 dias de garantia incondicional</>}
       />
