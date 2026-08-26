@@ -77,7 +77,7 @@ export function PosterCarousel({ items, speed = 26, size = "md" }: Props) {
         <figure
           key={`${c.id}-${i}`}
           className={`relative shrink-0 overflow-hidden rounded-xl shadow-[0_6px_16px_-8px_oklch(0.6_0.245_348_/_0.6)] ${dims}`}
-          style={c.image ? undefined : { background: c.grad }}
+          style={{ background: c.grad }}
         >
           {c.image ? (
             <img
@@ -85,7 +85,7 @@ export function PosterCarousel({ items, speed = 26, size = "md" }: Props) {
               alt={`Pôster de ${c.name}`}
               loading="lazy"
               draggable={false}
-              className="h-full w-full object-cover"
+              className="h-full w-full object-contain"
             />
           ) : (
             <figcaption className="flex h-full w-full items-end p-2 text-left text-[11px] font-extrabold leading-tight text-white drop-shadow">

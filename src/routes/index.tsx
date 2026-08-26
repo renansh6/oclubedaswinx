@@ -220,7 +220,7 @@ function OfferCard({
           </div>
           <div className="mt-3 flex justify-center">
             <span className="rounded-full bg-primary px-3 py-1.5 text-[11.5px] font-bold text-primary-foreground">
-              +21 desenhos no acervo
+              Diversos desenhos no acervo
             </span>
           </div>
         </div>
@@ -283,9 +283,10 @@ function Index() {
         />
         <h1 className="mt-5 text-center text-[17px] font-semibold leading-relaxed text-ink">
           Agora você pode assistir aos{" "}
-          <b className="text-primary">21 desenhos de meninas mais amados de todos os tempos</b>,
-          dublados em português e em alta qualidade! 💖
+          <b className="text-primary">desenhos mais amados de todos os tempos</b>, dublados em
+          português e em alta qualidade! 💖
         </h1>
+
         <div className="mt-4 flex justify-center">
           <div className="flex items-center gap-2 rounded-full bg-card px-4 py-2 text-[13px] font-semibold text-muted-foreground shadow-[var(--shadow-card)]">
             <span className="h-2 w-2 animate-pulse rounded-full bg-primary" />
@@ -299,7 +300,7 @@ function Index() {
       <OfferCard
         tag="Oferta Exclusiva"
         scarcity="🔥 Valor promocional de lançamento — por tempo limitado"
-        title="Os 21 desenhos de meninas mais amados, num lugar só"
+        title="Os desenhos mais amados, num lugar só"
         cta="Quero acesso a todos os desenhos 💖"
         onCta={handleCta}
         note={
@@ -320,7 +321,7 @@ function Index() {
       {/* CARROSSEL DOS 21 DESENHOS */}
       <section>
         <h2 className="text-center text-[20px] font-extrabold text-ink">
-          🎬 Os 21 desenhos que estão te esperando
+          🎬 Nossos desenhos que estão te esperando
         </h2>
         <p className="mt-2 text-center text-[13.5px] font-medium text-muted-foreground">
           Arraste para o lado e veja tudo o que entra no seu acesso 💕
