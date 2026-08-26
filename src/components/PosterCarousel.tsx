@@ -139,6 +139,8 @@ export function PosterCarousel({ items, speed = 30, size = "md", hint = false }:
       el.removeEventListener("touchend", up);
       el.removeEventListener("touchcancel", up);
       el.removeEventListener("mousedown", down);
+      el.removeEventListener("mouseenter", enter);
+      el.removeEventListener("mouseleave", leave);
       window.removeEventListener("mousemove", move);
       window.removeEventListener("mouseup", up);
       document.removeEventListener("visibilitychange", onVisibility);
@@ -149,7 +151,9 @@ export function PosterCarousel({ items, speed = 30, size = "md", hint = false }:
   const loop = [...items, ...items];
 
   return (
-    <div className="overflow-hidden pb-1 [-webkit-mask-image:linear-gradient(90deg,transparent,black_5%,black_95%,transparent)] [mask-image:linear-gradient(90deg,transparent,black_5%,black_95%,transparent)]">
+    <div>
+      {hint && <SwipeHint />}
+    <div className="overflow-hidden pb-1 [-webkit-mask-image:linear-gradient(90deg,transparent,black_2%,black_88%,transparent_99.5%)] [mask-image:linear-gradient(90deg,transparent,black_2%,black_88%,transparent_99.5%)]">
       <div
         ref={trackRef}
         className="flex cursor-grab select-none gap-3 will-change-transform active:cursor-grabbing"
@@ -177,6 +181,7 @@ export function PosterCarousel({ items, speed = 30, size = "md", hint = false }:
           </figure>
         ))}
       </div>
+    </div>
     </div>
   );
 }
