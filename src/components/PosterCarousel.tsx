@@ -83,8 +83,23 @@ export function PosterCarousel({ items, speed = 26, size = "md" }: Props) {
       resumeTimer = window.setTimeout(() => {
         paused.current = false;
         last = 0;
-      }, 900);
+      }, 2000);
     };
+
+    // desktop: pausa enquanto o mouse está sobre o carrossel
+    const enter = () => {
+      paused.current = true;
+      window.clearTimeout(resumeTimer);
+    };
+    const leave = () => {
+      if (dragging) return;
+      resumeTimer = window.setTimeout(() => {
+        paused.current = false;
+        last = 0;
+      }, 300);
+    };
+    el.addEventListener("mouseenter", enter);
+    el.addEventListener("mouseleave", leave);
 
     el.addEventListener("touchstart", down, { passive: true });
     el.addEventListener("touchmove", move, { passive: true });
