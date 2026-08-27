@@ -202,7 +202,7 @@ export function PosterCarousel({
   const loop = [...items, ...items];
 
   return (
-    <div>
+    <div ref={wrapRef}>
       {hint && <SwipeHint size={size} />}
       <div className="overflow-hidden pb-4 [-webkit-mask-image:linear-gradient(90deg,transparent,black_2%,black_88%,transparent_99.5%)] [mask-image:linear-gradient(90deg,transparent,black_2%,black_88%,transparent_99.5%)]">
         <div
@@ -210,38 +210,53 @@ export function PosterCarousel({
           className="flex cursor-grab select-none gap-3 will-change-transform active:cursor-grabbing"
           style={{ touchAction: "pan-y", WebkitUserSelect: "none" }}
         >
-          {loop.map((c, i) => (
-            <figure
-              key={`${c.id}-${i}`}
-              className="relative flex shrink-0 min-w-0 flex-col items-center gap-1.5"
-            >
-              <div
-                className={`relative shrink-0 overflow-hidden rounded-xl shadow-[0_6px_16px_-8px_oklch(0.6_0.245_348_/_0.6)] ${dims}`}
-                style={{ background: c.grad }}
+          {loop.map((c, i) => {
+            const base = i % items.length;
+            const show = base < loadCount;
+            const isEager = base < eager && !deferUntilVisible;
+            return (
+              <figure
+                key={`${c.id}-${i}`}
+                className="relative flex shrink-0 min-w-0 flex-col items-center gap-1.5"
               >
-                {c.image ? (
-                  <img
-                    src={c.image}
-                    alt={`Capa de ${c.name}`}
-                    loading="lazy"
-                    draggable={false}
-                    className="h-full w-full object-contain"
-                  />
-                ) : (
-                  <figcaption className="flex h-full w-full items-end p-2 text-left text-[11px] font-extrabold leading-tight text-white drop-shadow">
-                    {c.name}
-                  </figcaption>
-                )}
-              </div>
-              <figcaption
-                className={`${textSize} ${captionWidth} min-h-[2.75em] px-1 text-center font-semibold leading-snug text-ink line-clamp-2`}
-              >
-                {c.name}
-              </figcaption>
-            </figure>
-          ))}
+                <div
+                  className={`relative shrink-0 overflow-hidden rounded-xl shadow-[0_6px_16px_-8px_oklch(0.6_0.245_348_/_0.6)] ${dims}`}
+                  style={{ background: c.grad }}
+                >
+                  {c.image && show ? (
+                    <img
+                      ref={fadeIn}
+                      src={c.image}
+                      alt={`Capa de ${c.name}`}
+                      width={c.w}
+                      height={c.h}
+                      loading={isEager ? "eager" : "lazy"}
+                      fetchPriority={isEager ? "auto" : "low"}
+                      decoding="async"
+                      draggable={false}
+                      onLoad={(e) => {
+                        e.currentTarget.style.opacity = "1";
+                      }}
+                      style={{ opacity: 0, transition: "opacity .25s ease" }}
+                      className="h-full w-full object-contain"
+                    />
+                  ) : (
+                    <figcaption className="flex h-full w-full items-end p-2 text-left text-[11px] font-extrabold leading-tight text-white drop-shadow">
+                      {!c.image ? c.name : ""}
+                    </figcaption>
+                  )}
+                </div>
+                <figcaption
+                  className={`${textSize} ${captionWidth} min-h-[2.75em] px-1 text-center font-semibold leading-snug text-ink line-clamp-2`}
+                >
+                  {c.name}
+                </figcaption>
+              </figure>
+            );
+          })}
         </div>
       </div>
     </div>
   );
+
 }
