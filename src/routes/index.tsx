@@ -279,7 +279,7 @@ function OfferCard({
             Os 10 desenhos mais pedidos:
           </div>
           <div className="mt-3">
-            <PosterCarousel items={TOP_CARTOONS} size="sm" speed={30} hint />
+            <PosterCarousel items={TOP_CARTOONS} size="sm" speed={30} hint eager={4} initialBatch={8} />
           </div>
           <div className="mt-3 flex justify-center">
             <span className="rounded-full bg-primary px-3 py-1.5 text-[11.5px] font-bold text-primary-foreground">
