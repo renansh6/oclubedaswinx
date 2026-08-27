@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Cartoon } from "@/data/cartoons";
 
 type Props = {
@@ -8,6 +8,12 @@ type Props = {
   size?: "sm" | "md";
   /** mostra a etiqueta "deslize para o lado" acima do carrossel */
   hint?: boolean;
+  /** quantas capas carregam com prioridade normal já na abertura */
+  eager?: number;
+  /** só começa a baixar as capas quando a seção estiver perto da tela */
+  deferUntilVisible?: boolean;
+  /** quantas capas carregam no primeiro lote quando fica visível */
+  initialBatch?: number;
 };
 
 function SwipeHint({ size }: { size?: "sm" | "md" }) {
@@ -22,15 +28,58 @@ function SwipeHint({ size }: { size?: "sm" | "md" }) {
   );
 }
 
+function fadeIn(img: HTMLImageElement | null) {
+  if (img && img.complete) img.style.opacity = "1";
+}
+
 /**
  * Carrossel infinito baseado em transform (compatível com iOS Safari).
  * Evita scrollLeft + momentum scrolling, que trava/reseta no iOS.
  */
-export function PosterCarousel({ items, speed = 30, size = "md", hint = false }: Props) {
+export function PosterCarousel({
+  items,
+  speed = 30,
+  size = "md",
+  hint = false,
+  eager = 4,
+  deferUntilVisible = false,
+  initialBatch = 8,
+}: Props) {
   const trackRef = useRef<HTMLDivElement>(null);
+  const wrapRef = useRef<HTMLDivElement>(null);
   const offset = useRef(0);
   const halfWidth = useRef(0);
   const paused = useRef(false);
+  const [loadCount, setLoadCount] = useState(deferUntilVisible ? 0 : initialBatch);
+
+  // dispara o carregamento quando a seção se aproxima da tela
+  useEffect(() => {
+    if (!deferUntilVisible) return;
+    const el = wrapRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") {
+      setLoadCount(initialBatch);
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setLoadCount((c) => Math.max(c, initialBatch));
+          io.disconnect();
+        }
+      },
+      { rootMargin: "600px 0px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [deferUntilVisible, initialBatch]);
+
+  // carrega as próximas capas progressivamente, antes de entrarem na tela
+  useEffect(() => {
+    if (loadCount === 0 || loadCount >= items.length) return;
+    const t = window.setTimeout(() => setLoadCount((c) => Math.min(items.length, c + 4)), 700);
+    return () => window.clearTimeout(t);
+  }, [loadCount, items.length]);
+
 
   useEffect(() => {
     const el = trackRef.current;
@@ -153,7 +202,7 @@ export function PosterCarousel({ items, speed = 30, size = "md", hint = false }:
   const loop = [...items, ...items];
 
   return (
-    <div>
+    <div ref={wrapRef}>
       {hint && <SwipeHint size={size} />}
       <div className="overflow-hidden pb-4 [-webkit-mask-image:linear-gradient(90deg,transparent,black_2%,black_88%,transparent_99.5%)] [mask-image:linear-gradient(90deg,transparent,black_2%,black_88%,transparent_99.5%)]">
         <div
@@ -161,38 +210,53 @@ export function PosterCarousel({ items, speed = 30, size = "md", hint = false }:
           className="flex cursor-grab select-none gap-3 will-change-transform active:cursor-grabbing"
           style={{ touchAction: "pan-y", WebkitUserSelect: "none" }}
         >
-          {loop.map((c, i) => (
-            <figure
-              key={`${c.id}-${i}`}
-              className="relative flex shrink-0 min-w-0 flex-col items-center gap-1.5"
-            >
-              <div
-                className={`relative shrink-0 overflow-hidden rounded-xl shadow-[0_6px_16px_-8px_oklch(0.6_0.245_348_/_0.6)] ${dims}`}
-                style={{ background: c.grad }}
+          {loop.map((c, i) => {
+            const base = i % items.length;
+            const show = base < loadCount;
+            const isEager = base < eager && !deferUntilVisible;
+            return (
+              <figure
+                key={`${c.id}-${i}`}
+                className="relative flex shrink-0 min-w-0 flex-col items-center gap-1.5"
               >
-                {c.image ? (
-                  <img
-                    src={c.image}
-                    alt={`Capa de ${c.name}`}
-                    loading="lazy"
-                    draggable={false}
-                    className="h-full w-full object-contain"
-                  />
-                ) : (
-                  <figcaption className="flex h-full w-full items-end p-2 text-left text-[11px] font-extrabold leading-tight text-white drop-shadow">
-                    {c.name}
-                  </figcaption>
-                )}
-              </div>
-              <figcaption
-                className={`${textSize} ${captionWidth} min-h-[2.75em] px-1 text-center font-semibold leading-snug text-ink line-clamp-2`}
-              >
-                {c.name}
-              </figcaption>
-            </figure>
-          ))}
+                <div
+                  className={`relative shrink-0 overflow-hidden rounded-xl shadow-[0_6px_16px_-8px_oklch(0.6_0.245_348_/_0.6)] ${dims}`}
+                  style={{ background: c.grad }}
+                >
+                  {c.image && show ? (
+                    <img
+                      ref={fadeIn}
+                      src={c.image}
+                      alt={`Capa de ${c.name}`}
+                      width={c.w}
+                      height={c.h}
+                      loading={isEager ? "eager" : "lazy"}
+                      fetchPriority={isEager ? "auto" : "low"}
+                      decoding="async"
+                      draggable={false}
+                      onLoad={(e) => {
+                        e.currentTarget.style.opacity = "1";
+                      }}
+                      style={{ opacity: 0, transition: "opacity .25s ease" }}
+                      className="h-full w-full object-contain"
+                    />
+                  ) : (
+                    <figcaption className="flex h-full w-full items-end p-2 text-left text-[11px] font-extrabold leading-tight text-white drop-shadow">
+                      {!c.image ? c.name : ""}
+                    </figcaption>
+                  )}
+                </div>
+                <figcaption
+                  className={`${textSize} ${captionWidth} min-h-[2.75em] px-1 text-center font-semibold leading-snug text-ink line-clamp-2`}
+                >
+                  {c.name}
+                </figcaption>
+              </figure>
+            );
+          })}
         </div>
       </div>
     </div>
   );
+
 }

@@ -1,24 +1,39 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import heroAsset from "@/assets/banner-meninas.png.asset.json";
-import p1 from "@/assets/p-b0f0984490591b39f5f716d9eeb7777a.jpg.asset.json";
-import p2 from "@/assets/p-c89e421ad752787e42b5e438c94a1220.jpg.asset.json";
-import p3 from "@/assets/p-e0dfbe3ead389b80337081bc741c9545.jpg.asset.json";
-import p4 from "@/assets/p-6e0e8d735aecbad446150d34e955de3c.jpg.asset.json";
-import p5 from "@/assets/p-94ab5b7ef6368f63ce05a34046de0a2b.jpg.asset.json";
-import p6 from "@/assets/p-5388f1ba2629e6450df7bdea32f1545e.jpg.asset.json";
-import p7 from "@/assets/p-a742f020551d38a4766a417861ae3255.jpg.asset.json";
-import familyOld from "@/assets/pf-desenhos.jpg.asset.json";
-import familyGibis from "@/assets/pf-gibis-new.jpg.asset.json";
-import familyLivros from "@/assets/pf-livros-new.jpg.asset.json";
+import heroWebp640 from "@/assets/opt/banner-640.webp.asset.json";
+import heroWebp1240 from "@/assets/opt/banner-1240.webp.asset.json";
+import heroAvif640 from "@/assets/opt/banner-640.avif.asset.json";
+import heroAvif1240 from "@/assets/opt/banner-1240.avif.asset.json";
+import p1 from "@/assets/opt/p-b0f0984490591b39f5f716d9eeb7777a.webp.asset.json";
+import p2 from "@/assets/opt/p-c89e421ad752787e42b5e438c94a1220.webp.asset.json";
+import p3 from "@/assets/opt/p-e0dfbe3ead389b80337081bc741c9545.webp.asset.json";
+import p4 from "@/assets/opt/p-6e0e8d735aecbad446150d34e955de3c.webp.asset.json";
+import p5 from "@/assets/opt/p-94ab5b7ef6368f63ce05a34046de0a2b.webp.asset.json";
+import p6 from "@/assets/opt/p-5388f1ba2629e6450df7bdea32f1545e.webp.asset.json";
+import p7 from "@/assets/opt/p-a742f020551d38a4766a417861ae3255.webp.asset.json";
+import familyOld from "@/assets/opt/pf-desenhos.webp.asset.json";
+import familyGibis from "@/assets/opt/pf-gibis.webp.asset.json";
+import familyLivros from "@/assets/opt/pf-livros.webp.asset.json";
 import { PosterCarousel } from "@/components/PosterCarousel";
 import { CARTOONS, TOP_CARTOONS } from "@/data/cartoons";
 
 const FAMILY_ITEMS = [
-  { title: "Desenhos nostálgicos", img: familyOld.url },
-  { title: "Gibis digitais", img: familyGibis.url },
-  { title: "Livros digitais", img: familyLivros.url },
+  { title: "Desenhos nostálgicos", img: familyOld.url, w: 200, h: 112 },
+  { title: "Gibis digitais", img: familyGibis.url, w: 200, h: 125 },
+  { title: "Livros digitais", img: familyLivros.url, w: 200, h: 275 },
 ];
+
+let familyPreloaded = false;
+function preloadFamily() {
+  if (familyPreloaded || typeof window === "undefined") return;
+  familyPreloaded = true;
+  FAMILY_ITEMS.forEach((it) => {
+    const img = new Image();
+    img.decoding = "async";
+    img.src = it.img;
+  });
+}
+
 
 
 
@@ -41,7 +56,26 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [
+      {
+        rel: "preload",
+        as: "image",
+        type: "image/avif",
+        href: heroAvif640.url,
+        media: "(max-width: 700px)",
+        fetchPriority: "high",
+      },
+      {
+        rel: "preload",
+        as: "image",
+        type: "image/avif",
+        href: heroAvif1240.url,
+        media: "(min-width: 701px)",
+        fetchPriority: "high",
+      },
+    ],
   }),
+
   component: Index,
 });
 
@@ -245,7 +279,7 @@ function OfferCard({
             Os 10 desenhos mais pedidos:
           </div>
           <div className="mt-3">
-            <PosterCarousel items={TOP_CARTOONS} size="sm" speed={30} hint />
+            <PosterCarousel items={TOP_CARTOONS} size="sm" speed={30} hint eager={4} initialBatch={8} />
           </div>
           <div className="mt-3 flex justify-center">
             <span className="rounded-full bg-primary px-3 py-1.5 text-[11.5px] font-bold text-primary-foreground">
@@ -265,7 +299,15 @@ function OfferCard({
         <small className="align-super text-2xl font-bold">R$</small>14,90
       </div>
 
-      <button type="button" onClick={onCta} className="cta-btn mt-6">
+      <button
+        type="button"
+        onClick={onCta}
+        onPointerEnter={preloadFamily}
+        onFocus={preloadFamily}
+        onTouchStart={preloadFamily}
+        className="cta-btn mt-6"
+      >
+
         {cta}
       </button>
       <div className="mt-3 text-[12px] font-semibold leading-relaxed text-muted-foreground">
@@ -300,6 +342,30 @@ function Index() {
     };
   }, [modalOpen]);
 
+  // pré-carrega as miniaturas do pop-up só depois do conteúdo principal, em tempo ocioso
+  useEffect(() => {
+    const conn = (navigator as { connection?: { saveData?: boolean } }).connection;
+    if (conn?.saveData) return;
+    let idle = 0;
+    let timer = 0;
+    const start = () => {
+      const ric = (window as unknown as {
+        requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number;
+      }).requestIdleCallback;
+      if (ric) idle = ric(preloadFamily, { timeout: 4000 });
+      else timer = window.setTimeout(preloadFamily, 2500);
+    };
+    if (document.readyState === "complete") start();
+    else window.addEventListener("load", start, { once: true });
+    return () => {
+      window.removeEventListener("load", start);
+      window.clearTimeout(timer);
+      const cic = (window as unknown as { cancelIdleCallback?: (id: number) => void })
+        .cancelIdleCallback;
+      if (idle && cic) cic(idle);
+    };
+  }, []);
+
 
   useEffect(() => {
     let i = 0;
@@ -325,13 +391,30 @@ function Index() {
     <main className="mx-auto w-full max-w-[620px] px-4 py-6">
       {/* HERO */}
       <section>
-        <img
-          src={heroAsset.url}
-          alt="O maior acervo de desenhos de meninas do Brasil"
-          width={1662}
-          height={931}
-          className="mx-auto w-full rounded-2xl object-contain shadow-[0_14px_36px_-14px_oklch(0.6_0.245_348_/_0.5)]"
-        />
+        <picture>
+          <source
+            type="image/avif"
+            srcSet={`${heroAvif640.url} 640w, ${heroAvif1240.url} 1240w`}
+            sizes="(max-width: 620px) calc(100vw - 32px), 588px"
+          />
+          <source
+            type="image/webp"
+            srcSet={`${heroWebp640.url} 640w, ${heroWebp1240.url} 1240w`}
+            sizes="(max-width: 620px) calc(100vw - 32px), 588px"
+          />
+          <img
+            src={heroWebp640.url}
+            alt="O maior acervo de desenhos de meninas do Brasil"
+            width={1240}
+            height={695}
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+            className="mx-auto w-full rounded-2xl object-contain shadow-[0_14px_36px_-14px_oklch(0.6_0.245_348_/_0.5)]"
+            style={{ aspectRatio: "1662 / 931" }}
+          />
+        </picture>
+
         <h1 className="mt-5 text-center text-[17px] font-semibold leading-relaxed text-ink">
           Agora você pode assistir aos{" "}
           <b className="text-primary">desenhos mais amados de todos os tempos</b>, dublados em
@@ -378,7 +461,7 @@ function Index() {
           Arraste para o lado e veja tudo o que entra no seu acesso 💕
         </p>
         <div className="mt-5">
-          <PosterCarousel items={CARTOONS} speed={30} hint />
+          <PosterCarousel items={CARTOONS} speed={30} hint deferUntilVisible initialBatch={6} />
         </div>
       </section>
 
@@ -509,9 +592,13 @@ function Index() {
                 src={r.photo}
                 alt={r.name}
                 loading="lazy"
+                decoding="async"
+                width={56}
+                height={56}
                 className="h-14 w-14 shrink-0 rounded-full border-2 border-primary/40 object-cover object-center"
-                style={{ background: r.grad }}
+                style={{ background: r.grad, aspectRatio: "1 / 1" }}
               />
+
               <div>
                 <div className="text-[14px] font-bold text-ink">{r.name}</div>
                 <div className="text-[11.5px] text-muted-foreground">· Via Instagram</div>
@@ -530,9 +617,13 @@ function Index() {
               src={c.photo}
               alt={c.user}
               loading="lazy"
+              decoding="async"
+              width={44}
+              height={44}
               className="mt-0.5 h-11 w-11 shrink-0 rounded-full border-2 border-primary/30 object-cover object-center"
-              style={{ background: c.grad }}
+              style={{ background: c.grad, aspectRatio: "1 / 1" }}
             />
+
             <div>
               <div className="text-[13.5px] leading-6 text-ink">
                 <b>{c.user}</b> comentou: {c.txt}
@@ -630,7 +721,8 @@ function Index() {
       <Divider />
 
       {/* SEGURANÇA */}
-      <section className="card-soft p-5 text-center">
+      <section className="card-soft cv-auto p-5 text-center">
+
         <div className="flex flex-wrap items-center justify-center gap-3 text-[12px] font-extrabold text-muted-foreground">
           <span>COMPRA 100% SEGURA</span>
           <span className="rounded-full border border-border bg-pink-soft px-3 py-1.5 text-[11.5px] font-bold text-secondary-foreground">
@@ -691,14 +783,25 @@ function Index() {
             <div className="mt-2.5 grid grid-cols-3 gap-1.5">
               {FAMILY_ITEMS.map((it) => (
                 <figure key={it.title} className="min-w-0">
-                  <img
-                    src={it.img}
-                    alt={it.title}
-                    loading="lazy"
-                    width={512}
-                    height={512}
-                    className="h-[78px] w-full rounded-[8px] object-cover short:h-[64px]"
-                  />
+                  <div className="h-[78px] w-full overflow-hidden rounded-[8px] bg-pink-soft short:h-[64px]">
+                    <img
+                      src={it.img}
+                      alt={it.title}
+                      loading="eager"
+                      decoding="async"
+                      width={it.w}
+                      height={it.h}
+                      onLoad={(e) => {
+                        e.currentTarget.style.opacity = "1";
+                      }}
+                      ref={(el) => {
+                        if (el && el.complete) el.style.opacity = "1";
+                      }}
+                      style={{ opacity: 0, transition: "opacity .2s ease" }}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+
                   <figcaption className="mt-1 text-center text-[11px] font-bold leading-tight text-ink">
                     {it.title}
                   </figcaption>
