@@ -568,9 +568,13 @@ function Index() {
                 src={r.photo}
                 alt={r.name}
                 loading="lazy"
+                decoding="async"
+                width={56}
+                height={56}
                 className="h-14 w-14 shrink-0 rounded-full border-2 border-primary/40 object-cover object-center"
-                style={{ background: r.grad }}
+                style={{ background: r.grad, aspectRatio: "1 / 1" }}
               />
+
               <div>
                 <div className="text-[14px] font-bold text-ink">{r.name}</div>
                 <div className="text-[11.5px] text-muted-foreground">· Via Instagram</div>
