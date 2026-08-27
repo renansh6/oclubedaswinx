@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Cartoon } from "@/data/cartoons";
 
 type Props = {
@@ -8,6 +8,12 @@ type Props = {
   size?: "sm" | "md";
   /** mostra a etiqueta "deslize para o lado" acima do carrossel */
   hint?: boolean;
+  /** quantas capas carregam com prioridade normal já na abertura */
+  eager?: number;
+  /** só começa a baixar as capas quando a seção estiver perto da tela */
+  deferUntilVisible?: boolean;
+  /** quantas capas carregam no primeiro lote quando fica visível */
+  initialBatch?: number;
 };
 
 function SwipeHint({ size }: { size?: "sm" | "md" }) {
@@ -22,15 +28,58 @@ function SwipeHint({ size }: { size?: "sm" | "md" }) {
   );
 }
 
+function fadeIn(img: HTMLImageElement | null) {
+  if (img && img.complete) img.style.opacity = "1";
+}
+
 /**
  * Carrossel infinito baseado em transform (compatível com iOS Safari).
  * Evita scrollLeft + momentum scrolling, que trava/reseta no iOS.
  */
-export function PosterCarousel({ items, speed = 30, size = "md", hint = false }: Props) {
+export function PosterCarousel({
+  items,
+  speed = 30,
+  size = "md",
+  hint = false,
+  eager = 4,
+  deferUntilVisible = false,
+  initialBatch = 8,
+}: Props) {
   const trackRef = useRef<HTMLDivElement>(null);
+  const wrapRef = useRef<HTMLDivElement>(null);
   const offset = useRef(0);
   const halfWidth = useRef(0);
   const paused = useRef(false);
+  const [loadCount, setLoadCount] = useState(deferUntilVisible ? 0 : initialBatch);
+
+  // dispara o carregamento quando a seção se aproxima da tela
+  useEffect(() => {
+    if (!deferUntilVisible) return;
+    const el = wrapRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") {
+      setLoadCount(initialBatch);
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setLoadCount((c) => Math.max(c, initialBatch));
+          io.disconnect();
+        }
+      },
+      { rootMargin: "600px 0px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [deferUntilVisible, initialBatch]);
+
+  // carrega as próximas capas progressivamente, antes de entrarem na tela
+  useEffect(() => {
+    if (loadCount === 0 || loadCount >= items.length) return;
+    const t = window.setTimeout(() => setLoadCount((c) => Math.min(items.length, c + 4)), 700);
+    return () => window.clearTimeout(t);
+  }, [loadCount, items.length]);
+
 
   useEffect(() => {
     const el = trackRef.current;
