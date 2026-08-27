@@ -359,13 +359,30 @@ function Index() {
     <main className="mx-auto w-full max-w-[620px] px-4 py-6">
       {/* HERO */}
       <section>
-        <img
-          src={heroAsset.url}
-          alt="O maior acervo de desenhos de meninas do Brasil"
-          width={1662}
-          height={931}
-          className="mx-auto w-full rounded-2xl object-contain shadow-[0_14px_36px_-14px_oklch(0.6_0.245_348_/_0.5)]"
-        />
+        <picture>
+          <source
+            type="image/avif"
+            srcSet={`${heroAvif640.url} 640w, ${heroAvif1240.url} 1240w`}
+            sizes="(max-width: 620px) calc(100vw - 32px), 588px"
+          />
+          <source
+            type="image/webp"
+            srcSet={`${heroWebp640.url} 640w, ${heroWebp1240.url} 1240w`}
+            sizes="(max-width: 620px) calc(100vw - 32px), 588px"
+          />
+          <img
+            src={heroWebp640.url}
+            alt="O maior acervo de desenhos de meninas do Brasil"
+            width={1240}
+            height={695}
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+            className="mx-auto w-full rounded-2xl object-contain shadow-[0_14px_36px_-14px_oklch(0.6_0.245_348_/_0.5)]"
+            style={{ aspectRatio: "1662 / 931" }}
+          />
+        </picture>
+
         <h1 className="mt-5 text-center text-[17px] font-semibold leading-relaxed text-ink">
           Agora você pode assistir aos{" "}
           <b className="text-primary">desenhos mais amados de todos os tempos</b>, dublados em
