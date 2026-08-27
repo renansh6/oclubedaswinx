@@ -56,7 +56,26 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [
+      {
+        rel: "preload",
+        as: "image",
+        type: "image/avif",
+        href: heroAvif640.url,
+        media: "(max-width: 700px)",
+        fetchPriority: "high",
+      },
+      {
+        rel: "preload",
+        as: "image",
+        type: "image/avif",
+        href: heroAvif1240.url,
+        media: "(min-width: 701px)",
+        fetchPriority: "high",
+      },
+    ],
   }),
+
   component: Index,
 });
 
