@@ -127,6 +127,13 @@
   animation: swipe-hint 1.1s ease-in-out 4;
 }
 
+/* seções bem abaixo da dobra: pula render até chegar perto da tela */
+@utility cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
+
+
 @keyframes poster-marquee {
   from {
     transform: translateX(0);
