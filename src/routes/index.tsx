@@ -8,16 +8,16 @@ import p4 from "@/assets/p-6e0e8d735aecbad446150d34e955de3c.jpg.asset.json";
 import p5 from "@/assets/p-94ab5b7ef6368f63ce05a34046de0a2b.jpg.asset.json";
 import p6 from "@/assets/p-5388f1ba2629e6450df7bdea32f1545e.jpg.asset.json";
 import p7 from "@/assets/p-a742f020551d38a4766a417861ae3255.jpg.asset.json";
-import familyOld from "@/assets/pf-desenhos-antigos.jpg";
-import familyGibis from "@/assets/pf-gibis.jpg";
-import familyLivros from "@/assets/pf-livros.jpg";
+import familyOld from "@/assets/pf-desenhos.jpg.asset.json";
+import familyGibis from "@/assets/pf-gibis-new.jpg.asset.json";
+import familyLivros from "@/assets/pf-livros-new.jpg.asset.json";
 import { PosterCarousel } from "@/components/PosterCarousel";
 import { CARTOONS, TOP_CARTOONS } from "@/data/cartoons";
 
 const FAMILY_ITEMS = [
-  { title: "Desenhos antigos", img: familyOld },
-  { title: "Gibis digitais", img: familyGibis },
-  { title: "Livros digitais", img: familyLivros },
+  { title: "Desenhos nostálgicos", img: familyOld.url },
+  { title: "Gibis digitais", img: familyGibis.url },
+  { title: "Livros digitais", img: familyLivros.url },
 ];
 
 
@@ -685,7 +685,7 @@ function Index() {
               família toda 👇
             </h3>
             <p className="mt-2 text-[12.5px] leading-[1.35] text-muted-foreground">
-              Adicione mais de 1.000 desenhos antigos, gibis e livros digitais ao seu acesso.
+              Adicione mais de 1.000 desenhos nostalgicos, gibis e livros digitais ao seu acesso.
             </p>
 
             <div className="mt-2.5 grid grid-cols-3 gap-1.5">
