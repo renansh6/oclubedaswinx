@@ -1,24 +1,39 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import heroAsset from "@/assets/banner-meninas.png.asset.json";
-import p1 from "@/assets/p-b0f0984490591b39f5f716d9eeb7777a.jpg.asset.json";
-import p2 from "@/assets/p-c89e421ad752787e42b5e438c94a1220.jpg.asset.json";
-import p3 from "@/assets/p-e0dfbe3ead389b80337081bc741c9545.jpg.asset.json";
-import p4 from "@/assets/p-6e0e8d735aecbad446150d34e955de3c.jpg.asset.json";
-import p5 from "@/assets/p-94ab5b7ef6368f63ce05a34046de0a2b.jpg.asset.json";
-import p6 from "@/assets/p-5388f1ba2629e6450df7bdea32f1545e.jpg.asset.json";
-import p7 from "@/assets/p-a742f020551d38a4766a417861ae3255.jpg.asset.json";
-import familyOld from "@/assets/pf-desenhos.jpg.asset.json";
-import familyGibis from "@/assets/pf-gibis-new.jpg.asset.json";
-import familyLivros from "@/assets/pf-livros-new.jpg.asset.json";
+import heroWebp640 from "@/assets/opt/banner-640.webp.asset.json";
+import heroWebp1240 from "@/assets/opt/banner-1240.webp.asset.json";
+import heroAvif640 from "@/assets/opt/banner-640.avif.asset.json";
+import heroAvif1240 from "@/assets/opt/banner-1240.avif.asset.json";
+import p1 from "@/assets/opt/p-b0f0984490591b39f5f716d9eeb7777a.webp.asset.json";
+import p2 from "@/assets/opt/p-c89e421ad752787e42b5e438c94a1220.webp.asset.json";
+import p3 from "@/assets/opt/p-e0dfbe3ead389b80337081bc741c9545.webp.asset.json";
+import p4 from "@/assets/opt/p-6e0e8d735aecbad446150d34e955de3c.webp.asset.json";
+import p5 from "@/assets/opt/p-94ab5b7ef6368f63ce05a34046de0a2b.webp.asset.json";
+import p6 from "@/assets/opt/p-5388f1ba2629e6450df7bdea32f1545e.webp.asset.json";
+import p7 from "@/assets/opt/p-a742f020551d38a4766a417861ae3255.webp.asset.json";
+import familyOld from "@/assets/opt/pf-desenhos.webp.asset.json";
+import familyGibis from "@/assets/opt/pf-gibis.webp.asset.json";
+import familyLivros from "@/assets/opt/pf-livros.webp.asset.json";
 import { PosterCarousel } from "@/components/PosterCarousel";
 import { CARTOONS, TOP_CARTOONS } from "@/data/cartoons";
 
 const FAMILY_ITEMS = [
-  { title: "Desenhos nostálgicos", img: familyOld.url },
-  { title: "Gibis digitais", img: familyGibis.url },
-  { title: "Livros digitais", img: familyLivros.url },
+  { title: "Desenhos nostálgicos", img: familyOld.url, w: 200, h: 112 },
+  { title: "Gibis digitais", img: familyGibis.url, w: 200, h: 125 },
+  { title: "Livros digitais", img: familyLivros.url, w: 200, h: 275 },
 ];
+
+let familyPreloaded = false;
+function preloadFamily() {
+  if (familyPreloaded || typeof window === "undefined") return;
+  familyPreloaded = true;
+  FAMILY_ITEMS.forEach((it) => {
+    const img = new Image();
+    img.decoding = "async";
+    img.src = it.img;
+  });
+}
+
 
 
 
