@@ -721,7 +721,8 @@ function Index() {
       <Divider />
 
       {/* SEGURANÇA */}
-      <section className="card-soft p-5 text-center">
+      <section className="card-soft cv-auto p-5 text-center">
+
         <div className="flex flex-wrap items-center justify-center gap-3 text-[12px] font-extrabold text-muted-foreground">
           <span>COMPRA 100% SEGURA</span>
           <span className="rounded-full border border-border bg-pink-soft px-3 py-1.5 text-[11.5px] font-bold text-secondary-foreground">
