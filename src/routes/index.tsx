@@ -593,9 +593,13 @@ function Index() {
               src={c.photo}
               alt={c.user}
               loading="lazy"
+              decoding="async"
+              width={44}
+              height={44}
               className="mt-0.5 h-11 w-11 shrink-0 rounded-full border-2 border-primary/30 object-cover object-center"
-              style={{ background: c.grad }}
+              style={{ background: c.grad, aspectRatio: "1 / 1" }}
             />
+
             <div>
               <div className="text-[13.5px] leading-6 text-ink">
                 <b>{c.user}</b> comentou: {c.txt}
