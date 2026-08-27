@@ -758,14 +758,25 @@ function Index() {
             <div className="mt-2.5 grid grid-cols-3 gap-1.5">
               {FAMILY_ITEMS.map((it) => (
                 <figure key={it.title} className="min-w-0">
-                  <img
-                    src={it.img}
-                    alt={it.title}
-                    loading="lazy"
-                    width={512}
-                    height={512}
-                    className="h-[78px] w-full rounded-[8px] object-cover short:h-[64px]"
-                  />
+                  <div className="h-[78px] w-full overflow-hidden rounded-[8px] bg-pink-soft short:h-[64px]">
+                    <img
+                      src={it.img}
+                      alt={it.title}
+                      loading="eager"
+                      decoding="async"
+                      width={it.w}
+                      height={it.h}
+                      onLoad={(e) => {
+                        e.currentTarget.style.opacity = "1";
+                      }}
+                      ref={(el) => {
+                        if (el && el.complete) el.style.opacity = "1";
+                      }}
+                      style={{ opacity: 0, transition: "opacity .2s ease" }}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+
                   <figcaption className="mt-1 text-center text-[11px] font-bold leading-tight text-ink">
                     {it.title}
                   </figcaption>
