@@ -299,7 +299,15 @@ function OfferCard({
         <small className="align-super text-2xl font-bold">R$</small>14,90
       </div>
 
-      <button type="button" onClick={onCta} className="cta-btn mt-6">
+      <button
+        type="button"
+        onClick={onCta}
+        onPointerEnter={preloadFamily}
+        onFocus={preloadFamily}
+        onTouchStart={preloadFamily}
+        className="cta-btn mt-6"
+      >
+
         {cta}
       </button>
       <div className="mt-3 text-[12px] font-semibold leading-relaxed text-muted-foreground">
