@@ -342,6 +342,30 @@ function Index() {
     };
   }, [modalOpen]);
 
+  // pré-carrega as miniaturas do pop-up só depois do conteúdo principal, em tempo ocioso
+  useEffect(() => {
+    const conn = (navigator as { connection?: { saveData?: boolean } }).connection;
+    if (conn?.saveData) return;
+    let idle = 0;
+    let timer = 0;
+    const start = () => {
+      const ric = (window as unknown as {
+        requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number;
+      }).requestIdleCallback;
+      if (ric) idle = ric(preloadFamily, { timeout: 4000 });
+      else timer = window.setTimeout(preloadFamily, 2500);
+    };
+    if (document.readyState === "complete") start();
+    else window.addEventListener("load", start, { once: true });
+    return () => {
+      window.removeEventListener("load", start);
+      window.clearTimeout(timer);
+      const cic = (window as unknown as { cancelIdleCallback?: (id: number) => void })
+        .cancelIdleCallback;
+      if (idle && cic) cic(idle);
+    };
+  }, []);
+
 
   useEffect(() => {
     let i = 0;
