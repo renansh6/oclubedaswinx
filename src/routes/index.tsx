@@ -846,7 +846,7 @@ function Index() {
                   <path d="M19 14l.9 2.6h2.7l-2.2 1.6.9 2.6-2.2-1.6-2.2 1.6.9-2.6-2.2-1.6h2.7L19 14z" />
                 </svg>
               </span>
-              <span className="font-script text-3xl text-primary">O Clube das Winx</span>
+              <span className="font-script text-3xl text-primary">Acervo de Desenhos</span>
             </div>
 
             <p className="max-w-[420px] text-[13px] leading-5 text-muted-foreground">
@@ -867,7 +867,7 @@ function Index() {
           </div>
 
           <div className="mt-6 border-t border-border pt-5 text-[12px] leading-5 text-muted-foreground">
-            © {new Date().getFullYear()} O Clube das Winx. Todos os direitos reservados.
+            © {new Date().getFullYear()}. Todos os direitos reservados.
             <br />
             Todo o conteúdo é disponibilizado para uso pessoal dos assinantes.
           </div>
