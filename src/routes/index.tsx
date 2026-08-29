@@ -867,7 +867,7 @@ function Index() {
           </div>
 
           <div className="mt-6 border-t border-border pt-5 text-[12px] leading-5 text-muted-foreground">
-            © {new Date().getFullYear()} O Clube das Winx. Todos os direitos reservados.
+            © {new Date().getFullYear()} Acervo de Desenhos. Todos os direitos reservados.
             <br />
             Todo o conteúdo é disponibilizado para uso pessoal dos assinantes.
           </div>
