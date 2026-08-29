@@ -245,8 +245,7 @@ const BUYERS = [
 ];
 
 // URL do vídeo da VSL (mp4/hls direto). Deixe vazio para exibir o placeholder.
-const VSL_URL = "";
-const VSL_POSTER = "";
+import vslAsset from "@/assets/vsl.mp4.asset.json";
 
 const FAQ = [
   {
