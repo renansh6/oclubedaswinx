@@ -244,9 +244,41 @@ const BUYERS = [
   "Bruna de Porto Alegre",
 ];
 
+// URL do vídeo da VSL (mp4/hls direto). Deixe vazio para exibir o placeholder.
+const VSL_URL = "";
+const VSL_POSTER = "";
+
+const FAQ = [
+  {
+    q: "Como funciona o acesso?",
+    a: "Depois da compra você recebe o link e as instruções por e-mail e já pode entrar na biblioteca de desenhos.",
+  },
+  {
+    q: "É pagamento único ou mensalidade?",
+    a: "É pagamento único. Você paga uma vez e não tem mensalidade.",
+  },
+  {
+    q: "Onde consigo assistir?",
+    a: "Em dispositivos compatíveis: celular, tablet, computador e TVs que abrem navegador. Não precisa instalar nada complicado.",
+  },
+  {
+    q: "O acesso é vitalício?",
+    a: "É sim. Você paga uma única vez e continua com acesso para sempre, sem mensalidade.",
+  },
+  {
+    q: "Tem atualizações?",
+    a: "Sim. O acervo recebe novos títulos periodicamente, sem custo adicional para quem já comprou.",
+  },
+  {
+    q: "O conteúdo está em português?",
+    a: "Sim! Tudo é 100% em português — desenhos, HQs, mangás e gibis, além da plataforma inteira traduzida.",
+  },
+];
+
 function Divider() {
   return <hr className="my-8 border-0 border-t border-dashed border-border" />;
 }
+
 
 function OfferCard({
   tag,
