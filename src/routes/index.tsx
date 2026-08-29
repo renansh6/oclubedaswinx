@@ -493,21 +493,14 @@ function Index() {
 
       {/* VSL */}
       <section className="mt-8">
-        <div className="mx-auto w-full max-w-[600px] overflow-hidden rounded-[20px] bg-black shadow-[var(--shadow-card)]">
-          {VSL_URL ? (
-            <video
-              src={VSL_URL}
-              controls
-              playsInline
-              preload="metadata"
-              poster={VSL_POSTER || undefined}
-              className="block h-auto w-full"
-            />
-          ) : (
-            <div className="flex aspect-video items-center justify-center px-6 text-center text-[13px] font-semibold text-white/70">
-              Vídeo em breve
-            </div>
-          )}
+        <div className="mx-auto w-full max-w-[340px] overflow-hidden rounded-[20px] bg-black shadow-[var(--shadow-card)]">
+          <video
+            src={vslAsset.url}
+            controls
+            playsInline
+            preload="metadata"
+            className="block aspect-[9/16] h-auto w-full object-cover"
+          />
         </div>
       </section>
 
