@@ -750,23 +750,29 @@ function Index() {
 
       <Divider />
 
-      {/* SEGURANÇA */}
-      <section className="card-soft cv-auto p-5 text-center">
-
-        <div className="flex flex-wrap items-center justify-center gap-3 text-[12px] font-extrabold text-muted-foreground">
-          <span>COMPRA 100% SEGURA</span>
-          <span className="rounded-full border border-border bg-pink-soft px-3 py-1.5 text-[11.5px] font-bold text-secondary-foreground">
-            🤝 mercado pago
+      {/* FAQ */}
+      <section className="cv-auto">
+        <div className="flex justify-center">
+          <span className="rounded-full bg-secondary px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-wide text-secondary-foreground">
+            Dúvidas
           </span>
         </div>
-        <div className="mt-4 text-[15px] font-extrabold text-ink">
-          7 Dias de garantia incondicional
+        <h2 className="mt-3 text-center text-[22px] font-extrabold uppercase text-ink">
+          Perguntas frequentes
+        </h2>
+        <div className="mt-5 space-y-3">
+          {FAQ.map((f) => (
+            <details key={f.q} className="card-soft group px-4 py-3">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-[14px] font-bold text-ink">
+                {f.q}
+                <span className="text-primary transition-transform group-open:rotate-180">⌄</span>
+              </summary>
+              <p className="mt-2 text-[13px] leading-6 text-muted-foreground">{f.a}</p>
+            </details>
+          ))}
         </div>
-        <p className="mt-2 text-[13px] leading-6 text-muted-foreground">
-          Caso decida que não valeu a pena, você pode pedir um reembolso em até 7 dias depois da
-          compra e receber 100% do seu investimento de volta, sem perguntas ou burocracias.
-        </p>
       </section>
+
 
       {/* MODAL UPSELL */}
       {modalOpen && (
