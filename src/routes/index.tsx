@@ -834,6 +834,45 @@ function Index() {
         </div>
       </section>
 
+      {/* FOOTER */}
+      <footer className="mt-8 rounded-t-[24px] bg-[#0a0a0a] px-5 py-10 text-center sm:px-8">
+        <div className="mx-auto flex max-w-[720px] flex-col items-center gap-6 sm:flex-row sm:items-start sm:justify-between">
+          <div className="flex items-center gap-2">
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-yellow-400 text-[#0a0a0a]">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="h-5 w-5"
+              >
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+              </svg>
+            </span>
+            <span className="text-xl font-extrabold italic tracking-tight text-white">
+              O Clube das Winx
+            </span>
+          </div>
+
+          <nav className="flex flex-wrap items-center justify-center gap-5 text-[13px] font-semibold text-white/70">
+            <a href="#" className="transition-colors hover:text-white">
+              Política de Privacidade
+            </a>
+            <a href="#" className="transition-colors hover:text-white">
+              Termos de Uso
+            </a>
+            <a href="#" className="transition-colors hover:text-white">
+              Contato
+            </a>
+          </nav>
+        </div>
+
+        <div className="mx-auto mt-8 max-w-[720px] border-t border-white/10 pt-6 text-[12px] leading-5 text-white/40">
+          © {new Date().getFullYear()} O Clube das Winx. Todos os direitos reservados.
+          <br className="hidden sm:block" />{" "}
+          Todo o conteúdo é disponibilizado para uso pessoal dos assinantes.
+        </div>
+      </footer>
+
 
       {/* MODAL UPSELL */}
       {modalOpen && (
