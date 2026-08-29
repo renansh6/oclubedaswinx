@@ -839,8 +839,12 @@ function Index() {
         <div className="mx-auto max-w-[720px]">
           <div className="flex flex-col items-center gap-4">
             <div className="flex items-center gap-2">
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-lg text-primary-foreground">
-                ✨
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
+                  <path d="M12 2l1.4 4.2h4.4l-3.6 2.6 1.4 4.2-3.6-2.6-3.6 2.6 1.4-4.2-3.6-2.6h4.4L12 2z" />
+                  <path d="M5 14l.9 2.6h2.7l-2.2 1.6.9 2.6-2.2-1.6-2.2 1.6.9-2.6-2.2-1.6h2.7L5 14z" />
+                  <path d="M19 14l.9 2.6h2.7l-2.2 1.6.9 2.6-2.2-1.6-2.2 1.6.9-2.6-2.2-1.6h2.7L19 14z" />
+                </svg>
               </span>
               <span className="font-script text-3xl text-primary">O Clube das Winx</span>
             </div>
