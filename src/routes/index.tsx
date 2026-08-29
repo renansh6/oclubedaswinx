@@ -493,13 +493,7 @@ function Index() {
       {/* VSL */}
       <section className="mt-8">
         <div className="mx-auto w-full max-w-[340px] overflow-hidden rounded-[20px] bg-black shadow-[var(--shadow-card)]">
-          <video
-            src={vslAsset.url}
-            controls
-            playsInline
-            preload="metadata"
-            className="block aspect-[9/16] h-auto w-full object-cover"
-          />
+          <VslVideo />
         </div>
       </section>
 
