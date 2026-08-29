@@ -4,6 +4,7 @@ import heroWebp640 from "@/assets/opt/banner-640.webp.asset.json";
 import heroWebp1240 from "@/assets/opt/banner-1240.webp.asset.json";
 import heroAvif640 from "@/assets/opt/banner-640.avif.asset.json";
 import heroAvif1240 from "@/assets/opt/banner-1240.avif.asset.json";
+import vslAsset from "@/assets/vsl.mp4.asset.json";
 import p1 from "@/assets/opt/p-b0f0984490591b39f5f716d9eeb7777a.webp.asset.json";
 import p2 from "@/assets/opt/p-c89e421ad752787e42b5e438c94a1220.webp.asset.json";
 import p3 from "@/assets/opt/p-e0dfbe3ead389b80337081bc741c9545.webp.asset.json";
@@ -245,7 +246,6 @@ const BUYERS = [
 ];
 
 // URL do vídeo da VSL (mp4/hls direto). Deixe vazio para exibir o placeholder.
-import vslAsset from "@/assets/vsl.mp4.asset.json";
 
 const FAQ = [
   {
