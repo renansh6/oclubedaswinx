@@ -616,7 +616,16 @@ function Index() {
             <div className="border-b border-border pb-3 md:col-span-2">
               <div className="text-[14px] font-bold text-ink">🌈 Para as pequenas</div>
               <div className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground">
-                Dora, a Aventureira • Peppa Pig • Pucca
+                Dora, a Aventureira • Peppa Pig • Pucca • Princesinha Sofia • Masha e o Urso • Bluey •
+                A Casa Mágica da Gabby • Ursinhos Carinhosos
+              </div>
+            </div>
+
+            <div className="border-b border-border pb-3 md:col-span-2">
+              <div className="text-[14px] font-bold text-ink">🌸 Clássicos e novidades</div>
+              <div className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground">
+                Turma da Mônica • Sakura Card Captors • Tinker Bell • Spirit: Cavalgando Livre •
+                DC Super Hero Girls • LEGO Friends • Rainbow High • L.O.L. Surprise! • Trolls • Lalaloopsy
               </div>
             </div>
           </div>
