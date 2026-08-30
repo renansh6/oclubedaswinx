@@ -504,12 +504,7 @@ function Index() {
           português e em alta qualidade! 💖
         </h1>
 
-        <div className="mt-4 flex justify-center">
-          <div className="flex items-center gap-2 rounded-full bg-card px-4 py-2 text-[13px] font-semibold text-muted-foreground shadow-[var(--shadow-card)]">
-            <span className="h-2 w-2 animate-pulse rounded-full bg-primary" />
-            <b className="text-primary">441</b> pessoas assistindo agora
-          </div>
-        </div>
+        <LiveViewerBadge />
       </section>
 
       <Divider />
