@@ -21,6 +21,15 @@ import sailor from "@/assets/opt/c-SAILLORMOON.webp.asset.json";
 import shera from "@/assets/opt/c-SHE-RA.webp.asset.json";
 import winx from "@/assets/opt/c-WINX_CLUB.webp.asset.json";
 import witch from "@/assets/opt/c-WITCH.webp.asset.json";
+import monica from "@/assets/opt/c-monica.webp.asset.json";
+import sakura from "@/assets/opt/c-sakura.webp.asset.json";
+import ursinhos from "@/assets/opt/c-ursinhos.webp.asset.json";
+import tinker from "@/assets/opt/c-tinker.webp.asset.json";
+import sofia from "@/assets/opt/c-princesasopia.webp.asset.json";
+import masha from "@/assets/opt/c-mash.webp.asset.json";
+import bluey from "@/assets/opt/c-bluey.webp.asset.json";
+import gabby from "@/assets/opt/c-casagaby.webp.asset.json";
+import spirit from "@/assets/opt/c-spirit.webp.asset.json";
 
 export type Cartoon = {
   id: string;
@@ -57,6 +66,15 @@ export const CARTOONS: Cartoon[] = [
   { id: "pucca", name: "Pucca", grad: "linear-gradient(160deg,#FCA5A5,#7F1D1D)", image: pucca.url, w: 264, h: 344 },
   { id: "shera", name: "She-Ra", grad: "linear-gradient(160deg,#FDE68A,#B45309)", image: shera.url, w: 263, h: 352 },
   { id: "witch", name: "W.I.T.C.H.", grad: "linear-gradient(160deg,#A7F3D0,#7C3AED)", image: witch.url, w: 226, h: 352 },
+  { id: "monica", name: "Turma da Mônica", grad: "linear-gradient(160deg,#FCA5A5,#DC2626)", image: monica.url, w: 264, h: 264 },
+  { id: "sakura", name: "Sakura Card Captors", grad: "linear-gradient(160deg,#FBCFE8,#DB2777)", image: sakura.url, w: 235, h: 352 },
+  { id: "ursinhos", name: "Ursinhos Carinhosos", grad: "linear-gradient(160deg,#DDD6FE,#7C3AED)", image: ursinhos.url, w: 198, h: 352 },
+  { id: "tinker", name: "Tinker Bell", grad: "linear-gradient(160deg,#BBF7D0,#15803D)", image: tinker.url, w: 198, h: 352 },
+  { id: "sofia", name: "Princesinha Sofia", grad: "linear-gradient(160deg,#E9D5FF,#7E22CE)", image: sofia.url, w: 247, h: 352 },
+  { id: "masha", name: "Masha e o Urso", grad: "linear-gradient(160deg,#F5D0FE,#A21CAF)", image: masha.url, w: 198, h: 352 },
+  { id: "bluey", name: "Bluey", grad: "linear-gradient(160deg,#BAE6FD,#0284C7)", image: bluey.url, w: 255, h: 352 },
+  { id: "gabby", name: "A Casa Mágica da Gabby", grad: "linear-gradient(160deg,#FBCFE8,#EC4899)", image: gabby.url, w: 232, h: 352 },
+  { id: "spirit", name: "Spirit: Cavalgando Livre", grad: "linear-gradient(160deg,#FDE68A,#B45309)", image: spirit.url, w: 235, h: 352 },
 ];
 
 export const TOP_CARTOONS = CARTOONS.filter((c) => c.top);
