@@ -299,12 +299,12 @@ function useLiveViewerCount(base = 441) {
     const max = 520;
 
     const tick = () => {
-      const change = Math.floor(Math.random() * 7) - 3; // -3 a +3
+      const change = Math.floor(Math.random() * 9) - 4; // -4 a +4
       current = Math.max(min, Math.min(max, current + change));
       setCount(current);
     };
 
-    const interval = setInterval(tick, 2500 + Math.random() * 2000);
+    const interval = setInterval(tick, 900 + Math.random() * 700);
     return () => clearInterval(interval);
   }, [base]);
 
