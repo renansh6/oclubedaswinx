@@ -290,6 +290,39 @@ function VslVideo() {
   );
 }
 
+function useLiveViewerCount(base = 441) {
+  const [count, setCount] = useState(base);
+
+  useEffect(() => {
+    let current = base;
+    const min = 380;
+    const max = 520;
+
+    const tick = () => {
+      const change = Math.floor(Math.random() * 7) - 3; // -3 a +3
+      current = Math.max(min, Math.min(max, current + change));
+      setCount(current);
+    };
+
+    const interval = setInterval(tick, 2500 + Math.random() * 2000);
+    return () => clearInterval(interval);
+  }, [base]);
+
+  return count;
+}
+
+function LiveViewerBadge() {
+  const count = useLiveViewerCount(441);
+  return (
+    <div className="mt-4 flex justify-center">
+      <div className="flex items-center gap-2 rounded-full bg-card px-4 py-2 text-[13px] font-semibold text-muted-foreground shadow-[var(--shadow-card)]">
+        <span className="h-2 w-2 animate-pulse rounded-full bg-primary" />
+        <b className="text-primary min-w-[2ch] tabular-nums">{count}</b> pessoas assistindo agora
+      </div>
+    </div>
+  );
+}
+
 const FAQ = [
   {
     q: "Como funciona o acesso?",
@@ -504,12 +537,7 @@ function Index() {
           português e em alta qualidade! 💖
         </h1>
 
-        <div className="mt-4 flex justify-center">
-          <div className="flex items-center gap-2 rounded-full bg-card px-4 py-2 text-[13px] font-semibold text-muted-foreground shadow-[var(--shadow-card)]">
-            <span className="h-2 w-2 animate-pulse rounded-full bg-primary" />
-            <b className="text-primary">441</b> pessoas assistindo agora
-          </div>
-        </div>
+        <LiveViewerBadge />
       </section>
 
       <Divider />
