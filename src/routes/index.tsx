@@ -563,7 +563,7 @@ function Index() {
 
       {/* VSL */}
       <section className="mt-8">
-        <div className="mx-auto w-full max-w-[340px] overflow-hidden rounded-[20px] bg-black shadow-[var(--shadow-card)]">
+        <div className="mx-auto w-full max-w-[340px] overflow-hidden rounded-[20px] border-4 border-[#ff2bbd] bg-black shadow-[0_0_22px_rgba(255,43,189,0.55),0_0_8px_rgba(255,43,189,0.35)]">
           <VslVideo />
         </div>
       </section>
