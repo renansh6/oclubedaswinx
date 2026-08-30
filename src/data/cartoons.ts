@@ -30,6 +30,12 @@ import masha from "@/assets/opt/c-mash.webp.asset.json";
 import bluey from "@/assets/opt/c-bluey.webp.asset.json";
 import gabby from "@/assets/opt/c-casagaby.webp.asset.json";
 import spirit from "@/assets/opt/c-spirit.webp.asset.json";
+import dcgirls from "@/assets/opt/c-superhero.webp.asset.json";
+import legofriends from "@/assets/opt/c-legofriends.webp.asset.json";
+import rainbowhigh from "@/assets/opt/c-raibonw.webp.asset.json";
+import lol from "@/assets/opt/c-lolsurprise.webp.asset.json";
+import trolls from "@/assets/opt/c-trolls.webp.asset.json";
+import lalaloopsy from "@/assets/opt/c-lalaposy.webp.asset.json";
 
 export type Cartoon = {
   id: string;
@@ -75,6 +81,12 @@ export const CARTOONS: Cartoon[] = [
   { id: "bluey", name: "Bluey", grad: "linear-gradient(160deg,#BAE6FD,#0284C7)", image: bluey.url, w: 255, h: 352 },
   { id: "gabby", name: "A Casa Mágica da Gabby", grad: "linear-gradient(160deg,#FBCFE8,#EC4899)", image: gabby.url, w: 232, h: 352 },
   { id: "spirit", name: "Spirit: Cavalgando Livre", grad: "linear-gradient(160deg,#FDE68A,#B45309)", image: spirit.url, w: 235, h: 352 },
+  { id: "dcgirls", name: "DC Super Hero Girls", grad: "linear-gradient(160deg,#C4B5FD,#4338CA)", image: dcgirls.url, w: 239, h: 352 },
+  { id: "legofriends", name: "LEGO Friends", grad: "linear-gradient(160deg,#FBCFE8,#7C3AED)", image: legofriends.url, w: 296, h: 352 },
+  { id: "rainbowhigh", name: "Rainbow High", grad: "linear-gradient(160deg,#FDE68A,#DB2777)", image: rainbowhigh.url, w: 202, h: 352 },
+  { id: "lol", name: "L.O.L. Surprise!", grad: "linear-gradient(160deg,#F5D0FE,#A21CAF)", image: lol.url, w: 198, h: 352 },
+  { id: "trolls", name: "Trolls", grad: "linear-gradient(160deg,#BAE6FD,#EC4899)", image: trolls.url, w: 238, h: 352 },
+  { id: "lalaloopsy", name: "Lalaloopsy", grad: "linear-gradient(160deg,#BFDBFE,#F472B6)", image: lalaloopsy.url, w: 198, h: 352 },
 ];
 
 export const TOP_CARTOONS = CARTOONS.filter((c) => c.top);
