@@ -21,6 +21,15 @@ import sailor from "@/assets/opt/c-SAILLORMOON.webp.asset.json";
 import shera from "@/assets/opt/c-SHE-RA.webp.asset.json";
 import winx from "@/assets/opt/c-WINX_CLUB.webp.asset.json";
 import witch from "@/assets/opt/c-WITCH.webp.asset.json";
+import monica from "@/assets/opt/c-monica.webp.asset.json";
+import sakura from "@/assets/opt/c-sakura.webp.asset.json";
+import ursinhos from "@/assets/opt/c-ursinhos.webp.asset.json";
+import tinker from "@/assets/opt/c-tinker.webp.asset.json";
+import sofia from "@/assets/opt/c-princesasopia.webp.asset.json";
+import masha from "@/assets/opt/c-mash.webp.asset.json";
+import bluey from "@/assets/opt/c-bluey.webp.asset.json";
+import gabby from "@/assets/opt/c-casagaby.webp.asset.json";
+import spirit from "@/assets/opt/c-spirit.webp.asset.json";
 
 export type Cartoon = {
   id: string;
