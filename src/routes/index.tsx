@@ -898,30 +898,31 @@ function Index() {
       </section>
 
       {/* FOOTER */}
-      <footer className="card-soft mt-8 px-5 py-8 text-center sm:px-8">
+      <footer className="w-full bg-background px-5 pt-8 pb-5 text-center sm:px-8 sm:pt-10 sm:pb-7">
         <div className="mx-auto max-w-[720px]">
-          <div className="flex flex-col items-center gap-4">
-            <p className="max-w-[420px] text-[13px] leading-5 text-muted-foreground">
-              O maior acervo de desenhos para meninas do Brasil. Conteúdo dublado, organizado e com acesso vitalício.
-            </p>
+          <p className="mx-auto max-w-[460px] text-[13px] leading-5 text-muted-foreground">
+            O maior acervo de desenhos para meninas do Brasil. Conteúdo dublado, organizado e com acesso vitalício.
+          </p>
 
-            <nav className="flex flex-wrap items-center justify-center gap-4 text-[13px] font-bold text-ink">
-              <a href="#" className="rounded-full px-3 py-1.5 transition-colors hover:bg-secondary hover:text-secondary-foreground">
-                Política de Privacidade
-              </a>
-              <a href="#" className="rounded-full px-3 py-1.5 transition-colors hover:bg-secondary hover:text-secondary-foreground">
-                Termos de Uso
-              </a>
-              <a href="#" className="rounded-full px-3 py-1.5 transition-colors hover:bg-secondary hover:text-secondary-foreground">
-                Contato
-              </a>
-            </nav>
-          </div>
+          <nav className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[13px] font-bold text-ink">
+            <a href="#" className="transition-colors hover:text-primary">
+              Política de Privacidade
+            </a>
+            <span className="text-border" aria-hidden="true">|</span>
+            <a href="#" className="transition-colors hover:text-primary">
+              Termos de Uso
+            </a>
+            <span className="text-border" aria-hidden="true">|</span>
+            <a href="#" className="transition-colors hover:text-primary">
+              Contato
+            </a>
+          </nav>
 
-          <div className="mt-6 border-t border-border pt-5 text-[12px] leading-5 text-muted-foreground">
-            © {new Date().getFullYear()}. Todos os direitos reservados.
-            <br />
-            Todo o conteúdo é disponibilizado para uso pessoal dos assinantes.
+          <div className="mx-auto mt-5 w-full max-w-[520px] border-t border-border" />
+
+          <div className="mt-5 space-y-1 text-[12px] leading-5 text-muted-foreground">
+            <p>© {new Date().getFullYear()}. Todos os direitos reservados.</p>
+            <p>Todo o conteúdo é disponibilizado para uso pessoal dos assinantes.</p>
           </div>
         </div>
       </footer>
