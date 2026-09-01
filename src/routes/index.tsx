@@ -671,7 +671,7 @@ function Index() {
         {/* CARD 1 — ACERVO */}
         <section className="mx-4 flex flex-col rounded-[22px] border border-[#f7d9e8] bg-card p-5 shadow-[0_10px_30px_-12px_rgba(236,72,153,0.25)] sm:mx-0">
           <h3 className="text-center text-[18px] font-semibold leading-snug text-ink">
-            🎬 49 coleções completas
+            🎬 Coleções completas
           </h3>
           <p className="mt-1 text-center text-[13px] font-medium text-muted-foreground">
             Filmes, séries e temporadas para todas as idades.
