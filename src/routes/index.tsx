@@ -321,44 +321,45 @@ const BUYERS = [
 
 function VslVideo() {
   const ref = useRef<HTMLVideoElement>(null);
+  const [started, setStarted] = useState(false);
 
-  useEffect(() => {
+  const start = () => {
     const video = ref.current;
     if (!video) return;
-
-    // Garante que o vídeo inicie automaticamente quando entrar na tela.
-    // O autoplay em navegadores modernos exige muted + playsInline.
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            video.play().catch(() => {
-              // Autoplay bloqueado pelo navegador; o usuário pode tocar manualmente.
-            });
-          } else {
-            video.pause();
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-
-    observer.observe(video);
-    return () => observer.disconnect();
-  }, []);
+    // Inicia com som a partir do gesto do usuário (permitido pelos navegadores).
+    video.muted = false;
+    video.volume = 1;
+    setStarted(true);
+    const p = video.play();
+    if (p) p.catch(() => {});
+  };
 
   return (
-    <video
-      ref={ref}
-      src={vslAsset.url}
-      autoPlay
-      muted
-      loop
-      playsInline
-      controls
-      preload="metadata"
-      className="block aspect-[9/16] h-auto w-full object-cover"
-    />
+    <div className="relative aspect-[9/16] w-full overflow-hidden bg-black">
+      <video
+        ref={ref}
+        src={vslAsset.url}
+        playsInline
+        preload="none"
+        controls={started}
+        poster="/vsl-cover.webp"
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+      {!started && (
+        <button
+          type="button"
+          onClick={start}
+          aria-label="Dar play no vídeo"
+          className="absolute inset-0 z-10 h-full w-full cursor-pointer border-0 bg-transparent p-0"
+        >
+          <img
+            src="/vsl-cover.webp"
+            alt="Dê o play e conheça todos os desenhos"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        </button>
+      )}
+    </div>
   );
 }
 
