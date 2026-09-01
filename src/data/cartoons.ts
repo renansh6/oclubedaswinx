@@ -36,6 +36,12 @@ import rainbowhigh from "@/assets/opt/c-raibonw.webp.asset.json";
 import lol from "@/assets/opt/c-lolsurprise.webp.asset.json";
 import trolls from "@/assets/opt/c-trolls.webp.asset.json";
 import lalaloopsy from "@/assets/opt/c-lalaposy.webp.asset.json";
+import minnie from "@/assets/opt/c-minnie.webp.asset.json";
+import galinha from "@/assets/opt/c-galinha.webp.asset.json";
+import lolirock from "@/assets/opt/c-lolirock.webp.asset.json";
+import padrinhos from "@/assets/opt/c-padrinhos.webp.asset.json";
+import princesasapo from "@/assets/opt/c-princesasapo.webp.asset.json";
+import alice from "@/assets/opt/c-alice.webp.asset.json";
 
 export type Cartoon = {
   id: string;
