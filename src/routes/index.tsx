@@ -127,35 +127,107 @@ const COLLECTIONS = [
   {
     icon: "👑",
     title: "Princesas Disney",
-    items: ["Ariel", "Bela", "Cinderela", "Rapunzel", "Jasmine", "Aurora", "Branca de Neve"],
-    fullWidth: true,
+    items: ["Ariel", "Bela", "Cinderela", "Rapunzel", "Jasmine", "Aurora", "Branca de Neve", "A Princesa e o Sapo"],
   },
   {
     icon: "💖",
     title: "Clássicos inesquecíveis",
-    items: ["Barbie", "Polly Pocket", "Moranguinho", "Hello Kitty"],
+    items: ["Barbie", "Polly Pocket", "Moranguinho", "Hello Kitty", "Lilo & Stitch", "Alice no País das Maravilhas"],
   },
   {
     icon: "✨",
     title: "Magia e fantasia",
-    items: ["Winx Club", "W.I.T.C.H.", "Sailor Moon", "Ever After High"],
+    items: ["Winx Club", "W.I.T.C.H.", "Sailor Moon", "Ever After High", "LoliRock", "Os Padrinhos Mágicos"],
   },
   {
     icon: "⚡",
     title: "Ação e aventura",
-    items: ["As Meninas Superpoderosas", "Kim Possible", "She-Ra", "Três Espiãs Demais"],
+    items: ["Meninas Superpoderosas", "Kim Possible", "She-Ra", "Três Espiãs Demais"],
   },
   {
     icon: "🌟",
-    title: "Favoritos de todas as gerações",
+    title: "Grandes favoritas",
     items: ["Frozen", "Ladybug", "My Little Pony", "Monster High", "Bratz"],
   },
   {
     icon: "🌈",
     title: "Para as pequenas",
-    items: ["Dora, a Aventureira", "Peppa Pig", "Pucca"],
+    items: [
+      "Dora, a Aventureira",
+      "Peppa Pig",
+      "Pucca",
+      "Princesinha Sofia",
+      "Masha e o Urso",
+      "Bluey",
+      "A Casa Mágica da Gabby",
+      "Ursinhos Carinhosos",
+      "Minnie Toons",
+      "Galinha Pintadinha Mini",
+    ],
+  },
+  {
+    icon: "🌸",
+    title: "Clássicos e novidades",
+    items: [
+      "Turma da Mônica",
+      "Sakura Card Captors",
+      "Tinker Bell",
+      "Spirit: Cavalgando Livre",
+      "DC Super Hero Girls",
+      "LEGO Friends",
+      "Rainbow High",
+      "L.O.L. Surprise!",
+      "Trolls",
+      "Lalaloopsy",
+    ],
   },
 ];
+
+function CollectionsAccordion() {
+  const [open, setOpen] = useState<string | null>("Princesas Disney");
+  return (
+    <div className="mt-4 grid grid-cols-1 gap-x-5 md:grid-cols-2">
+      {COLLECTIONS.map((c) => {
+        const isOpen = open === c.title;
+        return (
+          <div key={c.title} className="border-b border-[#f7d9e8] last:border-b-0">
+            <button
+              type="button"
+              onClick={() => setOpen(isOpen ? null : c.title)}
+              aria-expanded={isOpen}
+              className="flex min-h-[54px] w-full items-center gap-3 py-2 text-left"
+            >
+              <span className="shrink-0 text-[16px]">{c.icon}</span>
+              <span className="min-w-0 flex-1 truncate text-[14px] font-semibold text-ink">
+                {c.title}
+              </span>
+              <span className="shrink-0 rounded-full bg-[#fdeaf4] px-2.5 py-1 text-[12px] font-semibold text-primary">
+                {c.items.length} títulos
+              </span>
+              <span
+                className="shrink-0 text-[13px] text-primary transition-transform duration-200"
+                style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }}
+                aria-hidden
+              >
+                ▾
+              </span>
+            </button>
+            <div
+              className="grid transition-all duration-200 ease-out"
+              style={{ gridTemplateRows: isOpen ? "1fr" : "0fr", opacity: isOpen ? 1 : 0 }}
+            >
+              <div className="overflow-hidden">
+                <p className="pb-3 pr-1 text-[13px] leading-6 text-muted-foreground">
+                  {c.items.join(" • ")}
+                </p>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
 
 const ACCESS_BENEFITS = [
   { text: "Conteúdo em ", bold: "Full HD 1080p" },
