@@ -398,7 +398,7 @@ function LiveViewerBadge() {
 const FAQ = [
   {
     q: "Como funciona o acesso?",
-    a: "Depois da compra você recebe o link e as instruções por e-mail e já pode entrar na biblioteca de desenhos.",
+    a: "Depois da compra você recebe o link e as instruções por e-mail e WhatsApp, e já pode entrar na biblioteca de desenhos.",
   },
   {
     q: "É pagamento único ou mensalidade?",
@@ -418,7 +418,7 @@ const FAQ = [
   },
   {
     q: "O conteúdo está em português?",
-    a: "Sim! Tudo é 100% em português — desenhos, HQs, mangás e gibis, além da plataforma inteira traduzida.",
+    a: "Sim! Tudo é 100% em português — desenhos, além da plataforma inteira traduzida.",
   },
 ];
 
@@ -905,17 +905,11 @@ function Index() {
           </p>
 
           <nav className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[13px] font-bold text-ink">
-            <a href="#" className="transition-colors hover:text-primary">
-              Política de Privacidade
-            </a>
+            <span>Política de Privacidade</span>
             <span className="text-border" aria-hidden="true">|</span>
-            <a href="#" className="transition-colors hover:text-primary">
-              Termos de Uso
-            </a>
+            <span>Termos de Uso</span>
             <span className="text-border" aria-hidden="true">|</span>
-            <a href="#" className="transition-colors hover:text-primary">
-              Contato
-            </a>
+            <span>Contato</span>
           </nav>
 
           <div className="mx-auto mt-5 w-full max-w-[520px] border-t border-border" />
