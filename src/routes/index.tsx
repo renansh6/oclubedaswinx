@@ -669,66 +669,20 @@ function Index() {
 
       <div className="mx-auto mt-5 grid w-full max-w-[960px] grid-cols-1 items-stretch gap-5 md:grid-cols-2">
         {/* CARD 1 — ACERVO */}
-        <section className="card-soft flex w-full flex-col p-5">
-          <h3 className="text-center text-[18px] font-bold leading-snug text-ink">
-            🎬 coleções completas
+        <section className="mx-4 flex flex-col rounded-[22px] border border-[#f7d9e8] bg-card p-5 shadow-[0_10px_30px_-12px_rgba(236,72,153,0.25)] sm:mx-0">
+          <h3 className="text-center text-[18px] font-semibold leading-snug text-ink">
+            🎬 49 coleções completas
           </h3>
-          <p className="mt-1 text-center text-[14px] font-medium text-muted-foreground">
+          <p className="mt-1 text-center text-[13px] font-medium text-muted-foreground">
             Filmes, séries e temporadas para todas as idades.
           </p>
-
-          <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-2">
-            <div className="border-b border-border pb-3">
-              <div className="text-[14px] font-bold text-ink">👑 Princesas Disney</div>
-              <div className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground">
-                Ariel • Bela • Cinderela • Rapunzel • Jasmine • Aurora • Branca de Neve
-              </div>
-            </div>
-
-            <div className="border-b border-border pb-3">
-              <div className="text-[14px] font-bold text-ink">💖 Clássicos inesquecíveis</div>
-              <div className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground">
-                Barbie • Polly Pocket • Moranguinho • Hello Kitty
-              </div>
-            </div>
-
-            <div className="border-b border-border pb-3">
-              <div className="text-[14px] font-bold text-ink">✨ Magia e fantasia</div>
-              <div className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground">
-                Winx Club • W.I.T.C.H. • Sailor Moon • Ever After High
-              </div>
-            </div>
-
-            <div className="border-b border-border pb-3">
-              <div className="text-[14px] font-bold text-ink">⚡ Ação e aventura</div>
-              <div className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground">
-                Meninas Superpoderosas • Kim Possible • She-Ra • Três Espiãs Demais
-              </div>
-            </div>
-
-            <div className="border-b border-border pb-3 md:col-span-2">
-              <div className="text-[14px] font-bold text-ink">🌟 Grandes favoritas</div>
-              <div className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground">
-                Frozen • Ladybug • My Little Pony • Monster High • Bratz
-              </div>
-            </div>
-
-            <div className="border-b border-border pb-3 md:col-span-2">
-              <div className="text-[14px] font-bold text-ink">🌈 Para as pequenas</div>
-              <div className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground">
-                Dora, a Aventureira • Peppa Pig • Pucca • Princesinha Sofia • Masha e o Urso • Bluey •
-                A Casa Mágica da Gabby • Ursinhos Carinhosos
-              </div>
-            </div>
-
-            <div className="border-b border-border pb-3 md:col-span-2">
-              <div className="text-[14px] font-bold text-ink">🌸 Clássicos e novidades</div>
-              <div className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground">
-                Turma da Mônica • Sakura Card Captors • Tinker Bell • Spirit: Cavalgando Livre •
-                DC Super Hero Girls • LEGO Friends • Rainbow High • L.O.L. Surprise! • Trolls • Lalaloopsy
-              </div>
-            </div>
+          <div className="mt-3 flex justify-center">
+            <span className="rounded-full bg-[#fdeaf4] px-3.5 py-1.5 text-[12.5px] font-semibold text-primary">
+              Toque em uma categoria para ver os títulos
+            </span>
           </div>
+
+          <CollectionsAccordion />
         </section>
 
         {/* CARD 2 — ACESSO + BÔNUS */}
