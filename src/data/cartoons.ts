@@ -93,6 +93,12 @@ export const CARTOONS: Cartoon[] = [
   { id: "lol", name: "L.O.L. Surprise!", grad: "linear-gradient(160deg,#F5D0FE,#A21CAF)", image: lol.url, w: 198, h: 352 },
   { id: "trolls", name: "Trolls", grad: "linear-gradient(160deg,#BAE6FD,#EC4899)", image: trolls.url, w: 238, h: 352 },
   { id: "lalaloopsy", name: "Lalaloopsy", grad: "linear-gradient(160deg,#BFDBFE,#F472B6)", image: lalaloopsy.url, w: 198, h: 352 },
+  { id: "minnie", name: "Minnie Toons", grad: "linear-gradient(160deg,#FBCFE8,#DB2777)", image: minnie.url, w: 235, h: 352 },
+  { id: "galinha", name: "Galinha Pintadinha Mini", grad: "linear-gradient(160deg,#BAE6FD,#16A34A)", image: galinha.url, w: 235, h: 352 },
+  { id: "lolirock", name: "LoliRock", grad: "linear-gradient(160deg,#F5D0FE,#7C3AED)", image: lolirock.url, w: 198, h: 352 },
+  { id: "padrinhos", name: "Os Padrinhos Mágicos", grad: "linear-gradient(160deg,#DDD6FE,#6D28D9)", image: padrinhos.url, w: 198, h: 352 },
+  { id: "princesasapo", name: "A Princesa e o Sapo", grad: "linear-gradient(160deg,#BBF7D0,#15803D)", image: princesasapo.url, w: 198, h: 352 },
+  { id: "alice", name: "Alice no País das Maravilhas", grad: "linear-gradient(160deg,#BFDBFE,#2563EB)", image: alice.url, w: 198, h: 352 },
 ];
 
 export const TOP_CARTOONS = CARTOONS.filter((c) => c.top);
