@@ -104,7 +104,18 @@ declare global {
   }
 }
 
-function goToCheckout(url: string, value: number, label: string, el?: HTMLAnchorElement | null) {
+// Abre o checkout de forma determinística. A navegação padrão do <a> (mutar o
+// href no onClick e deixar o browser navegar) falha de forma intermitente nos
+// webviews do Instagram/Facebook e ao voltar do checkout pelo botão "voltar"
+// (página restaurada do bfcache). Aqui prevenimos o default e navegamos na mão.
+function openCheckout(
+  e: React.MouseEvent<HTMLAnchorElement>,
+  url: string,
+  value: number,
+  label: string,
+) {
+  e.preventDefault();
+  const target = withTracking(url);
   try {
     window.fbq?.("track", "InitiateCheckout", {
       value,
@@ -114,7 +125,7 @@ function goToCheckout(url: string, value: number, label: string, el?: HTMLAnchor
   } catch {
     /* noop */
   }
-  return el?.href && el.href.includes("pay.lowify.com.br") ? el.href : withTracking(url);
+  window.location.assign(target);
 }
 
 
@@ -502,6 +513,17 @@ function Index() {
   const [toast, setToast] = useState<string | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
+
+  // Ao voltar do checkout pelo botão "voltar", a página costuma ser restaurada do
+  // bfcache com o estado congelado (modal aberto, handlers "presos"). Forçamos um
+  // reload nesse caso para a LP reiniciar limpa e os botões voltarem a funcionar.
+  useEffect(() => {
+    const onPageShow = (e: PageTransitionEvent) => {
+      if (e.persisted) window.location.reload();
+    };
+    window.addEventListener("pageshow", onPageShow);
+    return () => window.removeEventListener("pageshow", onPageShow);
+  }, []);
 
   useEffect(() => {
     if (!modalOpen) return;
@@ -1012,14 +1034,7 @@ function Index() {
 
             <a
               href={CHECKOUT_VIP}
-              onClick={(e) => {
-                e.currentTarget.href = goToCheckout(
-                  CHECKOUT_VIP,
-                  17.9,
-                  "Pacote Família - R$17,90",
-                  e.currentTarget,
-                );
-              }}
+              onClick={(e) => openCheckout(e, CHECKOUT_VIP, 17.9, "Pacote Família - R$17,90")}
               className="cta-btn mt-2.5 min-h-[50px] w-full whitespace-normal text-[14px]"
             >
               SIM! QUERO O PACOTE FAMÍLIA 🎁
@@ -1029,14 +1044,7 @@ function Index() {
             </a>
             <a
               href={CHECKOUT}
-              onClick={(e) => {
-                e.currentTarget.href = goToCheckout(
-                  CHECKOUT,
-                  14.9,
-                  "Acervo Desenhos - R$14,90",
-                  e.currentTarget,
-                );
-              }}
+              onClick={(e) => openCheckout(e, CHECKOUT, 14.9, "Acervo Desenhos - R$14,90")}
               className="mt-2 flex w-full items-center justify-center px-2 text-center text-[12px] font-semibold text-muted-foreground underline"
             >
               Não, quero somente o acesso por R$14,90.
