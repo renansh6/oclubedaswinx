@@ -41,17 +41,17 @@ function preloadFamily() {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "O Maior Acervo de Desenhos de Meninas do Brasil | Tudo Dublado" },
+      { title: "A Maior Coleção de Desenhos para Meninas do Brasil" },
       {
         name: "description",
         content:
-          "21 desenhos em um só lugar: Princesas Disney, Barbie, Winx, Superpoderosas, Frozen, Sailor Moon, Ladybug e muito mais — dublados, Full HD e acesso vitalício por R$14,90.",
+          "Assista aos desenhos mais amados, dublados em português e em alta qualidade. Acesso vitalício, pagamento único e atualizações sem mensalidade.",
       },
-      { property: "og:title", content: "O Maior Acervo de Desenhos de Meninas do Brasil" },
+      { property: "og:title", content: "A Maior Coleção de Desenhos para Meninas do Brasil" },
       {
         property: "og:description",
         content:
-          "Princesas Disney, Barbie, Winx, Frozen, Sailor Moon, Ladybug e mais 15 desenhos dublados, em Full HD e com acesso vitalício por apenas R$14,90.",
+          "Princesas, Barbie, Winx, Moranguinho, Três Espiãs Demais e muitos outros desenhos reunidos em um só lugar.",
       },
 
       { property: "og:type", content: "website" },
@@ -80,8 +80,8 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const CHECKOUT = "https://pay.lowify.com.br/checkout?product_id=Ng0Xva";
-const CHECKOUT_VIP = "https://pay.lowify.com.br/checkout?product_id=dL194r";
+const CHECKOUT = "https://pay.lowify.com.br/checkout?product_id=trhsz2";
+const CHECKOUT_VIP = "https://pay.lowify.com.br/checkout?product_id=aZvoUl";
 
 // Mantém os parâmetros de rastreio (UTMs/subids) presentes na URL da LP
 function withTracking(url: string) {
@@ -611,6 +611,11 @@ function Index() {
         </h1>
 
         <LiveViewerBadge />
+
+        {/* VSL */}
+        <div className="mx-auto mt-8 w-full max-w-[340px] overflow-hidden rounded-[20px] border-4 border-[#ff2bbd] bg-black shadow-[0_0_22px_rgba(255,43,189,0.55),0_0_8px_rgba(255,43,189,0.35)]">
+          <VslVideo />
+        </div>
       </section>
 
       <Divider />
@@ -634,17 +639,9 @@ function Index() {
         você! 💖
       </p>
 
-      {/* VSL */}
-      <section className="mt-8">
-        <div className="mx-auto w-full max-w-[340px] overflow-hidden rounded-[20px] border-4 border-[#ff2bbd] bg-black shadow-[0_0_22px_rgba(255,43,189,0.55),0_0_8px_rgba(255,43,189,0.35)]">
-          <VslVideo />
-        </div>
-      </section>
-
       <Divider />
 
-
-      {/* CARROSSEL DOS 21 DESENHOS */}
+      {/* CARROSSEL DOS DESENHOS */}
       <section>
         <h2 className="text-center text-[20px] font-extrabold text-ink">
           🎬 Nossos desenhos que estão te esperando
