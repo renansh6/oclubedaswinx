@@ -148,7 +148,7 @@ const COLLECTIONS = [
   {
     icon: "✨",
     title: "Magia e fantasia",
-    items: ["Winx Club", "W.I.T.C.H.", "Sailor Moon", "Ever After High", "LoliRock", "Os Padrinhos Mágicos"],
+    items: ["Winx Club", "W.I.T.C.H.", "Sailor Moon", "Ever After High", "LoliRock", "Os Padrinhos Mágicos", "A Vida e as Aventuras de Juniper Lee"],
   },
   {
     icon: "⚡",

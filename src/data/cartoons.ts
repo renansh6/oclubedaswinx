@@ -99,6 +99,7 @@ export const CARTOONS: Cartoon[] = [
   { id: "padrinhos", name: "Os Padrinhos Mágicos", grad: "linear-gradient(160deg,#DDD6FE,#6D28D9)", image: padrinhos.url, w: 198, h: 352 },
   { id: "princesasapo", name: "A Princesa e o Sapo", grad: "linear-gradient(160deg,#BBF7D0,#15803D)", image: princesasapo.url, w: 198, h: 352 },
   { id: "alice", name: "Alice no País das Maravilhas", grad: "linear-gradient(160deg,#BFDBFE,#2563EB)", image: alice.url, w: 198, h: 352 },
+  { id: "juniper", name: "Juniper Lee", short: "A Vida e as Aventuras de Juniper Lee", grad: "linear-gradient(160deg,#F5D0FE,#7C3AED)", image: "/juniper-lee.webp", w: 235, h: 352 },
 ];
 
 export const TOP_CARTOONS = CARTOONS.filter((c) => c.top);
