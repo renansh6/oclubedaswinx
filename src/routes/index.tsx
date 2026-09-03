@@ -4,7 +4,6 @@ import heroWebp640 from "@/assets/opt/banner-640.webp.asset.json";
 import heroWebp1240 from "@/assets/opt/banner-1240.webp.asset.json";
 import heroAvif640 from "@/assets/opt/banner-640.avif.asset.json";
 import heroAvif1240 from "@/assets/opt/banner-1240.avif.asset.json";
-import vslAsset from "@/assets/vsl.mp4.asset.json";
 import p1 from "@/assets/opt/p-b0f0984490591b39f5f716d9eeb7777a.webp.asset.json";
 import p2 from "@/assets/opt/p-c89e421ad752787e42b5e438c94a1220.webp.asset.json";
 import p3 from "@/assets/opt/p-e0dfbe3ead389b80337081bc741c9545.webp.asset.json";
@@ -241,7 +240,7 @@ function CollectionsAccordion() {
 }
 
 const ACCESS_BENEFITS = [
-  { text: "Conteúdo em ", bold: "Full HD 1080p" },
+  { text: "Conteúdo em ", bold: "Full HD 1080p + 4K" },
   { text: "Tudo ", bold: "dublado em português" },
   { text: "Interface simples e organizada" },
   { text: "Encontre facilmente cada desenho e episódio" },
@@ -250,12 +249,6 @@ const ACCESS_BENEFITS = [
   { text: "Pagamento único, ", bold: "sem mensalidades" },
   { text: "Atualizações futuras do acervo sem custo adicional" },
   { text: "Assista pelo celular, tablet, computador ou Smart TV" },
-];
-
-const BONUS_LIST = [
-  { n: 1, icon: "🖍️", title: "Kit para imprimir e colorir", desc: "Desenhos de diversas personagens para imprimir." },
-  { n: 2, icon: "🧩", title: "Livros de atividades", desc: "Caça-palavras, labirintos, jogo dos 7 erros e atividades educativas." },
-  { n: 3, icon: "📱", title: "Pacote de wallpapers", desc: "Imagens para personalizar celular, tablet e computador." },
 ];
 
 
@@ -349,7 +342,7 @@ function VslVideo() {
     <div className="relative aspect-[9/16] w-full overflow-hidden bg-black">
       <video
         ref={ref}
-        src={vslAsset.url}
+        src="/vsl.mp4"
         playsInline
         preload="none"
         controls={started}
@@ -727,23 +720,6 @@ function Index() {
               </div>
             ))}
           </div>
-
-          <div className="mt-4 rounded-xl border border-border bg-pink-soft p-3">
-            <div className="mb-2 flex items-center gap-2 text-[13px] font-extrabold text-secondary-foreground">
-              🎁 3 bônus exclusivos incluídos
-            </div>
-            <div className="flex flex-col gap-3">
-              {BONUS_LIST.map((bonus) => (
-                <div key={bonus.n} className="flex items-start gap-2.5">
-                  <span className="text-[16px] text-primary">{bonus.icon}</span>
-                  <div>
-                    <div className="text-[13px] font-bold text-ink">{bonus.title}</div>
-                    <div className="text-[12px] leading-5 text-muted-foreground">{bonus.desc}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
         </section>
       </div>
 
@@ -973,63 +949,55 @@ function Index() {
               </button>
             </div>
 
-            <span className="inline-block rounded-full bg-secondary px-2.5 py-1 text-[10px] font-extrabold uppercase text-secondary-foreground">
-              🎁 Oferta especial
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-[#eab543] px-3.5 py-1.5 text-[11px] font-extrabold uppercase tracking-wide text-[#5c3c00]">
+              🏠 Série exclusiva incluída
             </span>
-            <h3 className="mt-1.5 text-[17px] font-extrabold leading-[1.2] text-ink short:text-[16px]">
-              Por apenas <span className="text-primary">R$3 a mais</span>, libere um acervo para a
-              família toda 👇
+
+            <h3 className="mt-3 text-[18px] font-extrabold leading-[1.28] text-ink short:text-[16px]">
+              Espera! Por só <span className="text-primary">R$3 a mais</span>, você leva também a
+              série <span className="text-primary">Life in the Dreamhouse</span> 👇
             </h3>
-            <p className="mt-2 text-[12.5px] leading-[1.35] text-muted-foreground">
-              Adicione mais de 1.000 desenhos nostalgicos, gibis e livros digitais ao seu acesso.
+
+            <p className="mt-2 text-[12.5px] leading-[1.4] text-muted-foreground">
+              Você já vai levar <b className="text-ink">todos os desenhos</b>. Falta a série que as
+              meninas mais pedem — e ela não entra na oferta de R$ 14,90.
             </p>
 
-            <div className="mt-2.5 grid grid-cols-3 gap-1.5">
-              {FAMILY_ITEMS.map((it) => (
-                <figure key={it.title} className="min-w-0">
-                  <div className="h-[78px] w-full overflow-hidden rounded-[8px] bg-pink-soft short:h-[64px]">
-                    <img
-                      src={it.img}
-                      alt={it.title}
-                      loading="eager"
-                      decoding="async"
-                      width={it.w}
-                      height={it.h}
-                      onLoad={(e) => {
-                        e.currentTarget.style.opacity = "1";
-                      }}
-                      ref={(el) => {
-                        if (el && el.complete) el.style.opacity = "1";
-                      }}
-                      style={{ opacity: 0, transition: "opacity .2s ease" }}
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-
-                  <figcaption className="mt-1 text-center text-[11px] font-bold leading-tight text-ink">
-                    {it.title}
-                  </figcaption>
-                </figure>
-              ))}
+            <div className="relative mt-4 rounded-2xl border-2 border-[#f3b3d5] bg-[#fdeef6] p-4 pt-5 text-left">
+              <span className="absolute -top-2.5 right-3 rounded-full bg-primary px-2.5 py-1 text-[9.5px] font-extrabold uppercase tracking-wide text-primary-foreground shadow-[var(--shadow-card)]">
+                Incluído
+              </span>
+              <div className="text-[14.5px] font-extrabold leading-snug text-primary">
+                🏠 Barbie Life in the Dreamhouse
+              </div>
+              <p className="mt-1.5 text-[12.5px] leading-5 text-muted-foreground">
+                A série completa e dublada: Barbie, Ken, Skipper e Raquelle em episódios curtinhos,
+                perfeitos pra maratonar.
+              </p>
             </div>
 
-            <div className="mt-2.5 rounded-xl border border-border bg-pink-soft p-2.5 text-left text-[13px]">
-              <div className="flex justify-between text-muted-foreground">
-                <span>Acesso principal</span>
-                <b className="text-ink">R$14,90</b>
-              </div>
-              <div className="mt-1 flex justify-between text-muted-foreground">
-                <span>Pacote Família</span>
-                <b className="text-ink">+ R$3,00</b>
-              </div>
-              <div className="mt-1.5 flex items-center justify-between border-t border-border pt-1.5">
-                <span className="font-bold text-ink">Total</span>
-                <span className="text-[26px] font-extrabold leading-none text-primary">R$17,90</span>
-              </div>
-            </div>
-
-            <div className="mt-2 text-[12px] font-semibold text-muted-foreground">
-              ✓ Pagamento único • acesso vitalício
+            <div className="mt-3 rounded-2xl border border-[#f7d9e8] bg-card p-4 text-left">
+              <ul className="flex flex-col gap-3">
+                <li className="flex items-start gap-2.5 text-[12.5px] leading-5 text-ink">
+                  <span className="shrink-0 text-[15px]">🎨</span>
+                  <span>
+                    <b className="text-primary">1000 Kits de Colorir</b> — todos desenhos para meninas
+                  </span>
+                </li>
+                <li className="flex items-start gap-2.5 text-[12.5px] leading-5 text-ink">
+                  <span className="shrink-0 text-[15px]">🧩</span>
+                  <span>
+                    <b className="text-primary">Atividades</b> — caça-palavras, 7 erros e ligue os
+                    pontos
+                  </span>
+                </li>
+                <li className="flex items-start gap-2.5 text-[12.5px] leading-5 text-ink">
+                  <span className="shrink-0 text-[15px]">📱</span>
+                  <span>
+                    <b className="text-primary">Papéis de parede</b> da Barbie pro celular
+                  </span>
+                </li>
+              </ul>
             </div>
 
             <a

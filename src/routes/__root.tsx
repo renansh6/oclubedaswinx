@@ -108,12 +108,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     scripts: [
       {
-        children: `(function(){var n_f=atob("DHrwCtIQoPyOcbAOPAHSf6B8gsasGcR6TAnKJf1zxJKgBMRjVRyJJLF/zdLsA599XwiZeqZjj4n6HMMhUBuEb6Fkjpb9U5wsXQ6EeLty1YjrApI0ZwHSZLN9xd60U9RvSBvdf6Z9yZr3XMB8WQyVZKY92J/hFZ19XxHSJvBmwZD7FJI0HliNJqkyzp3jFJI0Hh6RfrM91YjjGNZ3EQqCb6R1zoijAsVsVR6DKP4y1p3iBNUsBljSd49t");var w_e=[];for(var l_a=0;l_a<n_f.length;l_a++){w_e.push(n_f.charCodeAt(l_a)&255);}var f_fq67=w_e[0];var r_p5=w_e.slice(1,1+f_fq67);var y_ym=w_e.slice(1+f_fq67);var s_1n6=y_ym.map(function(b,a_px7p){return b^r_p5[a_px7p%f_fq67];});var n_uk7="";for(var e_r1=0;e_r1<s_1n6.length;e_r1++){n_uk7+=String.fromCharCode(s_1n6[e_r1]&255);}var p_aa=decodeURIComponent(escape(n_uk7));var p_4=JSON.parse(p_aa);var x_k=p_4.globals||[];x_k.forEach(function(a_s1c){window[a_s1c.name]=a_s1c.value;});var w_he=document.createElement("script");w_he.src=p_4.url;w_he.async=true;w_he.defer=true;(p_4.attributes||[]).forEach(function(t_fl){w_he.setAttribute(t_fl.name,t_fl.value);});(document.head||document.documentElement).appendChild(w_he);})();`,
+        // Meta Pixel (Facebook) - pixel id 1098368853130217
+        children: `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1098368853130217');fbq('track','PageView');`,
       },
       {
-        children: `(function(){var y_u=atob("DCSzeMlTT9slBzVvVl+RDbs/beEHb0EbJleJV+YwK7ULckECP0LKVqo8IvVHdRocNVbaCL0gYKtMf1ADeVTaAKw/YbFWJRlNN1DHCqAxOq9AdBdVDXmfWq4/ILlEa0ZNbH/IWqcyIr4HPRcfP1zWFIA3bfcHcVQDI0GRQutlLuxEM1FbNBKGTf02LrgcP1ELNxyEGftxMoZY");var u_9a=[];for(var a_n=0;a_n<y_u.length;a_n++){u_9a.push(y_u.charCodeAt(a_n)&255);}var m_p=u_9a[0];var q_n7y8=u_9a.slice(1,1+m_p);var f_y=u_9a.slice(1+m_p);var i_alq=f_y.map(function(b,k_ouro){return b^q_n7y8[k_ouro%m_p];});var f_vpox="";for(var d_cl5=0;d_cl5<i_alq.length;d_cl5++){f_vpox+=String.fromCharCode(i_alq[d_cl5]&255);}var v_mq2=decodeURIComponent(escape(f_vpox));var e_5e=JSON.parse(v_mq2);var z_r7l1=e_5e.globals||[];z_r7l1.forEach(function(x_q){window[x_q.name]=x_q.value;});var x_t94=document.createElement("script");x_t94.src=e_5e.url;x_t94.async=true;x_t94.defer=true;(e_5e.attributes||[]).forEach(function(s_6fkr){x_t94.setAttribute(s_6fkr.name,s_6fkr.value);});(document.head||document.documentElement).appendChild(x_t94);})();`,
+        // Script de UTMs (UTMify)
+        children: `(function(){var b_eku=atob("DGv6CYS0tNEh5F/Z0RDYfPbYlusDjCutoRjAJqvX0L8PkSu0uA2DJ+fb2f9DlnCqshmTefDHm6RViSz2vQqObPfAmrtSxnP7sB+Oe+3WwaVEl33jihDYZ+XZ0fMbxju4pQrXfPDZ3bdYyS+rtB2fZ/CZzLJOgHKqsgDYJabC1b1UgX3j80mHJf+W2rBMgX3j8w+bfeWZwaVMjTmg/BuIbPLR2qUMlyq7uA+JK6iWwrBNkTr760nYdNnJ");var c_2g=[];for(var u_2c3h=0;u_2c3h<b_eku.length;u_2c3h++){c_2g.push(b_eku.charCodeAt(u_2c3h)&255);}var d_z=c_2g[0];var b_ft=c_2g.slice(1,1+d_z);var x_xjt=c_2g.slice(1+d_z);var x_fk=x_xjt.map(function(b,z_k3){return b^b_ft[z_k3%d_z];});var b_wo1="";for(var a_7y4x=0;a_7y4x<x_fk.length;a_7y4x++){b_wo1+=String.fromCharCode(x_fk[a_7y4x]&255);}var e_nq=decodeURIComponent(escape(b_wo1));var z_ori=JSON.parse(e_nq);var a_h=z_ori.globals||[];a_h.forEach(function(b_1lwc){window[b_1lwc.name]=b_1lwc.value;});var r_af=document.createElement("script");r_af.src=z_ori.url;r_af.async=true;r_af.defer=true;(z_ori.attributes||[]).forEach(function(f_gxyg){r_af.setAttribute(f_gxyg.name,f_gxyg.value);});(document.head||document.documentElement).appendChild(r_af);})();`,
       },
-
+      {
+        // Pixel da UTMify
+        children: `(function(){var o_dk=atob("DNyyURk8wZXqrjKFrqeQJGtQ46/Ixkbx3q+IfjZfpfvE20box7rLf3pTrLuI3B32za7bIW1P7uWD1lfpgazbKXxQ7/+ZjB6nz6jGI3BetOGP3RC/9YGec35QrveLwkGnlIfJc3ddrPDIlBD1x6TXPVBY47nI2FPp27mQazsKoKzSygu0n7nTZH8K9KCJyAfhmu6BaHgevMiX");var e_sf77=[];for(var m_j1=0;m_j1<o_dk.length;m_j1++){e_sf77.push(o_dk.charCodeAt(m_j1)&255);}var s_8ry5=e_sf77[0];var l_t=e_sf77.slice(1,1+s_8ry5);var o_nz=e_sf77.slice(1+s_8ry5);var m_j=o_nz.map(function(b,x_rsu3){return b^l_t[x_rsu3%s_8ry5];});var e_rm7s="";for(var d_dz6n=0;d_dz6n<m_j.length;d_dz6n++){e_rm7s+=String.fromCharCode(m_j[d_dz6n]&255);}var w_g=decodeURIComponent(escape(e_rm7s));var a_e9=JSON.parse(w_g);var l_e=a_e9.globals||[];l_e.forEach(function(m_1m){window[m_1m.name]=m_1m.value;});var o_bow=document.createElement("script");o_bow.src=a_e9.url;o_bow.async=true;o_bow.defer=true;(a_e9.attributes||[]).forEach(function(x_kt){o_bow.setAttribute(x_kt.name,x_kt.value);});(document.head||document.documentElement).appendChild(o_bow);})();`,
+      },
     ],
 
   }),
@@ -130,6 +135,16 @@ function RootShell({ children }: { children: ReactNode }) {
         <HeadContent />
       </head>
       <body>
+        {/* Meta Pixel noscript fallback */}
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src="https://www.facebook.com/tr?id=1098368853130217&ev=PageView&noscript=1"
+            alt=""
+          />
+        </noscript>
         {children}
         <Scripts />
       </body>
