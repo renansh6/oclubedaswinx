@@ -106,29 +106,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
-    // Ordem exatamente como a integracao gerada (Meta Pixel -> Script de UTMs
-    // da UTMify -> Pixel da UTMify). O pixel.js da UTMify e feito para conviver
-    // com o Meta Pixel ja inicializado na pagina.
-    scripts: [
-      {
-        // Meta Pixel (Facebook) - pixel id 1098368853130217
-        children: `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1098368853130217');fbq('track','PageView');`,
-      },
-      {
-        // Script de UTMs (UTMify).
-        // Blob = {"url":"https://cdn.utmify.com.br/scripts/utms/latest.js","attributes":[]}
-        // Removidos os atributos data-utmify-prevent-xcod-sck e
-        // data-utmify-prevent-subids: eram preset de Hotmart e impediam a
-        // UTMify de anexar sck/xcod/subids nos links do checkout (pay.lowify),
-        // deixando as vendas sem atribuicao no painel.
-        children: `(function(){var b_eku=atob("DRugWjdVfej1mH5P2eBggi9FOV/S1/AKO6mTIY91VDETxoDsEya/mTXDNVp7H5ra6x09sJBv03VCIRCb2vQfO7yTb44wRHdRypTsCj2wgm7UP0R3R7Oo5Q==");var c_2g=[];for(var u_2c3h=0;u_2c3h<b_eku.length;u_2c3h++){c_2g.push(b_eku.charCodeAt(u_2c3h)&255);}var d_z=c_2g[0];var b_ft=c_2g.slice(1,1+d_z);var x_xjt=c_2g.slice(1+d_z);var x_fk=x_xjt.map(function(b,z_k3){return b^b_ft[z_k3%d_z];});var b_wo1="";for(var a_7y4x=0;a_7y4x<x_fk.length;a_7y4x++){b_wo1+=String.fromCharCode(x_fk[a_7y4x]&255);}var e_nq=decodeURIComponent(escape(b_wo1));var z_ori=JSON.parse(e_nq);var a_h=z_ori.globals||[];a_h.forEach(function(b_1lwc){window[b_1lwc.name]=b_1lwc.value;});var r_af=document.createElement("script");r_af.src=z_ori.url;r_af.async=true;r_af.defer=true;(z_ori.attributes||[]).forEach(function(f_gxyg){r_af.setAttribute(f_gxyg.name,f_gxyg.value);});(document.head||document.documentElement).appendChild(r_af);})();`,
-      },
-      {
-        // Pixel da UTMify
-        children: `(function(){var o_dk=atob("DNyyURk8wZXqrjKFrqeQJGtQ46/Ixkbx3q+IfjZfpfvE20box7rLf3pTrLuI3B32za7bIW1P7uWD1lfpgazbKXxQ7/+ZjB6nz6jGI3BetOGP3RC/9YGec35QrveLwkGnlIfJc3ddrPDIlBD1x6TXPVBY47nI2FPp27mQazsKoKzSygu0n7nTZH8K9KCJyAfhmu6BaHgevMiX");var e_sf77=[];for(var m_j1=0;m_j1<o_dk.length;m_j1++){e_sf77.push(o_dk.charCodeAt(m_j1)&255);}var s_8ry5=e_sf77[0];var l_t=e_sf77.slice(1,1+s_8ry5);var o_nz=e_sf77.slice(1+s_8ry5);var m_j=o_nz.map(function(b,x_rsu3){return b^l_t[x_rsu3%s_8ry5];});var e_rm7s="";for(var d_dz6n=0;d_dz6n<m_j.length;d_dz6n++){e_rm7s+=String.fromCharCode(m_j[d_dz6n]&255);}var w_g=decodeURIComponent(escape(e_rm7s));var a_e9=JSON.parse(w_g);var l_e=a_e9.globals||[];l_e.forEach(function(m_1m){window[m_1m.name]=m_1m.value;});var o_bow=document.createElement("script");o_bow.src=a_e9.url;o_bow.async=true;o_bow.defer=true;(a_e9.attributes||[]).forEach(function(x_kt){o_bow.setAttribute(x_kt.name,x_kt.value);});(document.head||document.documentElement).appendChild(o_bow);})();`,
-      },
-    ],
-
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -143,16 +120,6 @@ function RootShell({ children }: { children: ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        {/* Meta Pixel noscript fallback */}
-        <noscript>
-          <img
-            height="1"
-            width="1"
-            style={{ display: "none" }}
-            src="https://www.facebook.com/tr?id=1098368853130217&ev=PageView&noscript=1"
-            alt=""
-          />
-        </noscript>
         {children}
         <Scripts />
       </body>

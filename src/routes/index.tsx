@@ -82,8 +82,8 @@ export const Route = createFileRoute("/")({
 const CHECKOUT = "https://pay.lowify.com.br/checkout?product_id=trhsz2";
 const CHECKOUT_VIP = "https://pay.lowify.com.br/checkout?product_id=aZvoUl";
 
-// Mantém os parâmetros de rastreio (UTMs/subids) presentes na URL da LP
-function withTracking(url: string) {
+// Mantém os parâmetros da URL da LP (ex.: UTMs) ao ir para o checkout.
+function withParams(url: string) {
   try {
     const search = window.location.search.replace(/^\?/, "");
     if (!search) return url;
@@ -97,54 +97,13 @@ function withTracking(url: string) {
   }
 }
 
-declare global {
-  interface Window {
-    fbq?: (...args: unknown[]) => void;
-  }
-}
-
-function newEventId() {
-  try {
-    if (typeof crypto !== "undefined" && crypto.randomUUID) return crypto.randomUUID();
-  } catch {
-    /* noop */
-  }
-  return `ic-${Date.now()}-${Math.random().toString(16).slice(2)}`;
-}
-
 // Abre o checkout de forma determinística. A navegação padrão do <a> (mutar o
 // href no onClick e deixar o browser navegar) falha de forma intermitente nos
 // webviews do Instagram/Facebook e ao voltar do checkout pelo botão "voltar"
 // (página restaurada do bfcache). Aqui prevenimos o default e navegamos na mão.
-//
-// O InitiateCheckout do Meta era perdido: o fbq só enfileira o evento e o
-// fbevents.js dispara o beacon de forma assíncrona — navegando na mesma tick, a
-// requisição era cancelada. Agora damos uma folga pro beacon sair antes de
-// navegar e mandamos um eventID pra deduplicar com o evento da UTMify.
-function openCheckout(
-  e: React.MouseEvent<HTMLAnchorElement>,
-  url: string,
-  value: number,
-  label: string,
-) {
+function openCheckout(e: React.MouseEvent<HTMLAnchorElement>, url: string) {
   e.preventDefault();
-  const eventID = newEventId();
-  const target = withTracking(url);
-
-  try {
-    window.fbq?.(
-      "track",
-      "InitiateCheckout",
-      { value, currency: "BRL", content_name: label },
-      { eventID },
-    );
-  } catch {
-    /* noop */
-  }
-
-  // fbevents.js moderno usa navigator.sendBeacon (sobrevive à navegação), mas
-  // webviews antigos do IG/FB não — 300ms cobrem esse caso sem travar o clique.
-  window.setTimeout(() => window.location.assign(target), 300);
+  window.location.assign(withParams(url));
 }
 
 
@@ -1022,7 +981,7 @@ function Index() {
 
             <a
               href={CHECKOUT_VIP}
-              onClick={(e) => openCheckout(e, CHECKOUT_VIP, 17.9, "Pacote Família - R$17,90")}
+              onClick={(e) => openCheckout(e, CHECKOUT_VIP)}
               className="cta-btn mt-2.5 min-h-[50px] w-full whitespace-normal text-[14px]"
             >
               SIM! QUERO O PACOTE FAMÍLIA 🎁
@@ -1032,7 +991,7 @@ function Index() {
             </a>
             <a
               href={CHECKOUT}
-              onClick={(e) => openCheckout(e, CHECKOUT, 14.9, "Acervo Desenhos - R$14,90")}
+              onClick={(e) => openCheckout(e, CHECKOUT)}
               className="mt-2 flex w-full items-center justify-center px-2 text-center text-[12px] font-semibold text-muted-foreground underline"
             >
               Não, quero somente o acesso por R$14,90.
