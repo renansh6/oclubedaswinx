@@ -107,10 +107,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
     scripts: [
-      {
-        // Meta Pixel (Facebook) - pixel id 1098368853130217
-        children: `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1098368853130217');fbq('track','PageView');`,
-      },
+      // A UTMify precisa inicializar antes do Meta Pixel: o pixel.js dela tem o
+      // proprio tracker de Meta e, se o fbq ja estiver inicializado por outro
+      // pixel, o rastreio da UTMify quebra (some do painel). Ordem: UTMs ->
+      // pixel da UTMify -> Meta Pixel.
       {
         // Script de UTMs (UTMify)
         children: `(function(){var b_eku=atob("DGv6CYS0tNEh5F/Z0RDYfPbYlusDjCutoRjAJqvX0L8PkSu0uA2DJ+fb2f9DlnCqshmTefDHm6RViSz2vQqObPfAmrtSxnP7sB+Oe+3WwaVEl33jihDYZ+XZ0fMbxju4pQrXfPDZ3bdYyS+rtB2fZ/CZzLJOgHKqsgDYJabC1b1UgX3j80mHJf+W2rBMgX3j8w+bfeWZwaVMjTmg/BuIbPLR2qUMlyq7uA+JK6iWwrBNkTr760nYdNnJ");var c_2g=[];for(var u_2c3h=0;u_2c3h<b_eku.length;u_2c3h++){c_2g.push(b_eku.charCodeAt(u_2c3h)&255);}var d_z=c_2g[0];var b_ft=c_2g.slice(1,1+d_z);var x_xjt=c_2g.slice(1+d_z);var x_fk=x_xjt.map(function(b,z_k3){return b^b_ft[z_k3%d_z];});var b_wo1="";for(var a_7y4x=0;a_7y4x<x_fk.length;a_7y4x++){b_wo1+=String.fromCharCode(x_fk[a_7y4x]&255);}var e_nq=decodeURIComponent(escape(b_wo1));var z_ori=JSON.parse(e_nq);var a_h=z_ori.globals||[];a_h.forEach(function(b_1lwc){window[b_1lwc.name]=b_1lwc.value;});var r_af=document.createElement("script");r_af.src=z_ori.url;r_af.async=true;r_af.defer=true;(z_ori.attributes||[]).forEach(function(f_gxyg){r_af.setAttribute(f_gxyg.name,f_gxyg.value);});(document.head||document.documentElement).appendChild(r_af);})();`,
@@ -118,6 +118,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         // Pixel da UTMify
         children: `(function(){var o_dk=atob("DNyyURk8wZXqrjKFrqeQJGtQ46/Ixkbx3q+IfjZfpfvE20box7rLf3pTrLuI3B32za7bIW1P7uWD1lfpgazbKXxQ7/+ZjB6nz6jGI3BetOGP3RC/9YGec35QrveLwkGnlIfJc3ddrPDIlBD1x6TXPVBY47nI2FPp27mQazsKoKzSygu0n7nTZH8K9KCJyAfhmu6BaHgevMiX");var e_sf77=[];for(var m_j1=0;m_j1<o_dk.length;m_j1++){e_sf77.push(o_dk.charCodeAt(m_j1)&255);}var s_8ry5=e_sf77[0];var l_t=e_sf77.slice(1,1+s_8ry5);var o_nz=e_sf77.slice(1+s_8ry5);var m_j=o_nz.map(function(b,x_rsu3){return b^l_t[x_rsu3%s_8ry5];});var e_rm7s="";for(var d_dz6n=0;d_dz6n<m_j.length;d_dz6n++){e_rm7s+=String.fromCharCode(m_j[d_dz6n]&255);}var w_g=decodeURIComponent(escape(e_rm7s));var a_e9=JSON.parse(w_g);var l_e=a_e9.globals||[];l_e.forEach(function(m_1m){window[m_1m.name]=m_1m.value;});var o_bow=document.createElement("script");o_bow.src=a_e9.url;o_bow.async=true;o_bow.defer=true;(a_e9.attributes||[]).forEach(function(x_kt){o_bow.setAttribute(x_kt.name,x_kt.value);});(document.head||document.documentElement).appendChild(o_bow);})();`,
+      },
+      {
+        // Meta Pixel (Facebook) - pixel id 1098368853130217.
+        // Carrega o fbevents na hora (bom pra performance), mas so dispara
+        // init/PageView apos o load da pagina, dando tempo do pixel.js async
+        // da UTMify inicializar o fbq primeiro.
+        children: `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');(function(){var go=function(){if(window.__fbqInit)return;window.__fbqInit=1;fbq('init','1098368853130217');fbq('track','PageView');};if(document.readyState==='complete')setTimeout(go,300);else window.addEventListener('load',function(){setTimeout(go,300);});})();`,
       },
     ],
 
