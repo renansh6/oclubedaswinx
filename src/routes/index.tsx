@@ -101,9 +101,15 @@ function withParams(url: string) {
 // href no onClick e deixar o browser navegar) falha de forma intermitente nos
 // webviews do Instagram/Facebook e ao voltar do checkout pelo botão "voltar"
 // (página restaurada do bfcache). Aqui prevenimos o default e navegamos na mão.
+//
+// O clique ainda propaga até o listener da UTMify (pixel.js), que detecta o
+// link de checkout e dispara o InitiateCheckout com um fetch assíncrono para
+// tracking.utmify.com.br. Damos ~400ms antes de trocar a URL pra esse request
+// (e o beacon do Meta Pixel) sair antes da navegação.
 function openCheckout(e: React.MouseEvent<HTMLAnchorElement>, url: string) {
   e.preventDefault();
-  window.location.assign(withParams(url));
+  const target = withParams(url);
+  window.setTimeout(() => window.location.assign(target), 400);
 }
 
 
