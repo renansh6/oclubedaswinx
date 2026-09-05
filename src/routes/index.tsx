@@ -465,7 +465,7 @@ function OfferCard({
       </div>
       <div className="text-[13px] font-semibold text-muted-foreground">Por apenas</div>
       <div className="text-6xl font-extrabold leading-none text-primary">
-        <small className="align-super text-2xl font-bold">R$</small>14,90
+        <small className="align-super text-2xl font-bold">R$</small>6,90
       </div>
 
       <button
@@ -624,7 +624,7 @@ function Index() {
         tag="Oferta Exclusiva"
         scarcity="🔥 Valor promocional de lançamento — por tempo limitado"
         title="Os desenhos mais amados, num lugar só"
-        cta="QUERO MEU ACESSO POR R$14,90 💖"
+        cta="QUERO MEU ACESSO POR R$6,90 💖"
         onCta={handleCta}
         note={
           <>
@@ -848,7 +848,7 @@ function Index() {
       <OfferCard
         tag="Última chamada"
         title="Reviva a magia dos seus desenhos favoritos ainda hoje"
-        cta="GARANTIR MEU ACESSO POR R$14,90 🎀"
+        cta="GARANTIR MEU ACESSO POR R$6,90 🎀"
         onCta={handleCta}
         note={<>🔒 Compra 100% segura · 💗 7 dias de garantia incondicional</>}
       />
@@ -945,7 +945,7 @@ function Index() {
 
             <p className="mt-2 text-[12.5px] leading-[1.4] text-muted-foreground">
               Você já vai levar <b className="text-ink">todos os desenhos</b>. Falta a série que as
-              meninas mais pedem — e ela não entra na oferta de R$ 14,90.
+              meninas mais pedem — e ela não entra na oferta de R$ 6,90.
             </p>
 
             <div className="relative mt-4 rounded-2xl border-2 border-[#f3b3d5] bg-[#fdeef6] p-4 pt-5 text-left">
@@ -992,7 +992,7 @@ function Index() {
             >
               SIM! QUERO O PACOTE FAMÍLIA 🎁
               <span className="mt-0.5 block text-[12px] font-semibold normal-case opacity-90">
-                Levar tudo por R$17,90 →
+                Levar tudo por R$9,90 →
               </span>
             </a>
             <a
@@ -1000,7 +1000,7 @@ function Index() {
               onClick={(e) => openCheckout(e, CHECKOUT)}
               className="mt-2 flex w-full items-center justify-center px-2 text-center text-[12px] font-semibold text-muted-foreground underline"
             >
-              Não, quero somente o acesso por R$14,90.
+              Não, quero somente o acesso por R$6,90.
             </a>
           </div>
         </div>
